@@ -1,12 +1,14 @@
 import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import UserAuth from "./components/UserAuth.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Space app frontend (temp name)</h1>
-      </header>
-    </div>
+    <switch>
+      <Route exact path="/">
+        <UserAuth />
+      </Route>
+    </switch>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { app, auth } from "./firebase";
+import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getObjectByName } from "./db";
+import { getObjectByName } from "../db";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
