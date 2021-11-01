@@ -46,4 +46,18 @@ export const setUserProgress = (progress) => {
   });
 };
 
-
+export const getUserProgress = () => {
+  console.log("Reading user data");
+  const userRef = ref(db, "users/" + `${auth.currentUser.uid}/progress`);
+  get(userRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
