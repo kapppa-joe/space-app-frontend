@@ -4,11 +4,11 @@ import UserAuth from "./components/UserAuth.jsx";
 
 function App() {
   return (
-    <switch>
+    <Switch>
       <Route exact path="/">
         <UserAuth />
       </Route>
-    </switch>
+    </Switch>
   );
 }
 
