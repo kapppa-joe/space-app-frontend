@@ -1,7 +1,7 @@
-import { db } from "./firebase";
-import { ref, get, child } from "firebase/database";
+import { app, auth, db } from "./firebase";
+import { ref, set, get, child } from "firebase/database";
 
-export const getTrivia = (objectName) => { 
+export const getTrivia = (objectName) => {
   const planetRef = ref(db, `planets/${objectName}`);
   return get(child(planetRef, "trivia")).then((snapshot) => {
     if (snapshot.exists()) {
@@ -25,7 +25,6 @@ export const getQuestions = (objectName) => {
 
 export const getObjectByName = (objectName) => {
   const planetRef = ref(db, "planets");
-
   return get(child(planetRef, objectName))
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -38,3 +37,13 @@ export const getObjectByName = (objectName) => {
       console.log(error);
     });
 };
+
+export const setUserProgress = (progress) => {
+  console.log("Saving user data");
+  const userRef = ref(db, "users/" + `${auth.currentUser.uid}/progress`);
+  set(userRef, {
+    questions : [1,2,3,4]
+  });
+};
+
+

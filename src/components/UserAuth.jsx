@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getObjectByName, getQuestions, getTrivia } from "../db";
+import { getUserProgress, setUserProgress } from "../db";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
@@ -100,10 +100,8 @@ export default function UserAuth() {
   // };
 
   const testDB = () => {
-    getQuestions('sun').then(q=>{
-      console.log(q);
-    })
-  }
+    
+  };
 
   return (
     <div className="App">
