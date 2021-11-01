@@ -88,7 +88,15 @@ export default function UserAuth() {
         console.log(planet_trivia);
       });
 
-      
+      planetData.questions.forEach((planet_questions, index) => {
+        console.log("Question number ", index, ":");
+        for (const key in planet_questions) {
+          if (Object.hasOwnProperty.call(planet_questions, key)) {
+            const element = planet_questions[key];
+            console.log("\t", key, element);
+          }
+        }
+      });
     });
   };
 
