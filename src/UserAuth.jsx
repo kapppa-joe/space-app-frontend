@@ -83,7 +83,13 @@ export default function UserAuth() {
   };
 
   const testDB = () => {
-    getObjectByName('planet1')
+    getObjectByName("planet1").then((planetData) => {
+      planetData.trivia.forEach((planet_trivia) => {
+        console.log(planet_trivia);
+      });
+
+      
+    });
   };
 
   return (
