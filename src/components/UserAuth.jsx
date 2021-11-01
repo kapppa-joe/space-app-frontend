@@ -83,12 +83,17 @@ export default function UserAuth() {
   };
 
   const testDB = () => {
+    //getting info of planet1
     getObjectByName("planet1").then((planetData) => {
+
+      //getting an array of trivia
       planetData.trivia.forEach((planet_trivia) => {
         console.log(planet_trivia);
       });
 
+      // getting question objects array 
       planetData.questions.forEach((planet_questions, index) => {
+        
         console.log("Question number ", index, ":");
         for (const key in planet_questions) {
           if (Object.hasOwnProperty.call(planet_questions, key)) {
