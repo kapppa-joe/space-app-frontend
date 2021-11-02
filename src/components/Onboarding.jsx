@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import Robot1 from "../assets/avatars/Robot1.png";
 import CustomARMarker from "../assets/images/ar-pattern-rocket.png";
 import CustomMarkerPDF from "../assets/images/custom-AR-marker.pdf";
+import getUserProgressByPlanet from "../db";
 
 const Onboarding = () => {
   const [loggedIn, setLoggedIn] = useState(true);
