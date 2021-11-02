@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getUserProgress, setUserProgress } from "../db";
+import { removeUserProgress, setUserProgress, updateUserProgress } from "../db";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
@@ -100,7 +100,7 @@ export default function UserAuth() {
   // };
 
   const testDB = () => {
-    
+    removeUserProgress();
   };
 
   return (

@@ -1,5 +1,5 @@
-import { app, auth, db } from "./firebase";
-import { ref, set, get, child } from "firebase/database";
+import { auth, db } from "./firebase";
+import { ref, set, get,remove, child, update } from "firebase/database";
 
 export const getTrivia = (objectName) => {
   const planetRef = ref(db, `planets/${objectName}`);
@@ -40,15 +40,14 @@ export const getObjectByName = (objectName) => {
 
 export const setUserProgress = (progress) => {
   console.log("Saving user data");
-  const userRef = ref(db, "users/" + `${auth.currentUser.uid}/progress`);
-  set(userRef, {
-    questions : [1,2,3,4]
-  });
+  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+  set(userRef, progress).then((s)=>{
+    console.log(s)
+  })
 };
 
 export const getUserProgress = () => {
-  console.log("Reading user data");
-  const userRef = ref(db, "users/" + `${auth.currentUser.uid}/progress`);
+  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
   get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -60,4 +59,20 @@ export const getUserProgress = () => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const updateUserProgress = (progressUpdate) => {
+  console.log("Updating user data");
+
+  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+  
+  update(userRef, progressUpdate)
+};
+
+export const removeUserProgress = () => {
+  console.log("Updating user data");
+
+  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+
+  remove(userRef);
 };
