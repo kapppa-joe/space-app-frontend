@@ -1,3 +1,13 @@
 .App {
   text-align: center;
+  height: 100vh;
+}
+
+/* Background */
+
+.Background {
+  background-image: url("./assets/images/sky-background.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
 }
