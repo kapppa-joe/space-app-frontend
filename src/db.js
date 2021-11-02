@@ -3,31 +3,43 @@ import { ref, set, get, remove, child, update } from "firebase/database";
 
 export const getTrivia = (objectName) => {
   const planetRef = ref(db, `planets/${objectName}`);
-  return get(child(planetRef, "trivia")).then((snapshot) => {
-    if (snapshot.exists()) {
-      return snapshot.val();
-    } else {
-      console.log("No data available");
-    }
-  });
+  return get(child(planetRef, "trivia"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getQuestions = (objectName) => {
   const planetRef = ref(db, `planets/${objectName}`);
-  return get(child(planetRef, "questions")).then((snapshot) => {
-    if (snapshot.exists()) {
-      return snapshot.val();
-    } else {
-      console.log("No data available");
-    }
-  });
+  return get(child(planetRef, "questions"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const setUserProgress = (progress) => {
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
-  return set(userRef, progress).then((s) => {
-    console.log(s);
-  });
+  return set(userRef, progress)
+    .then((s) => {
+      console.log(s);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getUserProgress = () => {
@@ -67,9 +79,13 @@ export const getUserAvatar = () => {
 
 export const setUserNickname = (nickname) => {
   const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
-  return set(userRef, nickname).then((s) => {
-    return s;
-  });
+  return set(userRef, nickname)
+    .then((s) => {
+      return s;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getUserNickname = () => {
