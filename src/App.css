@@ -2,6 +2,7 @@
 .Login {
   text-align: center;
   height: 100vh;
+  color: white;
 }
 
 /* Background */
@@ -18,4 +19,13 @@
 
 .Login {
   color: white;
+}
+
+/* Onboarding */
+
+.avatar_img {
+  height: 100px;
+}
+.ar_marker_img {
+  height: 100px;
 }
