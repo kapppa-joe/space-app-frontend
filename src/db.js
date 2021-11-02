@@ -40,14 +40,14 @@ export const getObjectByName = (objectName) => {
 
 export const setUserProgress = (progress) => {
   console.log("Saving user data");
-  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+  const userRef = ref(db, `progress/${auth.currentUser.uid}/progress`);
   set(userRef, progress).then((s)=>{
     console.log(s)
   })
 };
 
 export const getUserProgress = () => {
-  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+  const userRef = ref(db, `progress/${auth.currentUser.uid}/progress`);
   get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -62,17 +62,13 @@ export const getUserProgress = () => {
 };
 
 export const updateUserProgress = (progressUpdate) => {
-  console.log("Updating user data");
-
-  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+  const userRef = ref(db, `progress/${auth.currentUser.uid}/progress`);
   
   update(userRef, progressUpdate)
 };
 
 export const removeUserProgress = () => {
-  console.log("Updating user data");
-
-  const userRef = ref(db, `users/${auth.currentUser.uid}/progress`);
+  const userRef = ref(db, `progress/${auth.currentUser.uid}/progress`);
 
   remove(userRef);
 };
