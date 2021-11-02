@@ -4,7 +4,7 @@ import { ref, set, get, remove, child, update } from "firebase/database";
 export const setDefaults = () => {
   setUserAvatar("");
   setUserNickname("");
-  setUserProgress({ earth: [] });
+  setUserProgress("");
 };
 
 export const getTrivia = (objectName) => {
@@ -55,6 +55,7 @@ voyager: []
 */
 
 export const setUserProgress = (progress) => {
+  console.log("setUserProgress called");
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return set(userRef, progress);
 };

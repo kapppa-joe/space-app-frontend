@@ -11,7 +11,7 @@ const Onboarding = () => {
   const [loggedIn, setLoggedIn] = useState(true);
 
   const testDB = () => {
-    setUserProgress({ earth: [1, 2, 3, 4], venus: [1, 2, 3, 4] });
+    setUserProgress();
   };
 
   const signOutUser = () => {
