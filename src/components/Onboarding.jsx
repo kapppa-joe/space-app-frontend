@@ -10,20 +10,26 @@ import { setUserNickname, getUserNickname, setUserAvatar,  getUserProgressByPlan
 const Onboarding = () => {
   const [loggedIn, setLoggedIn] = useState(true);
   const [inputName, setInputName] = useState("")
+  const [nickname, setNickname] = useState("")
   const [avatar, setAvatar] = useState(0)
   const avatarList = ["Robot1", "Robot2", "Robot3", "Robot4", "Robot5", "Robot6",]
 
-  // useEffect(() => {
-  //   getUserNickname().then((nickname) => {
-  //     if(!nickname) {
-  //       setInputName("")
-  //     } else {
-  //       setInputName(nickname);
-  //     }
-  //   }).catch((err) => {
-  //     setInputName("");
-  //   })
-  // }, [])
+  useEffect(() => {
+    console.log("HERE")
+    if (auth.currentUser) {
+      console.log("here2")
+      getUserNickname().then((res) => {
+        console.log(res)
+        if(!res) {
+          setNickname("No name")
+        } else {
+          setNickname(res);
+        }
+      }).catch((err) => {
+        console.dir(err)
+      })
+    }
+  }, [])
 
 
 
@@ -57,7 +63,7 @@ const Onboarding = () => {
     
   }
 
-  if (!loggedIn) {
+  if (!auth.currentUser) {
     return <Redirect to="/" />;
   }
 
@@ -74,6 +80,7 @@ const Onboarding = () => {
         onChange={(e) => setInputName(e.target.value)}
       ></input>
       <button onClick={submitNickname}>Set Character Name</button>
+      <p>Your name: {nickname}</p>
       <h3>Step 2: Choose your character!</h3>
       <button onClick={() => {changeAvatarButtons(-1)}}>{'<---'}</button>
       <img className="avatar_img" src={`/assets/avatars/${avatarList[avatar]}.png`} alt="user avatar" />
