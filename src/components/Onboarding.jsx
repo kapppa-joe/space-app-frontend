@@ -9,7 +9,8 @@ import { setUserNickname, getUserNickname, setUserAvatar } from "../db";
 const Onboarding = () => {
   const [loggedIn, setLoggedIn] = useState(true);
   const [inputName, setInputName] = useState("")
-  const [avatar, setAvatar] = useState("Robot1")
+  const [avatar, setAvatar] = useState(0)
+  const avatarList = ["Robot1", "Robot2", "Robot3", "Robot4", "Robot5", "Robot6",]
 
   // useEffect(() => {
   //   getUserNickname().then((nickname) => {
@@ -22,6 +23,8 @@ const Onboarding = () => {
   //     setInputName("");
   //   })
   // }, [])
+
+
 
   const signOutUser = () => {
     auth
@@ -36,6 +39,17 @@ const Onboarding = () => {
     setUserNickname(inputName).then(() => {
       setInputName("");
     })
+  }
+
+  const changeAvatarButtons = (number) => {
+    if (avatar === 0 && number === -1) {
+      setAvatar(5)
+    } else if ((avatar === 5 && number === 1)) {
+       setAvatar(0)
+    } else {
+      setAvatar(avatar + number)
+    }
+    
   }
 
   if (!loggedIn) {
@@ -56,9 +70,9 @@ const Onboarding = () => {
       ></input>
       <button onClick={submitNickname}>Set Character Name</button>
       <h3>Step 2: Choose your character!</h3>
-      
-      <img className="avatar_img" src={`/assets/avatars/${avatar}.png`} alt="user avatar" />
-
+      <button onClick={() => {changeAvatarButtons(-1)}}>{'<---'}</button>
+      <img className="avatar_img" src={`/assets/avatars/${avatarList[avatar]}.png`} alt="user avatar" />
+      <button onClick={() => {changeAvatarButtons(1)}}>{'--->'}</button>
 
       <a href={CustomMarkerPDF} target="__blank">
         <img
