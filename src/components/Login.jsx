@@ -52,7 +52,6 @@ export default function UserAuth() {
         setLoggedIn(true);
         setUsername(auth.user.email);
         resetForm();
-        setDefaults();
       })
       .catch((error) => alert(error.message));
   };
