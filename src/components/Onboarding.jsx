@@ -28,7 +28,7 @@ const Onboarding = () => {
 
 
   const testDB = () => {
-    setUserProgress({ earth: [1, 2, 3, 4], venus: [1, 2, 3, 4] });
+    setUserProgress();
   };
 
   const signOutUser = () => {

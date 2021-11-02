@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getUserProgress, setUserProgress } from "../db";
+import { getUserProgress, setUserProgress, updateUserProgress } from "../db";
 
 const MissionControl = () => {
   const [progress, setProgress] = useState({
@@ -18,25 +18,24 @@ const MissionControl = () => {
     voyager: [],
   });
 
-  useEffect(() => {
-    getUserProgress().then((progress) => {
-      if (progress) {
-        setProgress(progress);
-      } else {
-        setUserProgress(progress);
-      }
-    }, []);
-  });
+  //   useEffect(() => {
+  //     getUserProgress().then((progress) => {
+  //       if (progress) {
+  //         setProgress(progress);
+  //       } else {
+  //         setUserProgress(progress);
+  //       }
+  //     }, []);
+  //   });
 
   const testDB = () => {
-    //   getUserProgressByPlanet("earth").then((progress) => {
-    //     console.log(progress);
-    //   });
+    updateUserProgress({ sun: [1] });
   };
 
   return (
     <div>
       <button onClick={testDB}>DB test</button>
+      <p>Sun {progress.sun.length}/10</p>
     </div>
   );
 };
