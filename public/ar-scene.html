@@ -2,7 +2,7 @@
 
 <html lang="en">
   <head>
-    <title>Gesture Interactions - A-Frame & AR.js</title>
+    <title>AR Scene</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -30,6 +30,7 @@
       renderer="logarithmicDepthBuffer: true;"
       id="ar-scene"
       gesture-detector
+      adjust-color-model
     >
       <a-assets>
         <a-asset-item id="dummy" src=""></a-asset-item>
@@ -87,12 +88,13 @@
     </a-scene>
 
     <script>
-      // custom script to solve issue of planet got squeezed to long flat ellipse on phone screen
+      // custom script to solve the issue of planet got squeezed to long flat ellipse on phone screen
       const sceneElement = document.querySelector("a-scene");
       sceneElement.removeFullScreenStyles();
 
-      // quick & dirty script for testing & debug purpose.
+      // script for testing & debug purpose.
       // use together with the a-text entity above.
+      //
       // const statusText = document.querySelector("#status-text");
       // const markerEl = document.querySelector("#marker-hiro");
       // markerEl.addEventListener("markerFound", () => {
