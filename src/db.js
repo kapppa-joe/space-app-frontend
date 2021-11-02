@@ -1,6 +1,12 @@
 import { auth, db } from "./firebase";
 import { ref, set, get, remove, child, update } from "firebase/database";
 
+export const setDefaults = () => {
+  setUserAvatar("");
+  setUserNickname("");
+  setUserProgress({ earth: [] });
+};
+
 export const getTrivia = (objectName) => {
   const planetRef = ref(db, `planets/${objectName}`);
   return get(child(planetRef, "trivia"))
@@ -50,23 +56,19 @@ voyager: []
 
 export const setUserProgress = (progress) => {
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
-  return set(userRef, progress)
-    .then((s) => {
-      console.log(s);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return set(userRef, progress);
 };
 
 export const getUserProgress = () => {
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
+  console.log(userRef);
   return get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val();
       } else {
         console.log("No data available");
+        return undefined;
       }
     })
     .catch((error) => {
