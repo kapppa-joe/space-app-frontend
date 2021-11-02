@@ -31,6 +31,23 @@ export const getQuestions = (objectName) => {
     });
 };
 
+/*
+setProgress structure = {
+sun: [],
+mercury: [],
+venus: [],
+earth: [],
+mars: [],
+jupiter: [],
+saturn: [],
+uranus: [],
+neptune: [],
+iss: [],
+curiosity-rover: [],
+voyager: []
+}
+*/
+
 export const setUserProgress = (progress) => {
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return set(userRef, progress)
