@@ -48,6 +48,28 @@ export const setUserProgress = (progress) => {
 export const getUserProgress = () => {
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return get(userRef)
+
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const setUserAvatar = (avatar) => {
+  const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
+  return set(userRef, avatar);
+};
+
+export const getUserAvatar = () => {
+  const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
+  return get(userRef)
+
     .then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val();

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Redirect } from "react-router";
 import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { removeUserProgress, setUserProgress, updateUserProgress } from "../db";
@@ -6,14 +7,12 @@ import { removeUserProgress, setUserProgress, updateUserProgress } from "../db";
 export default function UserAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
   const [username, setUsername] = useState("Guest");
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
       if (user) {
-        setMessage("Welcome back!");
         setUsername(user.email);
         setLoggedIn(true);
         resetForm();
@@ -45,7 +44,6 @@ export default function UserAuth() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        setMessage("You have successfully logged in!");
         setLoggedIn(true);
         setUsername(auth.user.email);
         resetForm();
@@ -58,7 +56,6 @@ export default function UserAuth() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        setMessage("Your account has been created successfully!");
         setLoggedIn(true);
         setUsername(auth.user.email);
         resetForm();
@@ -66,16 +63,16 @@ export default function UserAuth() {
       .catch((error) => alert(error.message));
   };
 
-  const signOutUser = () => {
-    auth
-      .signOut()
-      .then(() => {
-        setMessage("Hello there!");
-        setUsername("Guest");
-        setLoggedIn(false);
-      })
-      .catch((error) => alert(error.message));
-  };
+  // const signOutUser = () => {
+  //   auth
+  //     .signOut()
+  //     .then(() => {
+  //       setMessage("Hello there!");
+  //       setUsername("Guest");
+  //       setLoggedIn(false);
+  //     })
+  //     .catch((error) => alert(error.message));
+  // };
 
   const resetForm = () => {
     setEmail("");
@@ -103,28 +100,39 @@ export default function UserAuth() {
     removeUserProgress();
   };
 
+  if(loggedIn) {
+    return (
+      <Redirect to="/onboarding"/>
+    )
+  }
+
   return (
-    <div className="App">
-      <h1>Hello {username}</h1>
+    <div className="Login">
+      <h1>Out of Orbit</h1>
+      <h4>An augmented reality space experience</h4>
+
+      <p>Login or register to begin your voyage into outer space</p>
 
       {!loggedIn ? (
         <div className="login__container">
-          <h1>Sign-in</h1>
           <form>
-            <h5>E-mail</h5>
+            
+            <label htmlFor="email">E-mail</label>
             <input
+              id="email"
               type="text"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <h5>Password</h5>
+            <label htmlFor="password">Password</label>
             <input
+              id="label"
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
             <button
-              className="login_singInButton"
+              className="login_signInButton"
               onClick={signIn}
               type="submit"
             >
@@ -141,8 +149,7 @@ export default function UserAuth() {
         </div>
       ) : (
         <>
-          <h1>{message}</h1>
-          <button onClick={signOutUser}>Sign Out</button>
+          {/* <button onClick={signOutUser}>Sign Out</button> */}
           <button onClick={testDB}>DB test</button>
         </>
       )}

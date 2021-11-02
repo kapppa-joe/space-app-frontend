@@ -1,3 +1,21 @@
-.App {
+.App,
+.Login {
   text-align: center;
+  height: 100vh;
+}
+
+/* Background */
+
+.Background {
+  height: 100vh;
+  background-image: url("./assets/images/sky-background.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
+/* Login */
+
+.Login {
+  color: white;
 }
