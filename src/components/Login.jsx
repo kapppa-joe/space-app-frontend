@@ -96,14 +96,8 @@ export default function UserAuth() {
   //   });
   // };
 
-  const testDB = () => {
-    removeUserProgress();
-  };
-
-  if(loggedIn) {
-    return (
-      <Redirect to="/onboarding"/>
-    )
+  if (loggedIn) {
+    return <Redirect to="/onboarding" />;
   }
 
   return (
@@ -116,7 +110,6 @@ export default function UserAuth() {
       {!loggedIn ? (
         <div className="login__container">
           <form>
-            
             <label htmlFor="email">E-mail</label>
             <input
               id="email"
@@ -148,10 +141,7 @@ export default function UserAuth() {
           </form>
         </div>
       ) : (
-        <>
-          {/* <button onClick={signOutUser}>Sign Out</button> */}
-          <button onClick={testDB}>DB test</button>
-        </>
+        <>{/* <button onClick={signOutUser}>Sign Out</button> */}</>
       )}
     </div>
   );

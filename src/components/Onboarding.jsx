@@ -9,6 +9,12 @@ import CustomMarkerPDF from "../assets/images/custom-AR-marker.pdf";
 const Onboarding = () => {
   const [loggedIn, setLoggedIn] = useState(true);
 
+  const testDB = () => {
+    getUserProgressByPlanet("earth").then((progress) => {
+      console.log(progress);
+    });
+  };
+
   const signOutUser = () => {
     auth
       .signOut()
@@ -43,6 +49,7 @@ const Onboarding = () => {
       <p>
         <button>My mission</button>
       </p>
+      <button onClick={testDB}>DB test</button>
     </div>
   );
 };
