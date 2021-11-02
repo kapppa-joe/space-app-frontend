@@ -1,7 +1,7 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Background from "./components/Background";
-import UserAuth from "./components/UserAuth.jsx";
+import Login from "./components/Login.jsx";
 import Onboarding from "./components/Onboarding";
 import MissionControl from "./components/MissionControl";
 import SolarSystem from "./components/SolarSystem";
@@ -12,7 +12,7 @@ function App() {
     <Background>
       <Switch>
         <Route exact path="/">
-          <UserAuth />
+          <Login />
         </Route>
         <Route exact path="/onboarding">
           <Onboarding />
