@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getObjectByName } from "../db";
+import { removeUserProgress, setUserProgress, updateUserProgress } from "../db";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
@@ -82,27 +82,25 @@ export default function UserAuth() {
     setPassword("");
   };
 
+  // // Test function , for later use in Planet.jsx
+  // const testDB = () => {
+  //   // Placeholders for useState
+  //   let trivia;
+  //   let answers;
+  //   let correct;
+  //   let question;
+  //   getObjectByName("sun").then((planetData) => {
+  //     //Array of trivia
+  //     trivia = planetData.trivia;
+  //     //array of answers
+  //     answers = planetData.questions.answers;
+  //     correct = planetData.questions.correct;
+  //     question = planetData.questions.question;
+  //   });
+  // };
+
   const testDB = () => {
-    //getting info of planet1
-    getObjectByName("planet1").then((planetData) => {
-
-      //getting an array of trivia
-      planetData.trivia.forEach((planet_trivia) => {
-        console.log(planet_trivia);
-      });
-
-      // getting question objects array 
-      planetData.questions.forEach((planet_questions, index) => {
-        
-        console.log("Question number ", index, ":");
-        for (const key in planet_questions) {
-          if (Object.hasOwnProperty.call(planet_questions, key)) {
-            const element = planet_questions[key];
-            console.log("\t", key, element);
-          }
-        }
-      });
-    });
+    removeUserProgress();
   };
 
   return (
