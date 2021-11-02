@@ -9,25 +9,27 @@ import Planets from "./components/Planets";
 
 function App() {
   return (
-    <Background>
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route exact path="/onboarding">
-          <Onboarding />
-        </Route>
-        <Route exact path="/mission-control">
-          <MissionControl />
-        </Route>
-        <Route exact path="/solar-system">
-          <SolarSystem />
-        </Route>
-        <Route exact path="/space/:planet_id">
-          <Planets />
-        </Route>
-      </Switch>
-    </Background>
+    <div className="App">
+      <Background>
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/onboarding">
+            <Onboarding />
+          </Route>
+          <Route exact path="/mission-control">
+            <MissionControl />
+          </Route>
+          <Route exact path="/solar-system">
+            <SolarSystem />
+          </Route>
+          <Route exact path="/space/:planet_id">
+            <Planets />
+          </Route>
+        </Switch>
+      </Background>
+    </div>
   );
 }
 

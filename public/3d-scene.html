@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/aframe.min.js"></script>
+  <script src="js/dynamicLoadModel.js" defer></script>
+  <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script>
+  <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script>
+  </head>
+  <title>3D Scene</title>
+</head>
+<body>
+  <a-scene vr-mode-ui="enabled: false" adjust-color-model>
+    <a-assets>
+        <a-asset-item id="dummy" src=""></a-asset-item>
+    </a-assets>
+
+    <a-entity id="camera" camera position="0 1 4"
+              orbit-controls="target: #target;
+                              enableDamping: true; dampingFactor: 0.25;
+                              autoRotate: false;
+                              rotateSpeed:0.16;
+                              minDistance:2; maxDistance:10;"
+              mouse-cursor=""
+              >
+      <a-light type="spot" position="0 0 0" target="#target" color="#FFF" intensity="0.7">
+      </a-light>
+    </a-entity>
+
+    <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+
+    <a-entity
+      id="target"
+      dynamic-load-model
+      position="0 0 0"
+      scale="0.3 0.3 0.3"
+      class="clickable"
+      animation="property: rotation; from:0 0 0; to: 0 360 0 ;dur: 20000; easing: linear ; loop: true"
+      gesture-handler
+    >
+    </a-entity>
+    
+    <a-sky color="#000000"></a-sky>
+    <a-entity star-system="count: 500; radius: 250; depth: 0; size: 0.5" animation="property: rotation; from:0 0 0; to:360 360 0; dur: 1000000; easing: linear; loop: true">
+    </a-entity>
+  </a-scene>
+</body>
+</html>
