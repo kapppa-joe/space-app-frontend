@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import { Redirect } from "react-router";
 import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { removeUserProgress, setUserProgress, updateUserProgress } from "../db";
+import {
+  removeUserProgress,
+  setDefaults,
+  setUserProgress,
+  updateUserProgress,
+} from "../db";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
@@ -47,6 +52,7 @@ export default function UserAuth() {
         setLoggedIn(true);
         setUsername(auth.user.email);
         resetForm();
+        setDefaults();
       })
       .catch((error) => alert(error.message));
   };
@@ -59,6 +65,7 @@ export default function UserAuth() {
         setLoggedIn(true);
         setUsername(auth.user.email);
         resetForm();
+        setDefaults();
       })
       .catch((error) => alert(error.message));
   };
