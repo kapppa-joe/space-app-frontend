@@ -48,6 +48,7 @@ export const setUserProgress = (progress) => {
 export const getUserProgress = () => {
   const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return get(userRef)
+
     .then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val();
@@ -68,6 +69,7 @@ export const setUserAvatar = (avatar) => {
 export const getUserAvatar = () => {
   const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
   return get(userRef)
+
     .then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.val();
@@ -78,6 +80,33 @@ export const getUserAvatar = () => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const setUserNickname = (nickname) => {
+  const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
+  return set(userRef, nickname).then((s) => {
+    return s;
+  });
+};
+
+export const getUserNickname = () => {
+  const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
+  return get(userRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const removeUserNickname = () => {
+  const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
+  return remove(userRef);
 };
 
 export const updateUserProgress = (progressUpdate) => {
