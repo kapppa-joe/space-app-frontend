@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import CustomARMarker from "../assets/images/ar-pattern-rocket.png";
 import CustomMarkerPDF from "../assets/images/custom-AR-marker.pdf";
-import { setUserNickname, getUserNickname, setUserAvatar } from "../db";
+
+import { setUserNickname, getUserNickname, setUserAvatar,  getUserProgressByPlanet, setUserProgress } from "../db";
 
 const Onboarding = () => {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -25,6 +26,10 @@ const Onboarding = () => {
   // }, [])
 
 
+
+  const testDB = () => {
+    setUserProgress({ earth: [1, 2, 3, 4], venus: [1, 2, 3, 4] });
+  };
 
   const signOutUser = () => {
     auth
@@ -85,6 +90,7 @@ const Onboarding = () => {
       <p>
         <button>My mission</button>
       </p>
+      <button onClick={testDB}>DB test</button>
     </div>
   );
 };
