@@ -95,7 +95,7 @@ const Onboarding = () => {
       </a>
 
       <p>
-        <button>My mission</button>
+        <Link to="/mission-control"><button>My mission</button></Link>
       </p>
       <button onClick={testDB}>DB test</button>
     </div>
