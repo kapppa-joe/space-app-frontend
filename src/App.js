@@ -7,6 +7,7 @@ import MissionControl from "./components/MissionControl";
 import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
 import Facts from "./components/Facts";
+import Quiz from "./components/Quiz"
 
 function App() {
   return (
@@ -25,12 +26,16 @@ function App() {
           <Route exact path="/solar-system">
             <SolarSystem />
           </Route>
-          <Route exact path="/space/:planet_id">
+          <Route exact path="/space/:space_object">
             <Planets />
           </Route>
           {/* route set up for testing of facts component */}
           <Route exact path="/space/:planet_id/facts">
             <Facts />
+          </Route>
+          {/* route set up for testing of facts component */}
+          <Route exact path="/space/:planet_id/quiz">
+            <Quiz />
           </Route>
         </Switch>
       </Background>

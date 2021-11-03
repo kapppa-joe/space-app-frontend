@@ -32,9 +32,6 @@ export const getQuestions = (objectName) => {
         throw "planet does not exist";
       }
     })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 /*
