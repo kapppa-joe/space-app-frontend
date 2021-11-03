@@ -66,8 +66,13 @@
 }
 
 #ar_list {
+  width: 100%;
   grid-area: ar_list;
-  margin-top: 5rem;
+  margin-top: 2rem;
+  background-color: black;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 #ar_list a {
@@ -75,4 +80,10 @@
   text-decoration: none;
   margin: 0.5rem;
   font-size: large;
+  
+}
+
+#ar_list a img {
+  height: 40%;
+  
 }
