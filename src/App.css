@@ -29,3 +29,8 @@
 .ar_marker_img {
   height: 100px;
 }
+
+.badge {
+  height: 100px;
+  width: auto;
+}
