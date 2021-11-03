@@ -20,19 +20,6 @@ export default function UserAuth() {
     }
   }, []);
 
-  const useGoogle = (event) => {
-    event.preventDefault();
-    const p = new GoogleAuthProvider();
-    signInWithPopup(auth, p)
-      .then((result) => {
-        const user = result.user;
-        setUsername(user.email);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const signIn = (event) => {
     event.preventDefault();
 
@@ -73,43 +60,30 @@ export default function UserAuth() {
       <h1>Out of Orbit</h1>
       <h4>An augmented reality space experience</h4>
       <p>Login or register to begin your voyage into outer space</p>
-
-      {!user ? (
-        <div className="login__container">
-          <form>
-            <label htmlFor="email">E-mail</label>
-            <input
-              id="email"
-              type="text"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              id="label"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <button
-              className="login_signInButton"
-              onClick={signIn}
-              type="submit"
-            >
-              Sign In
-            </button>
-            <button className="login_registerButton" onClick={register}>
-              Create your account
-            </button>
-
-            <button className="login_registerButton" onClick={useGoogle}>
-              Sign in with Google
-            </button>
-          </form>
-        </div>
-      ) : (
-        <>{/* <button onClick={signOutUser}>Sign Out</button> */}</>
-      )}
+      <div className="login__container">
+        <form>
+          <label htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            type="text"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            id="label"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button className="login_signInButton" onClick={signIn} type="submit">
+            Sign In
+          </button>
+          <button className="login_registerButton" onClick={register}>
+            Create your account
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
