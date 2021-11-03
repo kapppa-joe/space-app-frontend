@@ -114,6 +114,9 @@ const Onboarding = () => {
       <p>
         <Link to="/mission-control"><button>My mission</button></Link>
       </p>
+      <p>
+        <Link to="/space/sun"><button>PlanetAR</button></Link>
+      </p>
     </div>
   );
 };
