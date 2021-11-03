@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Redirect } from "react-router";
-import { app, auth } from "../firebase";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "../firebase";
 import { setDefaults } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 
