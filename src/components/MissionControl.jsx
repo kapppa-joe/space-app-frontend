@@ -5,8 +5,6 @@ import {
   getUserNickname,
   getUserProgress,
   removeUserProgress,
-  setUserAvatar,
-  setUserProgress,
   updateUserProgress,
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -16,14 +14,6 @@ const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState("Robot1");
-  const avatarList = [
-    "Robot1",
-    "Robot2",
-    "Robot3",
-    "Robot4",
-    "Robot5",
-    "Robot6",
-  ];
 
   const [progress, setProgress] = useState({
     sun: [],
@@ -43,7 +33,7 @@ const MissionControl = () => {
   useEffect(() => {
     if (user) {
       getUserAvatar().then((dbAvatar) => {
-        setUserAvatar(dbAvatar);
+        setAvatar(dbAvatar);
       });
       getUserNickname().then((dbNickname) => {
         setNickname(dbNickname);
