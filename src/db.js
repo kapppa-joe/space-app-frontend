@@ -1,7 +1,10 @@
 import { auth, db } from "./firebase";
 import { ref, set, get, remove, child, update } from "firebase/database";
 
+let userId;
+
 export const setDefaults = () => {
+  userId = auth.currentUser.uid;
   setUserAvatar("");
   setUserNickname("");
   setUserProgress("");
@@ -54,17 +57,16 @@ voyager: []
 }
 */
 
-export const setUserProgress = (progress) => {
-  console.log("setUserProgress called");
-  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
-  return set(userRef, progress);
+export const setUserProgress = async (progress) => {
+  const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
+  return set(userRef, { planet: [1] });
 };
 
-export const getUserProgress = () => {
-  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
-  console.log(userRef);
+export const getUserProgress = async () => {
+  const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
   return get(userRef)
     .then((snapshot) => {
+      console.log(snapshot);
       if (snapshot.exists()) {
         return snapshot.val();
       } else {
@@ -128,21 +130,18 @@ export const removeUserNickname = () => {
   return remove(userRef);
 };
 
-export const updateUserProgress = (progressUpdate) => {
-  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
+export const updateUserProgress = async (progressUpdate) => {
+  const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
   return update(userRef, progressUpdate);
 };
 
 export const removeUserProgress = () => {
-  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
+  const userRef = ref(db, `progress/${userId}`);
   return remove(userRef);
 };
 
 export const getUserProgressByPlanet = (spaceObject) => {
-  const progressRef = ref(
-    db,
-    `progress/${auth.currentUser.uid}/${spaceObject}`
-  );
+  const progressRef = ref(db, `progress/${userId}/${spaceObject}`);
   return get(progressRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
