@@ -11,16 +11,16 @@ const Planets = () => {
     "mercury",
     "venus",
     "earth",
+    "iss",
+    "hubble",
     "moon",
     "mars",
+    "curiosity_rover",
     "jupiter",
     "saturn",
     "uranus",
     "neptune",
     "pluto",
-    "curiosity_rover",
-    "hubble",
-    "iss",
     "voyager",
   ];
 
@@ -45,6 +45,7 @@ const Planets = () => {
         {objArray.map((object) => {
           return (
             <Link key={object} to={`/space/${object}`}>
+                <img src={`/assets/2d-images/${object}2D.png`} alt="" />
               {object}
             </Link>
           );
