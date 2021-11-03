@@ -2,29 +2,22 @@ import { useState, useEffect } from "react";
 import { Redirect } from "react-router";
 import { app, auth } from "../firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {
-  removeUserProgress,
-  setDefaults,
-  setUserProgress,
-  updateUserProgress,
-} from "../db";
+import { setDefaults } from "../db";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("Guest");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUsername(user.email);
-        setLoggedIn(true);
-        resetForm();
-      } else {
-        setLoggedIn(false);
-      }
-    });
+    if (user) {
+      setUsername(user.email);
+
+      resetForm();
+    }
   }, []);
 
   const useGoogle = (event) => {
@@ -102,18 +95,17 @@ export default function UserAuth() {
   //   });
   // };
 
-  if (loggedIn) {
+  if (user) {
     return <Redirect to="/onboarding" />;
   }
-
+  if (loading) return <h1>loading....</h1>;
   return (
     <div className="Login">
       <h1>Out of Orbit</h1>
       <h4>An augmented reality space experience</h4>
-
       <p>Login or register to begin your voyage into outer space</p>
 
-      {!loggedIn ? (
+      {!user ? (
         <div className="login__container">
           <form>
             <label htmlFor="email">E-mail</label>

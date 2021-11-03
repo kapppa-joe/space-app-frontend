@@ -30,6 +30,11 @@
   height: 100px;
 }
 
+.badge {
+  height: 100px;
+  width: auto;
+}
+
 /* AR Planets */
 
 #ar_page {
@@ -70,3 +75,6 @@
   margin: 0.5rem;
   font-size: large;
 }
+
+
+
