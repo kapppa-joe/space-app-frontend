@@ -25,9 +25,6 @@ export default function UserAuth() {
     const p = new GoogleAuthProvider();
     signInWithPopup(auth, p)
       .then((result) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
-        // The signed-in user info.
         const user = result.user;
         setUsername(user.email);
       })
@@ -62,38 +59,10 @@ export default function UserAuth() {
       .catch((error) => alert(error.message));
   };
 
-  // const signOutUser = () => {
-  //   auth
-  //     .signOut()
-  //     .then(() => {
-  //       setMessage("Hello there!");
-  //       setUsername("Guest");
-  //       setLoggedIn(false);
-  //     })
-  //     .catch((error) => alert(error.message));
-  // };
-
   const resetForm = () => {
     setEmail("");
     setPassword("");
   };
-
-  // // Test function , for later use in Planet.jsx
-  // const testDB = () => {
-  //   // Placeholders for useState
-  //   let trivia;
-  //   let answers;
-  //   let correct;
-  //   let question;
-  //   getObjectByName("sun").then((planetData) => {
-  //     //Array of trivia
-  //     trivia = planetData.trivia;
-  //     //array of answers
-  //     answers = planetData.questions.answers;
-  //     correct = planetData.questions.correct;
-  //     question = planetData.questions.question;
-  //   });
-  // };
 
   if (user) {
     return <Redirect to="/onboarding" />;
