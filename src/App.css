@@ -30,7 +30,8 @@
   height: 100px;
 }
 
-.badge {
+.badge,
+.two-d {
   height: 100px;
   width: auto;
 }
@@ -42,9 +43,9 @@
   height: 100vh;
   display: grid;
   grid-template-rows: 80% 20%;
-  grid-template-areas: 
-   "ar_view"
-   "ar_list";
+  grid-template-areas:
+    "ar_view"
+    "ar_list";
 }
 
 #ar_view {
@@ -75,6 +76,3 @@
   margin: 0.5rem;
   font-size: large;
 }
-
-
-
