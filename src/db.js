@@ -5,7 +5,7 @@ let userId;
 
 export const setDefaults = () => {
   userId = auth.currentUser.uid;
-  setUserAvatar("");
+  setUserAvatar("Robot1");
   setUserNickname("");
   setUserProgress("");
 };
@@ -79,13 +79,13 @@ export const getUserProgress = async () => {
     });
 };
 
-export const setUserAvatar = (avatar) => {
-  const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
+export const setUserAvatar = async (avatar) => {
+  const userRef = ref(db, `avatar/${await auth.currentUser.uid}`);
   return set(userRef, avatar);
 };
 
-export const getUserAvatar = () => {
-  const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
+export const getUserAvatar = async () => {
+  const userRef = ref(db, `avatar/${await auth.currentUser.uid}`);
   return get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
