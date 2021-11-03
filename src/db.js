@@ -2,7 +2,7 @@ import { auth, db } from "./firebase";
 import { ref, set, get, remove, child, update } from "firebase/database";
 
 export const setDefaults = () => {
-  setUserAvatar("");
+  setUserAvatar(0);
   setUserNickname("");
   setUserProgress("");
 };
