@@ -66,7 +66,6 @@ export const getUserProgress = async () => {
   const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
   return get(userRef)
     .then((snapshot) => {
-      console.log(snapshot);
       if (snapshot.exists()) {
         return snapshot.val();
       } else {
@@ -136,8 +135,7 @@ export const updateUserProgress = async (progressUpdate) => {
 };
 
 export const removeUserProgress = () => {
-  const userRef = ref(db, `progress/${userId}`);
-  return remove(userRef);
+  setUserProgress();
 };
 
 export const getUserProgressByPlanet = (spaceObject) => {
