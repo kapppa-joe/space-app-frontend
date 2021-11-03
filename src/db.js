@@ -4,8 +4,9 @@ import { ref, set, get, remove, child, update } from "firebase/database";
 let userId;
 
 export const setDefaults = () => {
-  userId = auth.currentUser.uid;
-  setUserAvatar("Robot1");
+
+  setUserAvatar(0);
+
   setUserNickname("");
   setUserProgress("");
 };
