@@ -29,3 +29,44 @@
 .ar_marker_img {
   height: 100px;
 }
+
+/* AR Planets */
+
+#ar_page {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 80% 20%;
+  grid-template-areas: 
+   "ar_view"
+   "ar_list";
+}
+
+#ar_view {
+  width: 100vw;
+  height: 80vh;
+  position: absolute;
+  grid-area: ar_view;
+}
+
+#iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#ar_switch {
+  position: absolute;
+  bottom: 10px;
+}
+
+#ar_list {
+  grid-area: ar_list;
+  margin-top: 5rem;
+}
+
+#ar_list a {
+  color: white;
+  text-decoration: none;
+  margin: 0.5rem;
+  font-size: large;
+}

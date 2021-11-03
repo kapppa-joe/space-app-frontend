@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/solar-system">
             <SolarSystem />
           </Route>
-          <Route exact path="/space/:planet_id">
+          <Route exact path="/space/:space_object">
             <Planets />
           </Route>
         </Switch>
