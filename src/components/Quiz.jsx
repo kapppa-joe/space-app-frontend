@@ -9,8 +9,7 @@ const Quiz = () => {
   const [user, loading, error] = useAuthState(auth);
 
   const [quiz, setQuiz] = useState(null);
-  const [answers, setAnswers] = useState([]);
-  const [correct, setCorrect] = useState(-1);
+
   const [err, setErr] = useState(false);
 
   useEffect(() => {
