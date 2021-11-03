@@ -9,6 +9,7 @@ import {
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import { Link } from "react-router-dom";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -94,11 +95,13 @@ const MissionControl = () => {
         {spaceObjects.map((object, index) => {
           return (
             <div key={index}>
-              <img
-                className="two-d"
-                src={`/assets/2d-images/${object}2D.png`}
-                alt={object}
-              ></img>
+              <Link to={`space/${object}`}>
+                <img
+                  className="two-d"
+                  src={`/assets/2d-images/${object}2D.png`}
+                  alt={object}
+                ></img>
+              </Link>
               <img
                 className="badge"
                 src={`/assets/badges/badge-${object}.png`}
