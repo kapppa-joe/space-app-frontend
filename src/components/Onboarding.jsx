@@ -4,66 +4,80 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import CustomARMarker from "../assets/images/ar-pattern-rocket.png";
 import CustomMarkerPDF from "../assets/images/custom-AR-marker.pdf";
-
-import { setUserNickname, getUserNickname, setUserAvatar,  getUserProgressByPlanet, setUserProgress } from "../db";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { setUserNickname, getUserNickname, setUserAvatar, getUserAvatar} from "../db";
 
 const Onboarding = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
   const [inputName, setInputName] = useState("")
   const [nickname, setNickname] = useState("")
   const [avatar, setAvatar] = useState(0)
   const avatarList = ["Robot1", "Robot2", "Robot3", "Robot4", "Robot5", "Robot6",]
+  const [user, loading, error] = useAuthState(auth);
+  const [reload, setReload] = useState(false);
+  const [displayInputBox, setDisplayInputBox] = useState(false);
 
   useEffect(() => {
-    console.log("HERE")
-    if (auth.currentUser) {
-      console.log("here2")
+    if (user) {
       getUserNickname().then((res) => {
-        console.log(res)
         if(!res) {
-          setNickname("No name")
+          setNickname("")
+          setDisplayInputBox(true)
         } else {
           setNickname(res);
         }
-      }).catch((err) => {
-        console.dir(err)
+      }).then( 
+        getUserAvatar
+      ).then((res) => {
+        const avatarNum = parseInt(res)
+        setAvatar(avatarNum)
       })
-    }
-  }, [])
-
-
-
-  const testDB = () => {
-    setUserProgress();
-  };
+      .catch((err) => {
+        console.dir(err)
+      })}
+  }, [loading, reload, user])
 
   const signOutUser = () => {
     auth
       .signOut()
-      .then(() => {
-        setLoggedIn(false);
-      })
       .catch((error) => alert(error.message));
   };
 
   const submitNickname = () => {
+    setNickname(inputName);
+    setDisplayInputBox(false);
     setUserNickname(inputName).then(() => {
       setInputName("");
+      setReload(true);
+    }).catch((err) => {
+      console.dir(err)
     })
+  }
+
+  const changeNickname = () => {
+    setNickname("");
+    setDisplayInputBox(true);
+    setReload(true);
   }
 
   const changeAvatarButtons = (number) => {
     if (avatar === 0 && number === -1) {
       setAvatar(5)
+      setUserAvatar(5)
     } else if ((avatar === 5 && number === 1)) {
        setAvatar(0)
+       setUserAvatar(0)
     } else {
       setAvatar(avatar + number)
+      setUserAvatar(avatar + number)
     }
     
   }
 
-  if (!auth.currentUser) {
+  if (loading) {
+    return <p>Page Loading</p>
+  }
+
+  if (!user) {
     return <Redirect to="/" />;
   }
 
@@ -73,14 +87,17 @@ const Onboarding = () => {
       <h2>Mission preparation</h2>
       <p>Welcome to the space port! Before you launch off
          into the stars, you will need to complete the following steps:</p>
-      <h3>Step 1: Enter your character name!</h3>
-      <input
-        type="text"
-        value={inputName}
-        onChange={(e) => setInputName(e.target.value)}
-      ></input>
-      <button onClick={submitNickname}>Set Character Name</button>
-      <p>Your name: {nickname}</p>
+      <h3>Step 1: Set your character name!</h3>
+      {(!displayInputBox) ? <div><p>Your character name is currently: {nickname}</p><button onClick={changeNickname}>Change Nickname</button> </div>: 
+        <div>
+          <input
+            type="text"
+            value={inputName}
+            onChange={(e) => setInputName(e.target.value)}
+          ></input>
+          <button onClick={submitNickname}>Set Character Name</button>
+        </div>
+      }
       <h3>Step 2: Choose your character!</h3>
       <button onClick={() => {changeAvatarButtons(-1)}}>{'<---'}</button>
       <img className="avatar_img" src={`/assets/avatars/${avatarList[avatar]}.png`} alt="user avatar" />
@@ -97,7 +114,6 @@ const Onboarding = () => {
       <p>
         <Link to="/mission-control"><button>My mission</button></Link>
       </p>
-      <button onClick={testDB}>DB test</button>
     </div>
   );
 };
