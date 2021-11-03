@@ -6,6 +6,7 @@ import Onboarding from "./components/Onboarding";
 import MissionControl from "./components/MissionControl";
 import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
+import Facts from "./components/Facts";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
           </Route>
           <Route exact path="/space/:planet_id">
             <Planets />
+          </Route>
+          {/* route set up for testing of facts component */}
+          <Route exact path="/space/:planet_id/facts">
+            <Facts />
           </Route>
         </Switch>
       </Background>

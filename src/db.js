@@ -4,7 +4,6 @@ import { ref, set, get, remove, child, update } from "firebase/database";
 let userId;
 
 export const setDefaults = () => {
-
   setUserAvatar(0);
 
   setUserNickname("");
@@ -13,17 +12,13 @@ export const setDefaults = () => {
 
 export const getTrivia = (objectName) => {
   const planetRef = ref(db, `planets/${objectName}`);
-  return get(child(planetRef, "trivia"))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.val();
-      } else {
-        console.log("No data available");
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return get(child(planetRef, "trivia")).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      throw "planet does not exist";
+    }
+  });
 };
 
 export const getQuestions = (objectName) => {
@@ -34,6 +29,7 @@ export const getQuestions = (objectName) => {
         return snapshot.val();
       } else {
         console.log("No data available");
+        throw "planet does not exist";
       }
     })
     .catch((err) => {
