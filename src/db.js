@@ -1,7 +1,6 @@
 import { auth, db } from "./firebase";
 import { ref, set, get, remove, child, update } from "firebase/database";
 
-let userId;
 
 export const setDefaults = () => {
   setUserAvatar(0);
@@ -34,22 +33,6 @@ export const getQuestions = (objectName) => {
     })
 };
 
-/*
-setProgress structure = {
-sun: [],
-mercury: [],
-venus: [],
-earth: [],
-mars: [],
-jupiter: [],
-saturn: [],
-uranus: [],
-neptune: [],
-iss: [],
-curiosity-rover: [],
-voyager: []
-}
-*/
 
 export const setUserProgress = async (progress) => {
   const userRef = ref(db, `progress/${await auth.currentUser.uid}`);

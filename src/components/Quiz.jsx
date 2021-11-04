@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Redirect } from "react-router-dom";
-import { getQuestions } from "../db";
+import {
+  getQuestions,
+  updateUserProgress,
+  getUserProgressByPlanet,
+} from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 const Quiz = () => {
@@ -11,6 +15,8 @@ const Quiz = () => {
   const [quiz, setQuiz] = useState(null);
 
   const [err, setErr] = useState(false);
+  const [progress, setProgress] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
 
   useEffect(() => {
     setErr(false);
@@ -18,19 +24,29 @@ const Quiz = () => {
       .then((dbQuiz) => {
         setQuiz(dbQuiz);
       })
+      .then(() => {
+        getUserProgressByPlanet(planet_id)
+          .then((dbProgress) => {
+            setProgress(dbProgress);
+          })
+          .catch((err) => {
+            setErr(true);
+            console.log(err);
+          });
+      })
       .catch((err) => {
         setErr(true);
         console.log(err);
       });
   }, []);
 
-   if (error) {
-     return (
-       <div>
-         <p>Error: {error}</p>
-       </div>
-     );
-   }
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
 
   if (!user && !loading) {
     return <Redirect to="/" />;
@@ -43,7 +59,34 @@ const Quiz = () => {
       <div>
         <h1>Quiz:</h1>
         <ul>
-          {quiz.map((topic, index) => {
+          <li>
+            <p>Question: {quiz[currentQuestion].question}</p>
+            <div>
+              {quiz[currentQuestion].answers.map((answer) => {
+                return <button>{answer}</button>;
+              })}
+            </div>
+            <p>Correct: {quiz[currentQuestion].correct}</p>
+          </li>
+          <button
+            onClick={() => {
+              setCurrentQuestion((curr) => curr - 1);
+            }}
+            disabled={currentQuestion == 1}
+          >
+            Previous
+          </button>
+
+          <button
+            onClick={() => {
+              setCurrentQuestion((curr) => curr + 1);
+            }}
+            disabled={currentQuestion == 10}
+          >
+            Next question
+          </button>
+
+          {/* {quiz.map((topic, index) => {
             return (
               <li key={index}>
                 <p>Question: {topic.question}</p>
@@ -55,7 +98,7 @@ const Quiz = () => {
                 <p>Correct: {topic.correct}</p>
               </li>
             );
-          })}
+          })} */}
         </ul>
       </div>
     );
