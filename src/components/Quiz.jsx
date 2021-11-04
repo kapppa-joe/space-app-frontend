@@ -40,7 +40,7 @@ const Quiz = ({space_object}) => {
         setErr(true);
         console.log(err);
       });
-  }, []);
+  }, [space_object]);
 
   const checkAnswer = (e) => {
     e.preventDefault();
