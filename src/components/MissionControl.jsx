@@ -5,18 +5,26 @@ import {
   getUserNickname,
   getUserProgress,
   removeUserProgress,
-  updateUserProgress,
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState("Robot1");
+  const avatarList = [
+    "Robot1",
+    "Robot2",
+    "Robot3",
+    "Robot4",
+    "Robot5",
+    "Robot6",
+  ];
 
   const spaceObjects = [
+    "solarSystem",
     "sun",
     "mercury",
     "venus",
@@ -64,9 +72,12 @@ const MissionControl = () => {
     removeUserProgress();
   };
 
-  const testDB = () => {
-    updateUserProgress({ sun: [1, 2, 3], earth: [1, 2] });
-  };
+  /**
+   * Testing function, remove later
+   */
+  // const testDB = () => {
+  //   updateUserProgress({ sun: [1, 2, 3], earth: [1, 2] });
+  // };
 
   if (loading) {
     return <div>Initialising User...</div>;
@@ -83,15 +94,21 @@ const MissionControl = () => {
   if (user) {
     return (
       <div>
+        <button onClick={resetProgress}>Reset</button>
         <h2>{nickname}</h2>
+
         <img
           className="avatar_img"
-          src={`/assets/avatars/${avatar}.png`}
+          src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
-        <button onClick={testDB}>DB test</button>
-        <button onClick={resetProgress}>Reset</button>
 
+        <Link to="/solar-system">
+          <button>Play</button>
+        </Link>
+
+        {/* Testing button, remove later */}
+        {/* <button onClick={testDB}>DB test</button> */}
         {spaceObjects.map((object, index) => {
           return (
             <div key={index}>
