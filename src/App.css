@@ -89,3 +89,13 @@
 .modal-card-body {
   color: black;
 }
+
+/* Sidebars */
+
+.pageloader {
+  overflow: scroll;
+}
+
+.pageloader::after {
+  display: none !important;
+}

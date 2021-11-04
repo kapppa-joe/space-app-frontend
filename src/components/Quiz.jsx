@@ -7,8 +7,7 @@ import {
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-const Quiz = () => {
-  const { planet_id } = useParams();
+const Quiz = ({space_object}) => {
   const [user, loading, error] = useAuthState(auth);
   const [quiz, setQuiz] = useState(null);
   const [err, setErr] = useState(false);
@@ -18,12 +17,12 @@ const Quiz = () => {
 
   useEffect(() => {
     setErr(false);
-    getQuestions(planet_id.toLowerCase())
+    getQuestions(space_object.toLowerCase())
       .then((dbQuiz) => {
         setQuiz(dbQuiz);
       })
       .then(() => {
-        getUserProgressByPlanet(planet_id)
+        getUserProgressByPlanet(space_object)
           .then((dbProgress) => {
             console.log(dbProgress, "<<<<<");
             if (dbProgress === "" || dbProgress === undefined) {
@@ -50,7 +49,7 @@ const Quiz = () => {
         const newProgress = [...curr];
         newProgress.push(currentQuestion);
 
-        const p = { [planet_id]: newProgress };
+        const p = { [space_object]: newProgress };
         updateUserProgress(p)
         return newProgress;
       });
