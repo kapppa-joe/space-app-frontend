@@ -9,13 +9,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 const Quiz = () => {
   const { planet_id } = useParams();
-
   const [user, loading, error] = useAuthState(auth);
-
   const [quiz, setQuiz] = useState(null);
-
   const [err, setErr] = useState(false);
   const [progress, setProgress] = useState([]);
+  const [incorrect, setIncorrect] = useState([])
   const [currentQuestion, setCurrentQuestion] = useState(1);
 
   useEffect(() => {
@@ -27,7 +25,12 @@ const Quiz = () => {
       .then(() => {
         getUserProgressByPlanet(planet_id)
           .then((dbProgress) => {
-            setProgress(dbProgress);
+            console.log(dbProgress, "<<<<<");
+            if (dbProgress === "" || dbProgress === undefined) {
+              setProgress([]);
+            } else {
+              setProgress(dbProgress);
+            }
           })
           .catch((err) => {
             setErr(true);
@@ -39,6 +42,26 @@ const Quiz = () => {
         console.log(err);
       });
   }, []);
+
+  const checkAnswer = (e) => {
+    e.preventDefault();
+    if (e.target.value === quiz[currentQuestion].correct) {
+      setProgress((curr) => {
+        const newProgress = [...curr];
+        newProgress.push(currentQuestion);
+
+        const p = { [planet_id]: newProgress };
+        updateUserProgress(p)
+        return newProgress;
+      });
+    } else {
+      setIncorrect(curr=>{
+         const newIncorrect = [...curr];
+         newIncorrect.push(currentQuestion);
+         return newIncorrect;
+      })
+    }
+  };
 
   if (error) {
     return (
@@ -63,16 +86,28 @@ const Quiz = () => {
             <p>Question: {quiz[currentQuestion].question}</p>
             <div>
               {quiz[currentQuestion].answers.map((answer) => {
-                return <button>{answer}</button>;
+                return (
+                  <button
+                    disabled={progress.includes(currentQuestion) || incorrect.includes(currentQuestion)}
+                    value={answer}
+                    onClick={checkAnswer}
+                  >
+                    {answer}
+                  </button>
+                );
               })}
             </div>
+
+            {progress.includes(currentQuestion) ? <p>Correct</p> : null}
+            {incorrect.includes(currentQuestion) ? <p>Incorrect</p> : null}
+
             <p>Correct: {quiz[currentQuestion].correct}</p>
           </li>
           <button
             onClick={() => {
               setCurrentQuestion((curr) => curr - 1);
             }}
-            disabled={currentQuestion == 1}
+            disabled={currentQuestion === 1}
           >
             Previous
           </button>
@@ -81,24 +116,10 @@ const Quiz = () => {
             onClick={() => {
               setCurrentQuestion((curr) => curr + 1);
             }}
-            disabled={currentQuestion == 10}
+            disabled={currentQuestion === 10}
           >
             Next question
           </button>
-
-          {/* {quiz.map((topic, index) => {
-            return (
-              <li key={index}>
-                <p>Question: {topic.question}</p>
-                <div>
-                  {topic.answers.map((answer) => {
-                    return <button>{answer}</button>;
-                  })}
-                </div>
-                <p>Correct: {topic.correct}</p>
-              </li>
-            );
-          })} */}
         </ul>
       </div>
     );

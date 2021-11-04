@@ -107,6 +107,7 @@ export const removeUserNickname = async () => {
 };
 
 export const updateUserProgress = async (progressUpdate) => {
+  console.log(progressUpdate, "<<<<<<<<<")
   const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
   return update(userRef, progressUpdate);
 };
