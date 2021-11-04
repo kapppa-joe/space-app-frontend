@@ -15,6 +15,14 @@ const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState("Robot1");
+  const avatarList = [
+    "Robot1",
+    "Robot2",
+    "Robot3",
+    "Robot4",
+    "Robot5",
+    "Robot6",
+  ];
 
   const spaceObjects = [
     "sun",
@@ -86,9 +94,10 @@ const MissionControl = () => {
         <h2>{nickname}</h2>
         <img
           className="avatar_img"
-          src={`/assets/avatars/${avatar}.png`}
+          src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
+
         <button onClick={testDB}>DB test</button>
         <button onClick={resetProgress}>Reset</button>
 
