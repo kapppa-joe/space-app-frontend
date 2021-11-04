@@ -107,7 +107,7 @@ const Onboarding = () => {
         <img
           className="ar_marker_img"
           src={CustomARMarker}
-          alt="ar marker image"
+          alt="ar marker"
         />
       </a>
 
