@@ -14,6 +14,7 @@ const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState("Robot1");
+  const [loadingContent, setLoadingContent] = useState(true);
   const avatarList = [
     "Robot1",
     "Robot2",
@@ -69,7 +70,9 @@ const MissionControl = () => {
       getUserProgress().then((dbProgress) => {
          setProgress(dbProgress);
       });
+      setLoadingContent(false)
     }
+    
   }, [user, avatar]);
 
   const resetProgress = () => {
@@ -85,6 +88,10 @@ const MissionControl = () => {
 
   if (loading) {
     return <div>Initialising User...</div>;
+  }
+
+  if(!progress && loadingContent){
+    return <h2>Loading</h2>
   }
 
   if (error) {
