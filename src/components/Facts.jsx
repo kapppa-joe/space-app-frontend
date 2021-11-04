@@ -22,6 +22,14 @@ const Facts = () => {
       });
   }, []);
 
+   if (error) {
+     return (
+       <div>
+         <p>Error: {error}</p>
+       </div>
+     );
+   }
+
   if (!user && !loading) {
     return <Redirect to="/" />;
   } else if (err) {

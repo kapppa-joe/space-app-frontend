@@ -50,6 +50,11 @@ export default function UserAuth() {
     setPassword("");
   };
 
+ if (error) {
+   return <h2>Something went wrong...</h2>;
+ }
+
+
   if (user) {
     return <Redirect to="/onboarding" />;
   }
