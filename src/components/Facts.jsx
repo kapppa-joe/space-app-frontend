@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { getTrivia } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
@@ -19,7 +19,7 @@ const Facts = ({space_object}) => {
       .catch((err) => {
         setErr(true);
       });
-  }, []);
+  }, [space_object]);
 
    if (error) {
      return (
