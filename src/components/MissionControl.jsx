@@ -23,23 +23,8 @@ const MissionControl = () => {
     "Robot6",
   ];
 
-  const spaceObjects = [
-    "solarSystem",
-    "sun",
-    "mercury",
-    "venus",
-    "earth",
-    "mars",
-    "jupiter",
-    "saturn",
-    "uranus",
-    "neptune",
-    "iss",
-    "curiosity_rover",
-    "voyager",
-  ];
-
   const [progress, setProgress] = useState({
+    solar_system:[],
     sun: [],
     mercury: [],
     venus: [],
@@ -53,8 +38,27 @@ const MissionControl = () => {
     curiosityRover: [],
     voyager: [],
   });
+  const spaceObjects = [
+    "solar-system",
+    "sun",
+    "mercury",
+    "venus",
+    "earth",
+    "iss",
+    "hubble",
+    "moon",
+    "mars",
+    "curiosity_rover",
+    "jupiter",
+    "saturn",
+    "uranus",
+    "neptune",
+    "pluto",
+    "voyager",
+  ];
 
-  useEffect(() => {
+
+  useEffect(  () => {
     if (user) {
       getUserAvatar().then((dbAvatar) => {
         setAvatar(dbAvatar);
@@ -63,7 +67,7 @@ const MissionControl = () => {
         setNickname(dbNickname);
       });
       getUserProgress().then((dbProgress) => {
-        setProgress(dbProgress);
+         setProgress(dbProgress);
       });
     }
   }, [user, avatar]);
@@ -110,6 +114,7 @@ const MissionControl = () => {
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
         {spaceObjects.map((object, index) => {
+            console.log(progress[object], '<<<',object)
           return (
             <div key={index}>
               <Link to={`space/${object}`}>
@@ -119,13 +124,35 @@ const MissionControl = () => {
                   alt={object}
                 ></img>
               </Link>
-              <img
-                className="badge"
-                src={`/assets/badges/badge-${object}.png`}
-                alt={object}
-              ></img>
+
+              {/* Do not touch, it will break */}
+              {object in progress ? (
+                progress[object].length > 6 ? (
+                  <img
+                    className="badge"
+                    src={`/assets/badges/badge-${object}.png`}
+                    alt={object}
+                  ></img>
+                ) : (
+                  <img
+                    className="badge"
+                    src={`/assets/badges/badge-default1.png`}
+                    alt={object}
+                  ></img>
+                )
+              ) : (
+                <img
+                  className="badge"
+                  src={`/assets/badges/badge-default1.png`}
+                  alt={object}
+                ></img>
+              )}
+
               <p>
-                {object} {object in progress ? progress[object].length : 0}/10
+                {object === "solar-system"
+                  ? "Solar System"
+                  : object[0].toUpperCase() + object.slice(1)}{" "}
+                {object in progress ? progress[object].length : 0}/10
               </p>
             </div>
           );
