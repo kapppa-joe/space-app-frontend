@@ -25,6 +25,7 @@ const MissionControl = () => {
   ];
 
   const spaceObjects = [
+    "solarSystem",
     "sun",
     "mercury",
     "venus",
@@ -72,9 +73,13 @@ const MissionControl = () => {
     removeUserProgress();
   };
 
-  const testDB = () => {
-    updateUserProgress({ sun: [1, 2, 3], earth: [1, 2] });
-  };
+
+  /**
+   * Testing function, remove later
+   */
+  // const testDB = () => {
+  //   updateUserProgress({ sun: [1, 2, 3], earth: [1, 2] });
+  // };
 
   if (loading) {
     return <div>Initialising User...</div>;
@@ -97,10 +102,9 @@ const MissionControl = () => {
           src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
-
-        <button onClick={testDB}>DB test</button>
+        {/* Testing button, remove later */}
+        {/* <button onClick={testDB}>DB test</button> */}
         <button onClick={resetProgress}>Reset</button>
-
         {spaceObjects.map((object, index) => {
           return (
             <div key={index}>
