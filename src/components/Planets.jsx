@@ -1,4 +1,5 @@
 import React from "react";
+import Demo from "./Demo"; 
 import Iframe from "react-iframe";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
@@ -6,6 +7,7 @@ import { useState } from "react";
 const Planets = () => {
   const { space_object } = useParams();
   const [isAr, setIsAr] = useState(false);
+
   const objArray = [
     "sun",
     "mercury",
@@ -40,6 +42,7 @@ const Planets = () => {
         <button id="ar_switch" onClick={switchAR}>
           AR on/off
         </button>
+        <Demo />
       </div>
       <div id="ar_list">
         {objArray.map((object) => {

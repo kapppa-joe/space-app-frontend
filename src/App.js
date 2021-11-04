@@ -1,5 +1,6 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
+import "bulma/css/bulma.min.css";
 import Background from "./components/Background";
 import Login from "./components/Login.jsx";
 import Onboarding from "./components/Onboarding";
@@ -7,7 +8,7 @@ import MissionControl from "./components/MissionControl";
 import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
 import Facts from "./components/Facts";
-import Quiz from "./components/Quiz"
+import Quiz from "./components/Quiz";
 
 function App() {
   return (
