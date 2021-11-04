@@ -8,7 +8,7 @@ import {
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
