@@ -5,11 +5,10 @@ import {
   getUserNickname,
   getUserProgress,
   removeUserProgress,
-  updateUserProgress,
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -73,7 +72,6 @@ const MissionControl = () => {
     removeUserProgress();
   };
 
-
   /**
    * Testing function, remove later
    */
@@ -96,15 +94,21 @@ const MissionControl = () => {
   if (user) {
     return (
       <div>
+        <button onClick={resetProgress}>Reset</button>
         <h2>{nickname}</h2>
+
         <img
           className="avatar_img"
           src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
+
+        <Link to="/solar-system">
+          <button>Play</button>
+        </Link>
+
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
-        <button onClick={resetProgress}>Reset</button>
         {spaceObjects.map((object, index) => {
           return (
             <div key={index}>
