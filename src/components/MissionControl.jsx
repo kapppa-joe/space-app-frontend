@@ -24,18 +24,20 @@ const MissionControl = () => {
   ];
 
   const spaceObjects = [
-    "solarSystem",
     "sun",
     "mercury",
     "venus",
     "earth",
+    "iss",
+    "hubble",
+    "moon",
     "mars",
+    "curiosity_rover",
     "jupiter",
     "saturn",
     "uranus",
     "neptune",
-    "iss",
-    "curiosity_rover",
+    "pluto",
     "voyager",
   ];
 
@@ -126,6 +128,11 @@ const MissionControl = () => {
               ></img>
               <p>
                 {object} {object in progress ? progress[object].length : 0}/10
+                <progress
+                  className="progress is-large {object in progress ? progress[object].length < 7 ? is-warning : is-success : null}"
+                  value={object in progress ? progress[object].length : 0}
+                  max="7"
+                ></progress>
               </p>
             </div>
           );
