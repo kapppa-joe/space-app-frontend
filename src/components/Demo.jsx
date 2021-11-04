@@ -40,10 +40,10 @@ const Demo = () => {
                 <p>Step 5: If you're using your phone camera, you can use your fingers to rotate the image or zoom in and out.</p>
 
             </section>
-            <footer class="modal-card-foot">
-                <button class="button" onClick={() => {setIsActive(false)}}>Close</button>
+            <footer className="modal-card-foot">
+                <button className="button" onClick={() => {setIsActive(false)}}>Close</button>
             </footer>
-            <button class="modal-close is-large" aria-label="close" onClick={() => {setIsActive(false)}}></button>
+            <button className="modal-close is-large" aria-label="close" onClick={() => {setIsActive(false)}}></button>
             </div>
         </div>
       </>
