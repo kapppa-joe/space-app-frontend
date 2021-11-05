@@ -92,7 +92,7 @@ const Quiz = ({space_object}) => {
     return (
       <div>
         <Quiz_Modal hasWonBadge={hasWonBadge} setHasWonBadge={setHasWonBadge} space_object={space_object}/>
-        <FinishedQuizModal hasFinishedBadge={hasFinishedBadge} hasFinishedQuiz={hasFinishedQuiz} setHasFinishedQuiz={setHasFinishedQuiz}/>
+        <FinishedQuizModal hasFinishedBadge={hasFinishedBadge} hasFinishedQuiz={hasFinishedQuiz} setHasFinishedQuiz={setHasFinishedQuiz} space_object={space_object}/>
         <h1>Quiz:</h1>
         <ul>
           <li>
@@ -101,6 +101,7 @@ const Quiz = ({space_object}) => {
               {quiz[currentQuestion].answers.map((answer) => {
                 return (
                   <button
+                    key={answer}
                     disabled={progress.includes(currentQuestion) || incorrect.includes(currentQuestion)}
                     value={answer}
                     onClick={checkAnswer}
