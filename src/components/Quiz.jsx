@@ -132,14 +132,18 @@ const Quiz = ({ space_object }) => {
           >
             Previous
           </button>
-          <button
-            onClick={() => {
-              setCurrentQuestion((curr) => curr + 1);
-            }}
-            disabled={currentQuestion === quiz.length - 1}
-          >
-            Next question
-          </button>
+
+          {/* hide the next question button when it is the last question */}
+          {currentQuestion !== quiz.length - 1 && (
+            <button
+              onClick={() => {
+                setCurrentQuestion((curr) => curr + 1);
+              }}
+              disabled={currentQuestion === quiz.length - 1}
+            >
+              Next question
+            </button>
+          )}
           {/* add the "Finish" button when it is 10th question and the 10th question got answered. */}
           {currentQuestion === quiz.length - 1 &&
           (progress.includes(quiz.length - 1) ||
