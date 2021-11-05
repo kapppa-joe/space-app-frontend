@@ -15,6 +15,8 @@ const MissionControl = () => {
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState("Robot1");
   const [loadingContent, setLoadingContent] = useState(true);
+  const [reload, setReload] = useState(false);
+
   const avatarList = [
     "Robot1",
     "Robot2",
@@ -24,10 +26,8 @@ const MissionControl = () => {
     "Robot6",
   ];
 
-
-
   const [progress, setProgress] = useState({
-    solar_system:[],
+    solar_system: [],
     sun: [],
     mercury: [],
     venus: [],
@@ -61,8 +61,7 @@ const MissionControl = () => {
     "voyager",
   ];
 
-
-  useEffect(  () => {
+  useEffect(() => {
     if (user) {
       getUserAvatar().then((dbAvatar) => {
         setAvatar(dbAvatar);
@@ -71,30 +70,29 @@ const MissionControl = () => {
         setNickname(dbNickname);
       });
       getUserProgress().then((dbProgress) => {
-         setProgress(dbProgress);
+        setProgress(dbProgress);
       });
-      setLoadingContent(false)
+      setLoadingContent(false);
     }
-    
-  }, [user, avatar]);
+  }, [user, avatar, reload]);
 
   const resetProgress = () => {
-    removeUserProgress();
+    let result = window.confirm("Are you sure you want to reset progress");
+    if (result) {
+      setReload((reload) => {
+        return !reload;
+      });
+      removeUserProgress();
+    } else {
+    }
   };
-
-  /**
-   * Testing function, remove later
-   */
-  // const testDB = () => {
-  //   updateUserProgress({ sun: [1, 2, 3], earth: [1, 2] });
-  // };
 
   if (loading) {
     return <div>Initialising User...</div>;
   }
 
-  if(!progress && loadingContent){
-    return <h2>Loading</h2>
+  if (!progress && loadingContent) {
+    return <h2>Loading</h2>;
   }
 
   if (error) {
@@ -108,70 +106,84 @@ const MissionControl = () => {
   if (user) {
     return (
       <div>
-        <button onClick={resetProgress}>Reset</button>
+        <Link to="/space/solar-system">
+          <button>Play Game</button>
+        </Link>
+        <Link to="/onboarding">
+          <button>Back To Mission Prep</button>
+        </Link>
+        <button onClick={resetProgress}>Reset Game</button>
         <h2>{nickname}</h2>
-
         <img
           className="avatar_img"
           src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
 
-        <Link to="/solar-system">
-          <button>Play</button>
-        </Link>
-
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
         {spaceObjects.map((object, index) => {
-            console.log(progress[object], '<<<',object)
           return (
-            <div key={index}>
-              <Link to={`space/${object}`}>
-                <img
-                  className="two-d"
-                  src={`/assets/2d-images/${object}2D.png`}
-                  alt={object}
-                ></img>
-              </Link>
-
-              {/* Do not touch, it will break */}
-              {object in progress ? (
-                progress[object].length > 6 ? (
+            <div key={index} className="content flex ml-6 mr-6">
+              <div className="card mb-3">
+                <p>
+                  {object === "solar-system"
+                    ? "Solar System"
+                    : object[0].toUpperCase() + object.slice(1)}{" "}
+                  {object in progress ? progress[object].length : 0}/10
+                </p>
+                <Link to={`space/${object}`}>
                   <img
-                    className="badge"
-                    src={`/assets/badges/badge-${object}.png`}
+                    className="two-d"
+                    src={`/assets/2d-images/${object}2D.png`}
                     alt={object}
                   ></img>
+                </Link>
+
+                {/* Do not touch, it will break */}
+                {object in progress ? (
+                  progress[object].length > 6 ? (
+                    <>
+                      <img
+                        className="badge"
+                        src={`/assets/badges/badge-${object}.png`}
+                        alt={object}
+                      ></img>
+                      <progress
+                        className="progress is-medium is-success"
+                        value={object in progress ? progress[object].length : 0}
+                        max="10"
+                      ></progress>
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        className="badge"
+                        src={`/assets/badges/badge-default1.png`}
+                        alt={object}
+                      ></img>
+                      <progress
+                        className="progress is-medium is-danger"
+                        value={object in progress ? progress[object].length : 0}
+                        max="10"
+                      ></progress>
+                    </>
+                  )
                 ) : (
-                  <img
-                    className="badge"
-                    src={`/assets/badges/badge-default1.png`}
-                    alt={object}
-                  ></img>
-                )
-              ) : (
-                <img
-                  className="badge"
-                  src={`/assets/badges/badge-default1.png`}
-                  alt={object}
-                ></img>
-              )}
-
-              <p>
-                {object} {object in progress ? progress[object].length : 0}/10
-                <progress
-                  className="progress is-large {object in progress ? progress[object].length < 7 ? is-warning : is-success : null}"
-                  value={object in progress ? progress[object].length : 0}
-                  max="7"
-                ></progress>
-
-                {object === "solar-system"
-                  ? "Solar System"
-                  : object[0].toUpperCase() + object.slice(1)}{" "}
-                {object in progress ? progress[object].length : 0}/10
-
-              </p>
+                  <>
+                    <img
+                      className="badge"
+                      src={`/assets/badges/badge-default1.png`}
+                      alt={object}
+                    ></img>
+                    <progress
+                      className="progress is-medium"
+                      value="0"
+                      max="7"
+                    ></progress>
+                  </>
+                )}
+              </div>
             </div>
           );
         })}
