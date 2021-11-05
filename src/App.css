@@ -90,6 +90,18 @@
   color: black;
 }
 
+#ar_page > .back-button-wrapper {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: fit-content;
+  z-index: 2;
+}
+#ar_page .back-button-wrapper .back-button {
+  background-color: #cccccc33;
+  color: white;
+}
+
 /* Sidebars */
 
 .pageloader {

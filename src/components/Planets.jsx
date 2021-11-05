@@ -1,5 +1,5 @@
 import React from "react";
-import Demo from "./Demo"; 
+import Demo from "./Demo";
 import Sidebar from "./Sidebar";
 import Iframe from "react-iframe";
 import { useParams, Link } from "react-router-dom";
@@ -8,8 +8,6 @@ import { useState } from "react";
 const Planets = () => {
   const { space_object } = useParams();
   const [isAr, setIsAr] = useState(false);
-
-  console.log(space_object)
 
   const objArray = [
     "sun",
@@ -37,6 +35,11 @@ const Planets = () => {
 
   return (
     <div id="ar_page">
+      <span className="back-button-wrapper">
+        <Link to="/mission-control">
+          <button className="button back-button">Go Back</button>
+        </Link>
+      </span>
       <div id="ar_view">
         <Iframe
           id="iframe"
@@ -47,13 +50,13 @@ const Planets = () => {
         </button>
         <Demo />
         <Sidebar content="facts" space_object={space_object} />
-        <Sidebar content="quiz" space_object={space_object}/>
+        <Sidebar content="quiz" space_object={space_object} />
       </div>
       <div id="ar_list">
         {objArray.map((object) => {
           return (
             <Link key={object} to={`/space/${object}`}>
-                <img src={`/assets/2d-images/${object}2D.png`} alt="" />
+              <img src={`/assets/2d-images/${object}2D.png`} alt="" />
               {object}
             </Link>
           );
