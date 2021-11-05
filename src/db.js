@@ -8,8 +8,8 @@ export const setDefaults = () => {
   setUserProgress("");
 };
 
-export const getTrivia = async (objectName) => {
-  const planetRef = ref(db, `planets/${await objectName}`);
+export const getTrivia = (objectName) => {
+  const planetRef = ref(db, `planets/${objectName}`);
   return get(child(planetRef, "trivia")).then((snapshot) => {
     if (snapshot.exists()) {
       return snapshot.val();
@@ -19,8 +19,8 @@ export const getTrivia = async (objectName) => {
   });
 };
 
-export const getQuestions = async (objectName) => {
-  const planetRef = ref(db, `planets/${await objectName}`);
+export const getQuestions = (objectName) => {
+  const planetRef = ref(db, `planets/${objectName}`);
   return get(child(planetRef, "questions")).then((snapshot) => {
     if (snapshot.exists()) {
       return snapshot.val();
@@ -31,13 +31,13 @@ export const getQuestions = async (objectName) => {
   });
 };
 
-export const setUserProgress = async (progress) => {
-  const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
+export const setUserProgress = (progress) => {
+  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return set(userRef, { planet: [1] });
 };
 
-export const getUserProgress = async () => {
-  const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
+export const getUserProgress = () => {
+  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -52,13 +52,13 @@ export const getUserProgress = async () => {
     });
 };
 
-export const setUserAvatar = async (avatar) => {
-  const userRef = ref(db, `avatar/${await auth.currentUser.uid}`);
+export const setUserAvatar = (avatar) => {
+  const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
   return set(userRef, avatar);
 };
 
-export const getUserAvatar = async () => {
-  const userRef = ref(db, `avatar/${await auth.currentUser.uid}`);
+export const getUserAvatar = () => {
+  const userRef = ref(db, `avatar/${auth.currentUser.uid}`);
   return get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -72,8 +72,8 @@ export const getUserAvatar = async () => {
     });
 };
 
-export const setUserNickname = async (nickname) => {
-  const userRef = ref(db, `nickname/${await auth.currentUser.uid}`);
+export const setUserNickname = (nickname) => {
+  const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
   return set(userRef, nickname)
     .then((s) => {
       return s;
@@ -83,8 +83,8 @@ export const setUserNickname = async (nickname) => {
     });
 };
 
-export const getUserNickname = async () => {
-  const userRef = ref(db, `nickname/${await auth.currentUser.uid}`);
+export const getUserNickname = () => {
+  const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
   return get(userRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -98,14 +98,14 @@ export const getUserNickname = async () => {
     });
 };
 
-export const removeUserNickname = async () => {
-  const userRef = ref(db, `nickname/${await auth.currentUser.uid}`);
+export const removeUserNickname = () => {
+  const userRef = ref(db, `nickname/${auth.currentUser.uid}`);
   return remove(userRef);
 };
 
-export const updateUserProgress = async (progressUpdate) => {
+export const updateUserProgress = (progressUpdate) => {
   console.log(progressUpdate, "<<<<<<<<<");
-  const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
+  const userRef = ref(db, `progress/${auth.currentUser.uid}`);
   return update(userRef, progressUpdate);
 };
 
@@ -113,10 +113,10 @@ export const removeUserProgress = () => {
   setUserProgress();
 };
 
-export const getUserProgressByPlanet = async (spaceObject) => {
+export const getUserProgressByPlanet = (spaceObject) => {
   const progressRef = ref(
     db,
-    `progress/${await auth.currentUser.uid}/${spaceObject}`
+    `progress/${auth.currentUser.uid}/${spaceObject}`
   );
   return get(progressRef)
     .then((snapshot) => {
