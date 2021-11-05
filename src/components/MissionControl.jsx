@@ -25,24 +25,6 @@ const MissionControl = () => {
   ];
 
 
-  const spaceObjects = [
-    "sun",
-    "mercury",
-    "venus",
-    "earth",
-    "iss",
-    "hubble",
-    "moon",
-    "mars",
-    "curiosity_rover",
-    "jupiter",
-    "saturn",
-    "uranus",
-    "neptune",
-    "pluto",
-    "voyager",
-  ];
-
 
   const [progress, setProgress] = useState({
     solar_system:[],
@@ -59,6 +41,7 @@ const MissionControl = () => {
     curiosityRover: [],
     voyager: [],
   });
+
   const spaceObjects = [
     "solar-system",
     "sun",
