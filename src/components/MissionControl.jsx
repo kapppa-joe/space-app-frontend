@@ -24,6 +24,26 @@ const MissionControl = () => {
     "Robot6",
   ];
 
+
+  const spaceObjects = [
+    "sun",
+    "mercury",
+    "venus",
+    "earth",
+    "iss",
+    "hubble",
+    "moon",
+    "mars",
+    "curiosity_rover",
+    "jupiter",
+    "saturn",
+    "uranus",
+    "neptune",
+    "pluto",
+    "voyager",
+  ];
+
+
   const [progress, setProgress] = useState({
     solar_system:[],
     sun: [],
@@ -156,10 +176,18 @@ const MissionControl = () => {
               )}
 
               <p>
+                {object} {object in progress ? progress[object].length : 0}/10
+                <progress
+                  className="progress is-large {object in progress ? progress[object].length < 7 ? is-warning : is-success : null}"
+                  value={object in progress ? progress[object].length : 0}
+                  max="7"
+                ></progress>
+
                 {object === "solar-system"
                   ? "Solar System"
                   : object[0].toUpperCase() + object.slice(1)}{" "}
                 {object in progress ? progress[object].length : 0}/10
+
               </p>
             </div>
           );
