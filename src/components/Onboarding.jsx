@@ -95,7 +95,9 @@ const Onboarding = () => {
             value={inputName}
             onChange={(e) => setInputName(e.target.value)}
           ></input>
-          <button onClick={submitNickname}>&#10003;</button>
+          <button 
+          disabled={inputName.trim() ? false : true} 
+          onClick={submitNickname}>&#10003;</button>
         </div>
       }
       <h3>Step 2: Choose your character:</h3>
