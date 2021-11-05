@@ -9,6 +9,8 @@ const Planets = () => {
   const { space_object } = useParams();
   const [isAr, setIsAr] = useState(false);
 
+  console.log(space_object)
+
   const objArray = [
     "sun",
     "mercury",
