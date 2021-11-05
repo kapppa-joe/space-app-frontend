@@ -1,7 +1,6 @@
 import { auth, db } from "./firebase";
 import { ref, set, get, remove, child, update } from "firebase/database";
 
-
 export const setDefaults = () => {
   setUserAvatar(0);
 
@@ -9,8 +8,8 @@ export const setDefaults = () => {
   setUserProgress("");
 };
 
-export const getTrivia = (objectName) => {
-  const planetRef = ref(db, `planets/${objectName}`);
+export const getTrivia = async (objectName) => {
+  const planetRef = ref(db, `planets/${await objectName}`);
   return get(child(planetRef, "trivia")).then((snapshot) => {
     if (snapshot.exists()) {
       return snapshot.val();
@@ -20,19 +19,17 @@ export const getTrivia = (objectName) => {
   });
 };
 
-export const getQuestions = (objectName) => {
-  const planetRef = ref(db, `planets/${objectName}`);
-  return get(child(planetRef, "questions"))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.val();
-      } else {
-        console.log("No data available");
-        throw "planet does not exist";
-      }
-    })
+export const getQuestions = async (objectName) => {
+  const planetRef = ref(db, `planets/${await objectName}`);
+  return get(child(planetRef, "questions")).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.log("No data available");
+      throw "planet does not exist";
+    }
+  });
 };
-
 
 export const setUserProgress = async (progress) => {
   const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
@@ -107,7 +104,7 @@ export const removeUserNickname = async () => {
 };
 
 export const updateUserProgress = async (progressUpdate) => {
-  console.log(progressUpdate, "<<<<<<<<<")
+  console.log(progressUpdate, "<<<<<<<<<");
   const userRef = ref(db, `progress/${await auth.currentUser.uid}`);
   return update(userRef, progressUpdate);
 };
