@@ -9,6 +9,7 @@ import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
 import Facts from "./components/Facts";
 import Quiz from "./components/Quiz";
+import Acknowledgements from "./components/Acknowledgements";
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
           {/* route set up for testing of facts component */}
           <Route exact path="/space/:planet_id/quiz">
             <Quiz />
+          </Route>
+          <Route exact path="/acknowledgements">
+            <Acknowledgements />
           </Route>
         </Switch>
       </Background>

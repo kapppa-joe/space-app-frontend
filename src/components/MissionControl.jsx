@@ -9,6 +9,7 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { Link } from "react-router-dom";
+import "bulma-accordion/dist/css/bulma-accordion.min.css";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -16,6 +17,7 @@ const MissionControl = () => {
   const [avatar, setAvatar] = useState("Robot1");
   const [loadingContent, setLoadingContent] = useState(true);
   const [reload, setReload] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const avatarList = [
     "Robot1",
@@ -87,6 +89,10 @@ const MissionControl = () => {
     }
   };
 
+  const toggleAccordion = () => {
+    setOpen(!open);
+  };
+
   if (loading) {
     return <div>Initialising User...</div>;
   }
@@ -113,12 +119,36 @@ const MissionControl = () => {
           <button>Back To Mission Prep</button>
         </Link>
         <button onClick={resetProgress}>Reset Game</button>
-        <h2>{nickname}</h2>
         <img
           className="avatar_img"
           src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
+        <p>Welcome space cadet {nickname} to mission control.</p>
+        <section className="accordions">
+          <article className={`accordion ${open ? "is-active" : ""}`}>
+            <div className="accordion-header">
+              <p onClick={toggleAccordion}>View Mission Details</p>
+              <button
+                onClick={toggleAccordion}
+                className="toggle"
+                aria-label="toggle"
+              ></button>
+            </div>
+            <div className="accordion-body">
+              <div className="accordion-content">
+                Visit various planets and spacecraft in the solar system and
+                learn about them as you go. At each destination take the quiz
+                and unlock the badges below. You only need to get 7/10 correct
+                to unlock your badge!
+              </div>
+            </div>
+          </article>
+        </section>
+        <p>
+          Click on the items below, to take you into space and begin your
+          mission!
+        </p>
 
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
@@ -187,6 +217,7 @@ const MissionControl = () => {
             </div>
           );
         })}
+        <Link to="/acknowledgements">Acknowledgements</Link>
       </div>
     );
   }

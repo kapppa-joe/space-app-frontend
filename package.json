@@ -9,6 +9,7 @@
     "aframe-react": "^4.4.0",
     "axios": "^0.24.0",
     "bulma": "^0.9.3",
+    "bulma-accordion": "^2.0.1",
     "bulma-pageloader": "^0.3.0",
     "firebase": "^9.2.0",
     "react": "^17.0.2",
