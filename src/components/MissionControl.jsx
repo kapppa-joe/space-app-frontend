@@ -79,7 +79,7 @@ const MissionControl = () => {
   }, [user, avatar, reload]);
 
   const resetProgress = () => {
-    let result = window.confirm("Are you sure you want to reset progress");
+    let result = window.confirm("Are you sure you want to reset all of your progress so far?");
     if (result) {
       setReload((reload) => {
         return !reload;
@@ -113,18 +113,19 @@ const MissionControl = () => {
     return (
       <div>
         <Link to="/space/solar-system">
-          <button>Play Game</button>
+          <button>Launch Game</button>
         </Link>
         <Link to="/onboarding">
           <button>Back To Mission Prep</button>
         </Link>
-        <button onClick={resetProgress}>Reset Game</button>
+        <button onClick={resetProgress}>Reset Progress</button>
         <img
           className="avatar_img"
           src={`/assets/avatars/${avatarList[avatar]}.png`}
           alt="user avatar"
         />
         <p>Welcome space cadet {nickname} to mission control.</p>
+        <p>Here you can find details of your mission and check on your progress as you travel through the Cosmos.  </p>
         <section className="accordions">
           <article className={`accordion ${open ? "is-active" : ""}`}>
             <div className="accordion-header">
@@ -137,16 +138,16 @@ const MissionControl = () => {
             </div>
             <div className="accordion-body">
               <div className="accordion-content">
-                Visit various planets and spacecraft in the solar system and
-                learn about them as you go. At each destination take the quiz
-                and unlock the badges below. You only need to get 7/10 correct
+                Visit the various planets and spacecraft in our Solar System and
+                learn about them as you go. 
+                At each destination take the quiz to unlock the badges below. You only need to get 7 out of 10 questions right
                 to unlock your badge!
               </div>
             </div>
           </article>
         </section>
         <p>
-          Click on the items below, to take you into space and begin your
+          Click on the items below, to launch into space and begin your
           mission!
         </p>
 
