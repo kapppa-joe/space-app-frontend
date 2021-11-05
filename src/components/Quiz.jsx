@@ -7,6 +7,8 @@ import {
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import Quiz_Modal from "./Quiz_Modal";
+import FinishedQuizModal from "./Finished_quiz_modal";
 const Quiz = ({space_object}) => {
   const [user, loading, error] = useAuthState(auth);
   const [quiz, setQuiz] = useState(null);
@@ -14,6 +16,9 @@ const Quiz = ({space_object}) => {
   const [progress, setProgress] = useState([]);
   const [incorrect, setIncorrect] = useState([])
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [hasWonBadge, setHasWonBadge] = useState(false);
+  const [hasFinishedQuiz, setHasFinishedQuiz] = useState(false);
+  const [hasFinishedBadge, setHasFinishedBadge] = useState(false);
 
   useEffect(() => {
     setErr(false);
@@ -24,7 +29,6 @@ const Quiz = ({space_object}) => {
       .then(() => {
         getUserProgressByPlanet(space_object)
           .then((dbProgress) => {
-            console.log(dbProgress, "<<<<<");
             if (dbProgress === "" || dbProgress === undefined) {
               setProgress([]);
             } else {
@@ -45,14 +49,16 @@ const Quiz = ({space_object}) => {
   const checkAnswer = (e) => {
     e.preventDefault();
     if (e.target.value === quiz[currentQuestion].correct) {
-      setProgress((curr) => {
+        setProgress((curr) => {
         const newProgress = [...curr];
         newProgress.push(currentQuestion);
 
         const p = { [space_object]: newProgress };
         updateUserProgress(p)
+        if (newProgress.length === 7 ) setHasWonBadge(true);
+        if (newProgress.length === 7 ) setHasFinishedBadge(true);
         return newProgress;
-      });
+      })
     } else {
       setIncorrect(curr=>{
          const newIncorrect = [...curr];
@@ -60,7 +66,11 @@ const Quiz = ({space_object}) => {
          return newIncorrect;
       })
     }
+    if (currentQuestion === 10) setHasFinishedQuiz(true)
+    
   };
+
+  console.log(currentQuestion)
 
   if (error) {
     return (
@@ -76,9 +86,13 @@ const Quiz = ({space_object}) => {
     return <h1>Planet does not exists, try again.</h1>;
   } else if (!quiz) {
     return <p>Loading...</p>;
+  } else if (quiz.length === 9) {
+    return <p>ONLY 8 QUESTIONS</p>
   } else {
     return (
       <div>
+        <Quiz_Modal hasWonBadge={hasWonBadge} setHasWonBadge={setHasWonBadge} space_object={space_object}/>
+        <FinishedQuizModal hasFinishedBadge={hasFinishedBadge} hasFinishedQuiz={hasFinishedQuiz} setHasFinishedQuiz={setHasFinishedQuiz}/>
         <h1>Quiz:</h1>
         <ul>
           <li>
