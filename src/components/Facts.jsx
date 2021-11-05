@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { getTrivia } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 
-const Facts = () => {
-  const { planet_id } = useParams();
+const Facts = ({space_object}) => {
   const [trivia, setTrivia] = useState(null);
   const [err, setErr] = useState(false);
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     setErr(false);
-    getTrivia(planet_id.toLowerCase())
+    getTrivia(space_object.toLowerCase())
       .then((dbTrivia) => {
         console.log(dbTrivia);
         setTrivia(dbTrivia);
@@ -20,7 +19,7 @@ const Facts = () => {
       .catch((err) => {
         setErr(true);
       });
-  }, []);
+  }, [space_object]);
 
    if (error) {
      return (
@@ -39,9 +38,10 @@ const Facts = () => {
   } else {
     return (
       <div>
+        <h3>Trivia</h3>
         <ul>
           {trivia.map((fact, index) => {
-            return <li key={index}>{fact}</li>;
+            return <li key={index} className="card">{fact}</li>;
           })}
         </ul>
       </div>

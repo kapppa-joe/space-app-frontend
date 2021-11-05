@@ -1,5 +1,6 @@
 import React from "react";
 import Demo from "./Demo"; 
+import Sidebar from "./Sidebar";
 import Iframe from "react-iframe";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
@@ -43,6 +44,8 @@ const Planets = () => {
           AR on/off
         </button>
         <Demo />
+        <Sidebar content="facts" space_object={space_object} />
+        <Sidebar content="quiz" space_object={space_object}/>
       </div>
       <div id="ar_list">
         {objArray.map((object) => {
