@@ -24,10 +24,8 @@ const MissionControl = () => {
     "Robot6",
   ];
 
-
-
   const [progress, setProgress] = useState({
-    solar_system:[],
+    solar_system: [],
     sun: [],
     mercury: [],
     venus: [],
@@ -61,8 +59,7 @@ const MissionControl = () => {
     "voyager",
   ];
 
-
-  useEffect(  () => {
+  useEffect(() => {
     if (user) {
       getUserAvatar().then((dbAvatar) => {
         setAvatar(dbAvatar);
@@ -71,11 +68,10 @@ const MissionControl = () => {
         setNickname(dbNickname);
       });
       getUserProgress().then((dbProgress) => {
-         setProgress(dbProgress);
+        setProgress(dbProgress);
       });
-      setLoadingContent(false)
+      setLoadingContent(false);
     }
-    
   }, [user, avatar]);
 
   const resetProgress = () => {
@@ -93,8 +89,8 @@ const MissionControl = () => {
     return <div>Initialising User...</div>;
   }
 
-  if(!progress && loadingContent){
-    return <h2>Loading</h2>
+  if (!progress && loadingContent) {
+    return <h2>Loading</h2>;
   }
 
   if (error) {
@@ -124,7 +120,7 @@ const MissionControl = () => {
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
         {spaceObjects.map((object, index) => {
-            console.log(progress[object], '<<<',object)
+          console.log(progress[object], "<<<", object);
           return (
             <div key={index}>
               <Link to={`space/${object}`}>
@@ -138,17 +134,32 @@ const MissionControl = () => {
               {/* Do not touch, it will break */}
               {object in progress ? (
                 progress[object].length > 6 ? (
-                  <img
-                    className="badge"
-                    src={`/assets/badges/badge-${object}.png`}
-                    alt={object}
-                  ></img>
+                  <>
+                    <progress
+                      className="progress is-medium is-success"
+                      value={object in progress ? progress[object].length : 0}
+                      max="10"
+                    ></progress>
+
+                    <img
+                      className="badge"
+                      src={`/assets/badges/badge-${object}.png`}
+                      alt={object}
+                    ></img>
+                  </>
                 ) : (
-                  <img
-                    className="badge"
-                    src={`/assets/badges/badge-default1.png`}
-                    alt={object}
-                  ></img>
+                  <>
+                    <img
+                      className="badge"
+                      src={`/assets/badges/badge-default1.png`}
+                      alt={object}
+                    ></img>
+                    <progress
+                      className="progress is-medium is-danger"
+                      value={object in progress ? progress[object].length : 0}
+                      max="10"
+                    ></progress>
+                  </>
                 )
               ) : (
                 <img
@@ -165,12 +176,10 @@ const MissionControl = () => {
                   value={object in progress ? progress[object].length : 0}
                   max="7"
                 ></progress>
-
                 {object === "solar-system"
                   ? "Solar System"
                   : object[0].toUpperCase() + object.slice(1)}{" "}
                 {object in progress ? progress[object].length : 0}/10
-
               </p>
             </div>
           );
