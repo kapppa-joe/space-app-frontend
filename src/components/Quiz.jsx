@@ -100,6 +100,7 @@ const Quiz = ({ space_object }) => {
           hasFinishedBadge={hasFinishedBadge}
           hasFinishedQuiz={hasFinishedQuiz}
           setHasFinishedQuiz={setHasFinishedQuiz}
+          space_object={space_object}
         />
         <h1>Quiz:</h1>
         <ul>
@@ -109,6 +110,7 @@ const Quiz = ({ space_object }) => {
               {quiz[currentQuestion].answers.map((answer) => {
                 return (
                   <button
+                    key={answer}
                     disabled={
                       progress.includes(currentQuestion) ||
                       incorrect.includes(currentQuestion)
