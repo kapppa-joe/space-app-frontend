@@ -7,8 +7,6 @@ import Onboarding from "./components/Onboarding";
 import MissionControl from "./components/MissionControl";
 import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
-import Facts from "./components/Facts";
-import Quiz from "./components/Quiz";
 import Acknowledgements from "./components/Acknowledgements";
 import Page404 from "./components/Page404";
 
@@ -31,14 +29,6 @@ function App() {
           </Route>
           <Route exact path="/space/:space_object">
             <Planets />
-          </Route>
-          {/* route set up for testing of facts component */}
-          <Route exact path="/space/:planet_id/facts">
-            <Facts />
-          </Route>
-          {/* route set up for testing of facts component */}
-          <Route exact path="/space/:planet_id/quiz">
-            <Quiz />
           </Route>
           <Route exact path="/acknowledgements">
             <Acknowledgements />

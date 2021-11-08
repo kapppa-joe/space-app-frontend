@@ -1,3 +1,8 @@
+@font-face {
+  font-family: AstroSpace;
+  src: url(./assets/images/AstroSpaceFont.otf);
+}
+
 .App,
 .Login {
   text-align: center;
@@ -138,3 +143,40 @@
 .correct {
   background-color: rgb(73, 180, 73);
 }
+
+/* Trivia pages */
+
+.trivia_body {
+  position: absolute;
+  top: 1rem;
+  
+}
+
+.trivia_body h2 {
+  font-size: 2.5rem;
+  font-family: "AstroSpace", serif;
+}
+
+.trivia_list {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+}
+
+.fact {
+  background-color: white;
+  color: black;
+  margin: 0.3rem 0.2rem;
+  padding: 0 1rem;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.fact::first-letter {
+  font-size: 120%;
+  font-family: "AstroSpace", serif;
+
+}
+
+
+

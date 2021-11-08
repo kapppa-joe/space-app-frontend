@@ -38,12 +38,12 @@ const Facts = ({ space_object }) => {
     return <p>Loading....</p>;
   } else {
     return (
-      <div>
-        <h3>Trivia</h3>
-        <ul>
+      <div className="trivia_body">
+        <h2>Trivia</h2>
+        <ul className="trivia_list">
           {trivia.map((fact, index) => {
             return (
-              <li key={index} className="card">
+              <li key={index} className="fact">
                 {fact}
               </li>
             );
