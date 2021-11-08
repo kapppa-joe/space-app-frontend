@@ -7,17 +7,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 export default function UserAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("Guest");
-  const [loggedIn, setLoggedIn] = useState(false);
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     if (user) {
-      setUsername(user.email);
-
       resetForm();
     }
-  }, []);
+    // added user to deps to prevent react scream error.
+  }, [user]);
 
   const signIn = (event) => {
     event.preventDefault();
@@ -25,8 +22,6 @@ export default function UserAuth() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        setLoggedIn(true);
-        setUsername(auth.user.email);
         resetForm();
       })
       .catch((error) => alert(error.message));
@@ -37,8 +32,6 @@ export default function UserAuth() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        setLoggedIn(true);
-        setUsername(auth.user.email);
         resetForm();
         setDefaults();
       })
@@ -50,10 +43,9 @@ export default function UserAuth() {
     setPassword("");
   };
 
- if (error) {
-   return <h2>Something went wrong...</h2>;
- }
-
+  if (error) {
+    return <h2>Something went wrong...</h2>;
+  }
 
   if (user) {
     return <Redirect to="/onboarding" />;

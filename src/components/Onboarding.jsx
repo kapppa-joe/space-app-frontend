@@ -94,6 +94,14 @@ const Onboarding = () => {
     return <Redirect to="/" />;
   }
 
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <button onClick={signOutUser}>Sign Out</button>
