@@ -6,13 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="js/aframe.min.js"></script>
   <script src="js/dynamicLoadModel.js" defer></script>
+  <script src="js/aframe-loading-anim.js"></script>
   <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/master/dist/aframe-orbit-controls-component.min.js"></script>
   <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script>
+  <link rel="stylesheet" href="styles/loader.css" />
+
   </head>
   <title>3D Scene</title>
 </head>
 <body>
-  <a-scene vr-mode-ui="enabled: false" adjust-color-model>
+  <div id="aframe-loader">
+    <img src="./assets/2d-images/rocket-animated.svg"></img>
+    Diving into the space...
+  </div>
+  <a-scene vr-mode-ui="enabled: false" adjust-color-model loading-screen="enabled:false">
     <a-assets>
         <a-asset-item id="dummy" src=""></a-asset-item>
     </a-assets>
@@ -34,6 +41,7 @@
     <a-entity
       id="target"
       dynamic-load-model
+      loading-anim="enabled: true;"
       position="0 0 0"
       scale="0.3 0.3 0.3"
       class="clickable"

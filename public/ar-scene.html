@@ -16,14 +16,20 @@
     <!-- Custom script to load different planet in a dynamic way. 
          Load this page like `ar-scene.html?model=sun` and the markers will load the 3d model of sun  -->
     <script src="js/dynamicLoadModel.js"></script>
+    <script src="js/aframe-loading-anim.js"></script>
 
     <script src="js/gesture-detector.js"></script>
     <script src="js/gesture-handler.js"></script>
     <script src="js/iframePostMessage.js" defer></script>
     <link rel="stylesheet" href="styles/ar.css" />
+    <link rel="stylesheet" href="styles/loader.css" />
   </head>
 
   <body>
+    <div id="aframe-loader">
+      <img src="./assets/2d-images/rocket-animated.svg"></img>
+      Diving into the space...
+    </div>
     <a-scene
       arjs
       vr-mode-ui="enabled: false"
@@ -31,6 +37,7 @@
       id="ar-scene"
       gesture-detector
       adjust-color-model
+      loading-screen="enabled:false"
     >
       <a-assets>
         <a-asset-item id="dummy" src=""></a-asset-item>
@@ -47,6 +54,7 @@
         <a-entity
           id="ar-model"
           dynamic-load-model
+          loading-anim
           position="0 0 0"
           scale="0.1 0.1 0.1"
           animation="property: rotation; to: 0 360 0; dur: 20000; loop:true; easing: linear"
