@@ -155,7 +155,6 @@
 .trivia_body {
   position: absolute;
   top: 1rem;
-  
 }
 
 .trivia_body h2 {
@@ -181,8 +180,9 @@
 .fact::first-letter {
   font-size: 120%;
   font-family: "AstroSpace", serif;
-
 }
 
-
-
+.MapContainer {
+  width: 400px;
+  height: 180px;
+}

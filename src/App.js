@@ -9,6 +9,7 @@ import Planets from "./components/Planets";
 import Loading from "./components/Loading";
 import Acknowledgements from "./components/Acknowledgements";
 import Page404 from "./components/Page404";
+import SpaceStation from "./components/SpaceStation";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/acknowledgements">
             <Acknowledgements />
+          </Route>
+          <Route exact path="/space-station">
+            <SpaceStation />
           </Route>
           <Route>
             <Page404 />
