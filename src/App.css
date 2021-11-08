@@ -111,3 +111,30 @@
 .pageloader::after {
   display: none !important;
 }
+
+/* Quiz page */
+
+.pageloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent !important;
+  background-image: url("./assets/images/sky-background.jpeg") !important;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.quiz-box {
+  color: black;
+  background-color: white;
+  border: 1px solid white;
+  padding: 0px 100px 100px 100px;
+}
+
+.incorrect {
+  background-color: rgb(235, 79, 79);
+}
+
+.correct {
+  background-color: rgb(73, 180, 73);
+}

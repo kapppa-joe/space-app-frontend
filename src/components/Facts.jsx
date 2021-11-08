@@ -23,7 +23,9 @@ const Facts = ({ space_object }) => {
   if (error) {
     return (
       <div>
-        <p>Error: {error}</p>
+        <p>
+          Sorry we can't find any facts at the minute please try again later !!
+        </p>
       </div>
     );
   }
