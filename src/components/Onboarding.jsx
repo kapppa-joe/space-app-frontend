@@ -11,6 +11,7 @@ import {
   setUserAvatar,
   getUserAvatar,
 } from "../db";
+import Loading from "./Loading";
 
 const Onboarding = () => {
   const [inputName, setInputName] = useState("");
@@ -27,9 +28,13 @@ const Onboarding = () => {
   const [user, loading, error] = useAuthState(auth);
   const [reload, setReload] = useState(false);
   const [displayInputBox, setDisplayInputBox] = useState(false);
-
+  const [err, setErr] = useState(false); 
+  const [contentsLoading, setContentsLoading] = useState(true); 
+  
   useEffect(() => {
     if (user) {
+      setContentsLoading(true); 
+      setErr(false); 
       getUserNickname()
         .then((res) => {
           if (!res) {
@@ -45,8 +50,11 @@ const Onboarding = () => {
           setAvatar(avatarNum);
         })
         .catch((err) => {
-          console.dir(err);
-        });
+          setErr(true); 
+        })
+        .finally(() => {
+          setContentsLoading(false); 
+        })
     }
   }, [loading, reload, user]);
 
@@ -55,6 +63,7 @@ const Onboarding = () => {
   };
 
   const submitNickname = () => {
+    setErr(false); 
     setNickname(inputName);
     setDisplayInputBox(false);
     setUserNickname(inputName)
@@ -63,7 +72,7 @@ const Onboarding = () => {
         setReload(true);
       })
       .catch((err) => {
-        console.dir(err);
+        setErr(true); 
       });
   };
 
@@ -86,18 +95,20 @@ const Onboarding = () => {
     }
   };
 
-  if (loading) {
-    return <p>Page Loading</p>;
+  if (loading || contentsLoading) {
+    return (
+      <Loading />
+    )
   }
 
   if (!user) {
     return <Redirect to="/" />;
   }
 
-  if (error) {
+  if (error || err) {
     return (
       <div>
-        <p>Error: {error}</p>
+        <p>Something went wrong... Please try refreshing the page</p>
       </div>
     );
   }
