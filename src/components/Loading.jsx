@@ -11,7 +11,7 @@ const Loading = () => {
                 </div>
             </div>
             
-            <div class="pufs">
+            <div className="pufs">
                 <i></i><i></i><i></i>
                 <i></i><i></i><i></i>
                 <i></i><i></i><i></i>
@@ -28,7 +28,7 @@ const Loading = () => {
                 <i></i><i></i><i></i>
                 <i></i><i></i><i></i>
             </div>
-            <div class="particles">
+            <div className="particles">
                 <i></i><i></i><i></i>
                 <i></i><i></i><i></i>
                 <i></i><i></i><i></i>
