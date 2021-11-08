@@ -166,7 +166,7 @@ const Onboarding = () => {
         {!nickname && (
           <button
             onClick={() => {
-              alert("Please enter your name before you enter mission control");
+              alert("Please enter your name before heading to mission control");
             }}
           >
             Mission Control -&gt;
