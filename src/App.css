@@ -76,6 +76,70 @@
   bottom: 10px;
 }
 
+/* 3D <-> AR toggle switch */
+.ar-toggle-switch-wrapper {
+  position: relative;
+  bottom: 2em;
+
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.ar-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 3em;
+  height: 1.5em;
+}
+
+.ar-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ar-toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000066;
+  transition: 0.4s;
+  border: solid 1px #ccc;
+  height: 1.5em;
+  width: 3em;
+  transition: all 0.3s ease-in;
+  border-radius: 1.5em;
+}
+
+.ar-toggle-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 1em;
+  width: 1em;
+  top: 3px;
+  left: 4px;
+  background-color: white;
+  transition: all 0.3s ease-in;
+  border-radius: 50%;
+}
+
+.ar-toggle-switch input:checked + .slider {
+  background-color: #6c3;
+}
+
+.ar-toggle-switch input:focus + .slider {
+  box-shadow: 0 0 1px #6c3;
+}
+
+.ar-toggle-switch input:checked + .slider:before {
+  translate: 1.5em;
+}
+
 #ar_list {
   width: 100%;
   grid-area: ar_list;
@@ -108,9 +172,28 @@
   width: fit-content;
   z-index: 2;
 }
-#ar_page .back-button-wrapper .back-button {
-  background-color: #cccccc33;
+
+#ar_page .button {
+  background-color: #66666666;
   color: white;
+}
+
+/* AR Demo page */
+
+#ar_page .ar-demo-button {
+  height: 2em;
+  padding: 0.2em;
+  position: fixed;
+  right: 0.2em;
+  translate: 0 -100%;
+}
+
+#ar-demo-modal-box .modal-close {
+  background-color: #33333366;
+}
+
+#ar-demo-modal-box .button {
+  color: #333;
 }
 
 /* Sidebars */
@@ -123,6 +206,27 @@
   display: none !important;
 }
 
+#ar_view .sidebar-button {
+  width: 1.5em;
+  height: 8em;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+
+  position: fixed;
+  top: 40%;
+}
+
+#ar_view .sidebar-button-left {
+  left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#ar_view .sidebar-button-right {
+  right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 /* Quiz page */
 
 .pageloader {
