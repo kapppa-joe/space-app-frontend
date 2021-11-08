@@ -4,7 +4,7 @@ import { getTrivia } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 
-const Facts = ({space_object}) => {
+const Facts = ({ space_object }) => {
   const [trivia, setTrivia] = useState(null);
   const [err, setErr] = useState(false);
   const [user, loading, error] = useAuthState(auth);
@@ -13,7 +13,6 @@ const Facts = ({space_object}) => {
     setErr(false);
     getTrivia(space_object.toLowerCase())
       .then((dbTrivia) => {
-        console.log(dbTrivia);
         setTrivia(dbTrivia);
       })
       .catch((err) => {
@@ -21,13 +20,13 @@ const Facts = ({space_object}) => {
       });
   }, [space_object]);
 
-   if (error) {
-     return (
-       <div>
-         <p>Error: {error}</p>
-       </div>
-     );
-   }
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
 
   if (!user && !loading) {
     return <Redirect to="/" />;
@@ -41,7 +40,11 @@ const Facts = ({space_object}) => {
         <h3>Trivia</h3>
         <ul>
           {trivia.map((fact, index) => {
-            return <li key={index} className="card">{fact}</li>;
+            return (
+              <li key={index} className="card">
+                {fact}
+              </li>
+            );
           })}
         </ul>
       </div>

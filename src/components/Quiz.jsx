@@ -71,7 +71,9 @@ const Quiz = ({ space_object }) => {
     }
   };
 
+
   // html display logic starts here.
+
 
   if (error) {
     return (
