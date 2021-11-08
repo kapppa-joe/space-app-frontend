@@ -10,6 +10,7 @@ import Planets from "./components/Planets";
 import Facts from "./components/Facts";
 import Quiz from "./components/Quiz";
 import Acknowledgements from "./components/Acknowledgements";
+import Page404 from "./components/Page404";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/acknowledgements">
             <Acknowledgements />
+          </Route>
+          <Route>
+            <Page404/>
           </Route>
         </Switch>
       </Background>
