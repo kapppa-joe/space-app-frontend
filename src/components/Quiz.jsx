@@ -7,8 +7,9 @@ import {
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import Quiz_Modal from "./Quiz_Modal";
-import FinishedQuizModal from "./Finished_quiz_modal";
+import QuizModal from "./QuizModal";
+import FinishedQuizModal from "./FinishedQuizModal";
+
 const Quiz = ({ space_object }) => {
   const [user, loading, error] = useAuthState(auth);
   const [quiz, setQuiz] = useState(null);
@@ -16,30 +17,28 @@ const Quiz = ({ space_object }) => {
   const [progress, setProgress] = useState([]);
   const [incorrect, setIncorrect] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(1);
+
   const [hasWonBadge, setHasWonBadge] = useState(false);
-  const [hasFinishedQuiz, setHasFinishedQuiz] = useState(false);
-  const [hasFinishedBadge, setHasFinishedBadge] = useState(false);
+  const [openWonBadgeModal, setOpenWonBadgeModal] = useState(false);
 
   useEffect(() => {
     setCurrentQuestion(1);
+    setIncorrect([]);
     setErr(false);
+
     getQuestions(space_object.toLowerCase())
       .then((dbQuiz) => {
         setQuiz(dbQuiz);
       })
       .then(() => {
-        getUserProgressByPlanet(space_object)
-          .then((dbProgress) => {
-            if (dbProgress === "" || dbProgress === undefined) {
-              setProgress([]);
-            } else {
-              setProgress(dbProgress);
-            }
-          })
-          .catch((err) => {
-            setErr(true);
-            console.log(err);
-          });
+        return getUserProgressByPlanet(space_object);
+      })
+      .then((dbProgress) => {
+        if (dbProgress === "" || dbProgress === undefined) {
+          setProgress([]);
+        } else {
+          setProgress(dbProgress);
+        }
       })
       .catch((err) => {
         setErr(true);
@@ -50,14 +49,17 @@ const Quiz = ({ space_object }) => {
   const checkAnswer = (e) => {
     e.preventDefault();
     if (e.target.value === quiz[currentQuestion].correct) {
+      // already got 6 correct + got a new one correct => got 7 correct.
+      if (progress.length === 6) {
+        setHasWonBadge(true);
+        setOpenWonBadgeModal(true);
+      }
       setProgress((curr) => {
         const newProgress = [...curr];
         newProgress.push(currentQuestion);
 
         const p = { [space_object]: newProgress };
         updateUserProgress(p);
-        if (newProgress.length === 7) setHasWonBadge(true);
-        if (newProgress.length === 7) setHasFinishedBadge(true);
         return newProgress;
       });
     } else {
@@ -67,8 +69,11 @@ const Quiz = ({ space_object }) => {
         return newIncorrect;
       });
     }
-    if (currentQuestion === 10) setHasFinishedQuiz(true);
   };
+
+
+  // html display logic starts here.
+
 
   if (error) {
     return (
@@ -89,15 +94,9 @@ const Quiz = ({ space_object }) => {
   } else {
     return (
       <div>
-        <Quiz_Modal
-          hasWonBadge={hasWonBadge}
-          setHasWonBadge={setHasWonBadge}
-          space_object={space_object}
-        />
-        <FinishedQuizModal
-          hasFinishedBadge={hasFinishedBadge}
-          hasFinishedQuiz={hasFinishedQuiz}
-          setHasFinishedQuiz={setHasFinishedQuiz}
+        <QuizModal
+          openWonBadgeModal={openWonBadgeModal}
+          setOpenWonBadgeModal={setOpenWonBadgeModal}
           space_object={space_object}
         />
         <h1>Quiz:</h1>
@@ -136,14 +135,27 @@ const Quiz = ({ space_object }) => {
             Previous
           </button>
 
-          <button
-            onClick={() => {
-              setCurrentQuestion((curr) => curr + 1);
-            }}
-            disabled={currentQuestion === 10}
-          >
-            Next question
-          </button>
+          {/* hide the next question button when it is the last question */}
+          {currentQuestion !== quiz.length - 1 && (
+            <button
+              onClick={() => {
+                setCurrentQuestion((curr) => curr + 1);
+              }}
+              disabled={currentQuestion === quiz.length - 1}
+            >
+              Next question
+            </button>
+          )}
+          {/* add the "Finish" button when it is 10th question and the 10th question got answered. */}
+          {currentQuestion === quiz.length - 1 &&
+          (progress.includes(quiz.length - 1) ||
+            incorrect.includes(quiz.length - 1)) ? (
+            <FinishedQuizModal
+              progress={progress}
+              hasWonBadge={hasWonBadge}
+              space_object={space_object}
+            />
+          ) : null}
         </ul>
       </div>
     );
