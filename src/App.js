@@ -7,8 +7,7 @@ import Onboarding from "./components/Onboarding";
 import MissionControl from "./components/MissionControl";
 import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
-import Facts from "./components/Facts";
-import Quiz from "./components/Quiz";
+import Loading from "./components/Loading";
 import Acknowledgements from "./components/Acknowledgements";
 
 function App() {
@@ -31,13 +30,8 @@ function App() {
           <Route exact path="/space/:space_object">
             <Planets />
           </Route>
-          {/* route set up for testing of facts component */}
-          <Route exact path="/space/:planet_id/facts">
-            <Facts />
-          </Route>
-          {/* route set up for testing of facts component */}
-          <Route exact path="/space/:planet_id/quiz">
-            <Quiz />
+          <Route exact path="/loading">
+            <Loading />
           </Route>
           <Route exact path="/acknowledgements">
             <Acknowledgements />
