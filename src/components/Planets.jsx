@@ -49,8 +49,8 @@ const Planets = () => {
           AR on/off
         </button>
         <Demo />
-        <Sidebar content="facts" space_object={space_object} />
-        <Sidebar content="quiz" space_object={space_object} />
+        <Sidebar id="contents" content="facts" space_object={space_object} />
+        <Sidebar id="contents" content="quiz" space_object={space_object} />
       </div>
       <div id="ar_list">
         {objArray.map((object) => {

@@ -71,14 +71,15 @@ const Quiz = ({ space_object }) => {
     }
   };
 
-
   // html display logic starts here.
-
 
   if (error) {
     return (
       <div>
-        <p>Error: {error}</p>
+        <p>
+          Sorry we cant find any questions at the minute, please try again later
+          !!
+        </p>
       </div>
     );
   }
@@ -93,70 +94,89 @@ const Quiz = ({ space_object }) => {
     return <p>ONLY 8 QUESTIONS</p>;
   } else {
     return (
-      <div>
+      <div id="quiz-modal">
         <QuizModal
           openWonBadgeModal={openWonBadgeModal}
           setOpenWonBadgeModal={setOpenWonBadgeModal}
           space_object={space_object}
         />
         <h1>Quiz:</h1>
-        <ul>
-          <li>
-            <p>Question: {quiz[currentQuestion].question}</p>
-            <div>
-              {quiz[currentQuestion].answers.map((answer) => {
-                return (
-                  <button
-                    key={answer}
-                    disabled={
-                      progress.includes(currentQuestion) ||
-                      incorrect.includes(currentQuestion)
-                    }
-                    value={answer}
-                    onClick={checkAnswer}
-                  >
-                    {answer}
-                  </button>
-                );
-              })}
-            </div>
+        <section
+          className={`quiz-box ${
+            progress.includes(currentQuestion)
+              ? "correct"
+              : incorrect.includes(currentQuestion)
+              ? "incorrect"
+              : ""
+          }`}
+        >
+          <ul>
+            <li>
+              <p id="quiz-question">
+                Question: {quiz[currentQuestion].question}
+              </p>
+              <div>
+                {quiz[currentQuestion].answers.map((answer) => {
+                  return (
+                    <button
+                      key={answer}
+                      disabled={
+                        progress.includes(currentQuestion) ||
+                        incorrect.includes(currentQuestion)
+                      }
+                      value={answer}
+                      onClick={checkAnswer}
+                    >
+                      {answer}
+                    </button>
+                  );
+                })}
+              </div>
 
-            {progress.includes(currentQuestion) ? <p>Correct</p> : null}
-            {incorrect.includes(currentQuestion) ? <p>Incorrect</p> : null}
-
-            <p>Correct: {quiz[currentQuestion].correct}</p>
-          </li>
-          <button
-            onClick={() => {
-              setCurrentQuestion((curr) => curr - 1);
-            }}
-            disabled={currentQuestion === 1}
-          >
-            Previous
-          </button>
-
-          {/* hide the next question button when it is the last question */}
-          {currentQuestion !== quiz.length - 1 && (
+              {/* <p>Correct: {quiz[currentQuestion].correct}</p> */}
+            </li>
             <button
               onClick={() => {
-                setCurrentQuestion((curr) => curr + 1);
+                setCurrentQuestion((curr) => curr - 1);
               }}
-              disabled={currentQuestion === quiz.length - 1}
+              disabled={currentQuestion === 1}
             >
-              Next question
+              Previous
             </button>
-          )}
-          {/* add the "Finish" button when it is 10th question and the 10th question got answered. */}
-          {currentQuestion === quiz.length - 1 &&
-          (progress.includes(quiz.length - 1) ||
-            incorrect.includes(quiz.length - 1)) ? (
-            <FinishedQuizModal
-              progress={progress}
-              hasWonBadge={hasWonBadge}
-              space_object={space_object}
-            />
-          ) : null}
-        </ul>
+            {progress.includes(currentQuestion) ? (
+              <p>
+                That's correct, Well done! Please move to the next question!
+              </p>
+            ) : null}
+            {incorrect.includes(currentQuestion) ? (
+              <p>
+                Unlucky, that's not the right answer. Try the next question!
+              </p>
+            ) : null}
+
+            {/* hide the next question button when it is the last question */}
+            {currentQuestion !== quiz.length - 1 && (
+              <button
+                onClick={() => {
+                  setCurrentQuestion((curr) => curr + 1);
+                }}
+                disabled={currentQuestion === quiz.length - 1}
+              >
+                Next question
+              </button>
+            )}
+            {/* add the "Finish" button when it is 10th question and the 10th question got answered. */}
+            {currentQuestion === quiz.length - 1 &&
+            (progress.includes(quiz.length - 1) ||
+              incorrect.includes(quiz.length - 1)) ? (
+              <FinishedQuizModal
+                progress={progress}
+                hasWonBadge={hasWonBadge}
+                space_object={space_object}
+              />
+            ) : null}
+          </ul>
+        </section>
       </div>
     );
   }
