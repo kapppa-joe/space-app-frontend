@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar";
 import Iframe from "react-iframe";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
+import Page404 from "./Page404";
 
 const Planets = () => {
   const { space_object } = useParams();
@@ -32,6 +33,12 @@ const Planets = () => {
       return !currState;
     });
   };
+
+  if (!objArray.includes(space_object)) {
+    return (
+      <Page404 />
+    )
+  }
 
   return (
     <div id="ar_page">
