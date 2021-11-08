@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const spaceStationApi = axios.create({
-  baseURL: "http://api.open-notify.org/iss-now.json",
+  baseURL: "https://api.wheretheiss.at/v1/satellites/25544",
 });
 
 const reverseGeocodeApi = axios.create({
@@ -10,6 +10,7 @@ const reverseGeocodeApi = axios.create({
 
 export const getLocation = () => {
   return spaceStationApi.get("/").then(({ data }) => {
+    console.log(data);
     return data;
   });
 };

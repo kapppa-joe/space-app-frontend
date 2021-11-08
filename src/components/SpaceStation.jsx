@@ -17,8 +17,8 @@ const SpaceStation = () => {
 
         api.getLocation()
         .then((location) => {
-            setPosition([location.iss_position.latitude, location.iss_position.longitude]); 
-            return api.getReverseGeocode(location.iss_position.latitude, location.iss_position.longitude) 
+            setPosition([location.latitude, location.longitude]); 
+            return api.getReverseGeocode(location.latitude, location.longitude) 
         })
         .then((geocode) => {
             setGeoLocation(geocode); 
