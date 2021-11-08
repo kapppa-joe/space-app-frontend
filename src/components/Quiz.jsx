@@ -70,8 +70,6 @@ const Quiz = ({ space_object }) => {
     if (currentQuestion === 10) setHasFinishedQuiz(true);
   };
 
-  console.log(currentQuestion);
-
   if (error) {
     return (
       <div>
