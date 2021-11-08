@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import QuizModal from "./QuizModal";
 import FinishedQuizModal from "./FinishedQuizModal";
+import Loading from "./Loading";
 
 const Quiz = ({ space_object }) => {
   const [user, loading, error] = useAuthState(auth);
@@ -17,7 +18,7 @@ const Quiz = ({ space_object }) => {
   const [progress, setProgress] = useState([]);
   const [incorrect, setIncorrect] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(1);
-
+  const [contentLoading, setContentLoading] = useState(true); 
   const [hasWonBadge, setHasWonBadge] = useState(false);
   const [openWonBadgeModal, setOpenWonBadgeModal] = useState(false);
 
@@ -25,6 +26,7 @@ const Quiz = ({ space_object }) => {
     setCurrentQuestion(1);
     setIncorrect([]);
     setErr(false);
+    setContentLoading(true);
 
     getQuestions(space_object.toLowerCase())
       .then((dbQuiz) => {
@@ -42,8 +44,10 @@ const Quiz = ({ space_object }) => {
       })
       .catch((err) => {
         setErr(true);
-        console.log(err);
-      });
+      })
+      .finally(() => {
+        setContentLoading(false);
+      })
   }, [space_object]);
 
   const checkAnswer = (e) => {
@@ -73,12 +77,11 @@ const Quiz = ({ space_object }) => {
 
   // html display logic starts here.
 
-  if (error) {
+  if (error || err || !quiz) {
     return (
       <div>
         <p>
-          Sorry we cant find any questions at the minute, please try again later
-          !!
+          Sorry we cant find any questions at the minute. Please try again later.
         </p>
       </div>
     );
@@ -86,12 +89,10 @@ const Quiz = ({ space_object }) => {
 
   if (!user && !loading) {
     return <Redirect to="/" />;
-  } else if (err) {
-    return <h1>Planet does not exists, try again.</h1>;
-  } else if (!quiz) {
-    return <p>Loading...</p>;
-  } else if (quiz.length === 9) {
-    return <p>ONLY 8 QUESTIONS</p>;
+  } else if (contentLoading) {
+    return (
+      <Loading />
+    )
   } else {
     return (
       <div id="quiz-modal">
