@@ -14,7 +14,7 @@ export const getTrivia = (objectName) => {
     if (snapshot.exists()) {
       return snapshot.val();
     } else {
-      throw "planet does not exist";
+      throw new Error("planet does not exist");
     }
   });
 };
@@ -26,7 +26,7 @@ export const getQuestions = (objectName) => {
       return snapshot.val();
     } else {
       console.log("No data available");
-      throw "planet does not exist";
+      throw new Error("planet does not exist");
     }
   });
 };
