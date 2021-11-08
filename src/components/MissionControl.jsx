@@ -8,8 +8,10 @@ import {
 } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import "bulma-accordion/dist/css/bulma-accordion.min.css";
+import Loading from "./Loading";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -18,6 +20,7 @@ const MissionControl = () => {
   const [loadingContent, setLoadingContent] = useState(true);
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
+  const [err, setErr] = useState(false);
 
   const avatarList = [
     "Robot1",
@@ -64,19 +67,24 @@ const MissionControl = () => {
   ];
 
   useEffect(() => {
-    if (user) {
-      getUserAvatar().then((dbAvatar) => {
-        setAvatar(dbAvatar);
-      });
-      getUserNickname().then((dbNickname) => {
-        setNickname(dbNickname);
-      });
-      getUserProgress().then((dbProgress) => {
-        setProgress(dbProgress);
-      });
-      setLoadingContent(false);
-    }
-  }, [user, avatar, reload]);
+   if (user) {
+    const promises = [getUserAvatar(), getUserNickname(), getUserProgress()]
+     setLoadingContent(true);
+     setErr(false);
+     Promise.all(promises).then((result) => {
+       setAvatar(result[0]); 
+       setNickname(result[1]); 
+       setProgress(result[2]);
+     })
+     .catch((err) => {
+      setErr(true);
+     })
+     .finally(() => {
+       setLoadingContent(false)
+     })
+   }
+
+  }, [user, avatar, error, reload]);
 
   const resetProgress = () => {
     let result = window.confirm("Are you sure you want to reset all of your progress so far?");
@@ -93,18 +101,24 @@ const MissionControl = () => {
     setOpen(!open);
   };
 
-  if (loading) {
-    return <div>Initialising User...</div>;
+  const signOutUser = () => {
+    auth.signOut().catch((error) => alert(error.message));
+  };
+
+  if (loading || loadingContent) {
+    return (
+      <Loading />
+    );
   }
 
-  if (!progress && loadingContent) {
-    return <h2>Loading</h2>;
+  if (!user) {
+    return <Redirect to="/" />;
   }
 
-  if (error) {
+  if (error || err) {
     return (
       <div>
-        <p>Error: {error}</p>
+        <p>Something went wrong... Please try refreshing the page</p>
       </div>
     );
   }
@@ -218,6 +232,7 @@ const MissionControl = () => {
             </div>
           );
         })}
+        <button onClick={signOutUser}>Sign Out</button>
         <Link to="/acknowledgements">Acknowledgements</Link>
       </div>
     );
