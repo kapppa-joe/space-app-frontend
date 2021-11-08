@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 import { auth } from "../firebase";
 import { setDefaults } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./Loading";
 
 export default function UserAuth() {
   const [email, setEmail] = useState("");
@@ -44,13 +45,15 @@ export default function UserAuth() {
   };
 
   if (error) {
-    return <h2>Something went wrong...</h2>;
+    return <h2>Something went wrong...Please try again</h2>;
   }
 
   if (user) {
     return <Redirect to="/onboarding" />;
   }
-  if (loading) return <h1>loading....</h1>;
+  if (loading) return (
+    <Loading />
+  );
   return (
     <div className="Login">
       <h1>Out of Orbit</h1>

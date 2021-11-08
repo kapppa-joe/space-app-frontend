@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { getTrivia } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import Loading from "./Loading";
 
 const Facts = ({ space_object }) => {
   const [trivia, setTrivia] = useState(null);
@@ -24,7 +25,7 @@ const Facts = ({ space_object }) => {
     return (
       <div>
         <p>
-          Sorry we can't find any facts at the minute please try again later !!
+        <p>Sorry we can't find any facts at the minute. Please try again later. </p>
         </p>
       </div>
     );
@@ -33,9 +34,11 @@ const Facts = ({ space_object }) => {
   if (!user && !loading) {
     return <Redirect to="/" />;
   } else if (err) {
-    return <p>Sorry this planet does not exist please try again</p>;
+    return <p>Sorry we can't find any facts at the minute. Please try again later. </p>;
   } else if (!trivia) {
-    return <p>Loading....</p>;
+    return (
+      <Loading />
+    );
   } else {
     return (
       <div className="trivia_body">

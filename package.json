@@ -1,5 +1,5 @@
 {
-  "name": "space-app-frontend",
+  "name": "out-of-orbit",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,6 +18,7 @@
     "react-iframe": "^1.8.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "sass": "^1.43.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
