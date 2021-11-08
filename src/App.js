@@ -5,7 +5,6 @@ import Background from "./components/Background";
 import Login from "./components/Login.jsx";
 import Onboarding from "./components/Onboarding";
 import MissionControl from "./components/MissionControl";
-import SolarSystem from "./components/SolarSystem";
 import Planets from "./components/Planets";
 import Loading from "./components/Loading";
 import Acknowledgements from "./components/Acknowledgements";
@@ -25,9 +24,6 @@ function App() {
           <Route exact path="/mission-control">
             <MissionControl />
           </Route>
-          <Route exact path="/solar-system">
-            <SolarSystem />
-          </Route>
           <Route exact path="/space/:space_object">
             <Planets />
           </Route>
@@ -38,7 +34,7 @@ function App() {
             <Acknowledgements />
           </Route>
           <Route>
-            <Page404/>
+            <Page404 />
           </Route>
         </Switch>
       </Background>
