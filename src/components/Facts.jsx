@@ -21,6 +21,16 @@ const Facts = ({ space_object }) => {
       });
   }, [space_object]);
 
+  if (error) {
+    return (
+      <div>
+        <p>
+        <p>Sorry we can't find any facts at the minute. Please try again later. </p>
+        </p>
+      </div>
+    );
+  }
+
   if (!user && !loading) {
     return <Redirect to="/" />;
   } else if (err) {
