@@ -159,10 +159,10 @@ const MissionControl = () => {
 
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
-        {spaceObjects.map((object, index) => {
-          return (
-            <div key={index} className="content flex ml-6 mr-6">
-              <div className="card mb-3">
+        <div className="planet-card-container">
+          {spaceObjects.map((object, index) => {
+            return (
+              <div key={index} className="planet-card">
                 <p>
                   {object === "solar-system"
                     ? "Solar System"
@@ -221,9 +221,9 @@ const MissionControl = () => {
                   </>
                 )}
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
         <button onClick={signOutUser}>Sign Out</button>
         <Link to="/acknowledgements">Acknowledgements</Link>
       </div>

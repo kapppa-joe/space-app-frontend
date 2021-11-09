@@ -108,12 +108,41 @@ button.button:active {
   justify-content: center;
 }
 
+#mission-control .avatar-container {
+  flex-shrink: 0;
+}
+
 #mission-control nav {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5em;
   gap: 1em;
+  max-width: 100vw;
+}
+
+#mission-control .planet-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2em;
+  gap: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  #mission-control .planet-card-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+#mission-control .planet-card {
+  min-width: fit-content;
+  background-color: hsla(0, 0%, 50%, 0.3);
+  border: 0.5px solid #ccc;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 1em;
 }
 
 /* AR Planets */
