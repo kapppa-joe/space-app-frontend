@@ -78,7 +78,7 @@ const Facts = ({ space_object }) => {
           {trivia.map((fact, index) => {
             return (
               <li key={index} className="fact">
-                {fact}
+                <p>{fact}</p>
               </li>
             );
           })}
