@@ -49,12 +49,13 @@ const Demo = () => {
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">
-              Follow the steps below to start your interstellar experience in
+              Follow the steps below to view this model in
               augmented reality{" "}
             </p>
           </header>
           <section className="modal-card-body">
-            <p>Step 1: Make sure you've printed off your marker</p>
+            
+            <p><span className="step-bold">Step 1:</span> Grab your marker or print out a new one by clicking the icon below</p>
 
             <a href={CustomMarkerPDF} target="__blank">
               <img
@@ -65,33 +66,38 @@ const Demo = () => {
             </a>
 
             <p>
-              {" "}
-              If you can't print your marker out, you can use another device to
-              display the marker. Make sure you turn your screen brightness
-              down!{" "}
+              You can use another device, such as a phone, to
+              display the marker. <br/> Make sure you turn your screen brightness
+              down!
             </p>
 
-            <p>
-              Step 2: Place your printed marker on a flat surface. It's best to
-              put your marker on a surface with a plain background such as a
-              dining table.
+            <p className="step">
+              <span className="step-bold">Step 2:</span> Place your printed marker on a flat surface. <br/><br/></p>
+
+            <p className="step">It's best to put your marker on a surface with a plain background. <br />
+              This dark, patterned carpet is not a good choice!
             </p>
 
-            <p>
-              Step 3: When you switch to AR view, your app will ask for
-              permission to use the camera on your phone or computer.{" "}
+            <p className="step">
+              <span className="step-bold">Step 3:</span> When you switch to AR view, your app will ask you for
+              permission to use the camera on your phone or computer.
             </p>
 
-            <p>
-              Step 4: Point your camera at the marker and hold it steady as
-              shown in the example below. After a few seconds, you should see
-              the images come to life in 3D.{" "}
+            <p className="step">
+              <span className="step-bold">Step 4:</span> Point your camera at the marker and hold it steady as
+              shown in the example below. <br/> After a few seconds, you should see
+              the images come to life in 3D!{" "}
             </p>
 
-            <p>
-              Step 5: If you're using your phone camera, you can use your
-              fingers to rotate the image or zoom in and out.
+            <img src="/assets/Demo3.jpg" alt="Holding phone towards marker" />
+
+            <p className="step">
+              Move your camera around slowly to see all sides of the modal.<br/>
+              If you're using a camera on your phone, you can also use your
+              fingers to rotate the model or to zoom in and out.
             </p>
+
+            
           </section>
           <footer className="modal-card-foot">
             <button

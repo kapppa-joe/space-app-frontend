@@ -352,6 +352,19 @@ p.button-text {
   color: #333;
 }
 
+.modal-card-body {
+  padding: 30px;
+}
+
+.step {
+  margin-top: 30px;
+}
+
+.step-bold {
+  font-weight: 800;
+  font-family: AstroSpace, serif;
+}
+
 /* Sidebars */
 
 .pageloader {
