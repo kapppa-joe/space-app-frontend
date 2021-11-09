@@ -8,6 +8,13 @@ import Page404 from "./Page404";
 import Avatar from "./Avatar";
 import SolarSystem3D from "./SolarSystem3D";
 
+const capitalize_name = (object_name) => {
+  return object_name
+    .split(/[_-\s]/g)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 const Planets = () => {
   const { space_object } = useParams();
   const [isAr, setIsAr] = useState(false);
@@ -86,7 +93,7 @@ const Planets = () => {
           return (
             <Link key={object} to={`/space/${object}`}>
               <img src={`/assets/2d-images/${object}2D.png`} alt="" />
-              {object}
+              {capitalize_name(object)}
             </Link>
           );
         })}
