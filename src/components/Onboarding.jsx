@@ -28,13 +28,13 @@ const Onboarding = () => {
   const [user, loading, error] = useAuthState(auth);
   const [reload, setReload] = useState(false);
   const [displayInputBox, setDisplayInputBox] = useState(false);
-  const [err, setErr] = useState(false); 
-  const [contentsLoading, setContentsLoading] = useState(true); 
-  
+  const [err, setErr] = useState(false);
+  const [contentsLoading, setContentsLoading] = useState(true);
+
   useEffect(() => {
     if (user) {
-      setContentsLoading(true); 
-      setErr(false); 
+      setContentsLoading(true);
+      setErr(false);
       getUserNickname()
         .then((res) => {
           if (!res) {
@@ -50,11 +50,11 @@ const Onboarding = () => {
           setAvatar(avatarNum);
         })
         .catch((err) => {
-          setErr(true); 
+          setErr(true);
         })
         .finally(() => {
-          setContentsLoading(false); 
-        })
+          setContentsLoading(false);
+        });
     }
   }, [loading, reload, user]);
 
@@ -63,7 +63,7 @@ const Onboarding = () => {
   };
 
   const submitNickname = () => {
-    setErr(false); 
+    setErr(false);
     setNickname(inputName);
     setDisplayInputBox(false);
     setUserNickname(inputName)
@@ -72,7 +72,7 @@ const Onboarding = () => {
         setReload(true);
       })
       .catch((err) => {
-        setErr(true); 
+        setErr(true);
       });
   };
 
@@ -96,9 +96,7 @@ const Onboarding = () => {
   };
 
   if (loading || contentsLoading) {
-    return (
-      <Loading />
-    )
+    return <Loading />;
   }
 
   if (!user) {
@@ -114,19 +112,25 @@ const Onboarding = () => {
   }
 
   return (
-    <div>
-      <button onClick={signOutUser}>Sign Out</button>
+    <div className="Onboarding">
+      <button id="sign-out-btn" className="button" onClick={signOutUser}>
+        Sign Out
+      </button>
       <h2>Mission Preparation</h2>
-      <p>
-        Welcome to the Spaceport! <br />
-        Before you launch off into the stars, you will need to complete the
-        following steps:
-      </p>
+      <div className="onboarding-text-container">
+        <p>
+          Welcome to the Spaceport! <br />
+          Before you launch off into the stars, you will need to complete the
+          following steps:
+        </p>
+      </div>
       <h3>Step 1: Enter your name:</h3>
       {!displayInputBox ? (
         <div>
-          <p>Hello {nickname}!</p>
-          <button onClick={changeNickname}>Change name</button>{" "}
+          <p id="welcome-msg">Hello {nickname}!</p>
+          <button className="button onboarding-btn" onClick={changeNickname}>
+            Change name
+          </button>{" "}
         </div>
       ) : (
         <div>
@@ -136,6 +140,7 @@ const Onboarding = () => {
             onChange={(e) => setInputName(e.target.value)}
           ></input>
           <button
+            id="tick-btn"
             disabled={inputName.trim() ? false : true}
             onClick={submitNickname}
           >
@@ -145,11 +150,12 @@ const Onboarding = () => {
       )}
       <h3>Step 2: Choose your character:</h3>
       <button
+        className="button avatar-btn"
         onClick={() => {
           changeAvatarButtons(-1);
         }}
       >
-        {"<---"}
+        <i class="fas fa-angle-double-left"></i>
       </button>
       <img
         className="avatar_img"
@@ -157,18 +163,21 @@ const Onboarding = () => {
         alt="user avatar"
       />
       <button
+        className="button avatar-btn"
         onClick={() => {
           changeAvatarButtons(1);
         }}
       >
-        {"--->"}
+        <i class="fas fa-angle-double-right"></i>
       </button>
       <h3>Step 3: Print your marker:</h3>
-      <p>
-        To explore space in 3D you will need a marker. You can access a
-        printable marker by clicking on the rocket below. Alternatively, you can
-        display this marker on another device such as a spare phone
-      </p>
+      <div className="onboarding-text-container">
+        <p>
+          To explore space in 3D you will need a marker. You can access a
+          printable marker by clicking on the rocket below. Alternatively, you
+          can display this marker on another device such as a spare phone
+        </p>
+      </div>
       <a href={CustomMarkerPDF} target="__blank">
         <img className="ar_marker_img" src={CustomARMarker} alt="ar marker" />
       </a>
@@ -176,16 +185,19 @@ const Onboarding = () => {
       <p>
         {!nickname && (
           <button
+            className="button onboarding-btn"
             onClick={() => {
               alert("Please enter your name before heading to mission control");
             }}
           >
-            Mission Control -&gt;
+            To Mission Control;
           </button>
         )}
         {nickname && (
           <Link to="/mission-control">
-            <button>Mission Control -&gt;</button>
+            <button className="button onboarding-btn">
+              To Mission Control!
+            </button>
           </Link>
         )}
       </p>
