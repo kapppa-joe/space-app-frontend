@@ -88,9 +88,9 @@ const MissionControl = () => {
     setOpen(!open);
   };
 
-  const signOutUser = () => {
-    auth.signOut().catch((error) => alert(error.message));
-  };
+  // const signOutUser = () => {
+  //   auth.signOut().catch((error) => alert(error.message));
+  // };
 
   if (loading || loadingContent) {
     return <Loading />;
