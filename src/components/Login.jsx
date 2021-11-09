@@ -51,30 +51,36 @@ export default function UserAuth() {
   if (user) {
     return <Redirect to="/onboarding" />;
   }
-  if (loading) return (
-    <Loading />
-  );
+  if (loading) return <Loading />;
   return (
-    <div className="Login">
-      <h1>Out of Orbit</h1>
-      <h4>An augmented reality space experience</h4>
-      <p>Login or register to begin your voyage into outer space</p>
-      <div className="login__container">
+    <div>
+      <div className="Login">
+        <h1 className="main-heading">Out of Orbit</h1>
+        <h4 id="tagline">An augmented reality space experience</h4>
+        <p>Login or register to begin your voyage into outer space</p>
         <form>
-          <label htmlFor="email">E-mail</label>
-          <input
-            id="email"
-            type="text"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            id="label"
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <div className="form-grid">
+            <label id="email" htmlFor="email">
+              E-mail
+            </label>
+            <input
+              id="email-input"
+              type="text"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <br />
+            <label id="password" htmlFor="password">
+              Password
+            </label>
+            <input
+              id="password-input"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <br />
+          </div>
           <button className="login_signInButton" onClick={signIn} type="submit">
             Sign In
           </button>

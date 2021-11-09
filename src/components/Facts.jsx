@@ -25,7 +25,9 @@ const Facts = ({ space_object }) => {
     return (
       <div>
         <p>
-        <p>Sorry we can't find any facts at the minute. Please try again later. </p>
+          <p>
+            Sorry we can't find any facts at the minute. Please try again later.{" "}
+          </p>
         </p>
       </div>
     );
@@ -34,11 +36,13 @@ const Facts = ({ space_object }) => {
   if (!user && !loading) {
     return <Redirect to="/" />;
   } else if (err) {
-    return <p>Sorry we can't find any facts at the minute. Please try again later. </p>;
-  } else if (!trivia) {
     return (
-      <Loading />
+      <p>
+        Sorry we can't find any facts at the minute. Please try again later.{" "}
+      </p>
     );
+  } else if (!trivia) {
+    return <Loading />;
   } else {
     return (
       <div className="trivia_body">
@@ -47,7 +51,7 @@ const Facts = ({ space_object }) => {
           {trivia.map((fact, index) => {
             return (
               <li key={index} className="fact">
-                {fact}
+                <p>{fact}</p>
               </li>
             );
           })}
