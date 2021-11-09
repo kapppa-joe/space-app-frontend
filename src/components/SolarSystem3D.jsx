@@ -293,6 +293,8 @@ const SolarSystem3D = () => {
                 position={position}
               />
             );
+          } else {
+            return null;
           }
         })}
 
