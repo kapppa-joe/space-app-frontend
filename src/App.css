@@ -223,6 +223,7 @@ p.button-text {
 }
 .ar_marker_img {
   height: 100px;
+  margin-top: 10px;
 }
 
 .badge,
@@ -462,6 +463,17 @@ p.button-text {
 .step-bold {
   font-weight: 800;
   font-family: AstroSpace, serif;
+}
+
+.demo-image-container {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.demo-image {
+  margin-top: 20px;
+  height: 150px;
 }
 
 /* Sidebars */
