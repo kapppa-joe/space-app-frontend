@@ -8,6 +8,20 @@
   src: url(./assets/font/SpaceGrotesk.ttf);
 }
 
+body {
+  min-height: 100vh;
+  height: 100%;
+  background-image: url("./assets/images/sky-background.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+  background-color: black;
+}
+
+.App {
+  height: 100%;
+}
+
 .App,
 .Login {
   text-align: center;
@@ -20,6 +34,7 @@
   font-family: SpaceGrotesk, sans-serif;
 }
 
+<<<<<<< HEAD
 .message-card {
   background-color: hsla(0, 0%, 100%, 0.75);
   border: 0.5px solid hsla(0, 0%, 20%, 0.75);
@@ -39,6 +54,13 @@
   overflow-y: scroll;
   background-image: url("./assets/images/sky-background.webp");
   background-repeat: repeat;
+=======
+/* Background  */
+
+.Background {
+  height: 100%;
+  background-image: url("./assets/images/sky-background.jpeg");
+>>>>>>> 2d419ae16a4433d3be03cf60b12fc4867446a569
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -48,7 +70,6 @@
 .loader-container {
   display: flex;
   align-items: center;
-  /* height: 100vh; */
 }
 
 /* Login */
@@ -86,7 +107,6 @@
   background-color: #fdffff;
   opacity: 0.95;
   color: #043048;
-  margin-bottom: 50px;
 }
 
 .login-container button {
@@ -162,10 +182,13 @@ p.button-text {
   width: auto;
 }
 
+<<<<<<< HEAD
 #onboarding {
   min-height: 100vh;
 }
 
+=======
+>>>>>>> 2d419ae16a4433d3be03cf60b12fc4867446a569
 /* Mission control */
 
 @media screen and (min-width: 768px) {
