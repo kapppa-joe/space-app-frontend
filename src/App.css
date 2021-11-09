@@ -166,6 +166,57 @@ p.button-text {
 }
 
 /* Onboarding */
+.Onboarding {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.onboarding-text-container {
+  margin: 0 auto;
+  max-width: 870px;
+  background-color: #fdffff;
+  color: black;
+  opacity: 0.9;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Onboarding h2 {
+  padding-top: 40px;
+  font-size: 2.5rem;
+  font-family: AstroSpace;
+  margin-bottom: 10px;
+}
+
+#sign-out-btn {
+  float: left;
+  height: 30px;
+  opacity: 0.8;
+  font-weight: 800;
+}
+
+.onboarding-btn {
+  height: 10px;
+  opacity: 0.8;
+  font-weight: 800;
+}
+
+.Onboarding input {
+  height: 30px;
+  width: 300px;
+}
+
+.Onboarding h3 {
+  margin: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.avatar-btn {
+  margin: 15px;
+  opacity: 0.7;
+}
 
 .avatar_img {
   height: 100px;
@@ -180,8 +231,16 @@ p.button-text {
   width: auto;
 }
 
-#onboarding {
-  min-height: 100vh;
+#tick-btn {
+  height: 30px;
+  margin-left: 5px;
+}
+
+#welcome-msg {
+  font-family: AstroSpace;
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(204, 56, 192);
 }
 
 /* Mission control */
