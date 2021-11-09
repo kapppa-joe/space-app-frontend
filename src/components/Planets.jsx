@@ -5,6 +5,7 @@ import Iframe from "react-iframe";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import Page404 from "./Page404";
+import Avatar from "./Avatar";
 
 const Planets = () => {
   const { space_object } = useParams();
@@ -42,7 +43,8 @@ const Planets = () => {
     <div id="ar_page">
       <span className="back-button-wrapper">
         <Link to="/mission-control">
-          <button className="button back-button">avatar</button>
+          <Avatar />
+          <button className="button back-button">Missin control</button>
         </Link>
       </span>
       <div id="ar_view">
