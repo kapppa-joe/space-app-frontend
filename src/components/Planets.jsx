@@ -7,7 +7,7 @@ import { useState } from "react";
 import Page404 from "./Page404";
 import Avatar from "./Avatar";
 import SolarSystem3D from "./SolarSystem3D";
-import { formatSpaceObject } from "../utils/helperFunctions";
+// import { formatSpaceObject } from "../utils/helperFunctions";
 
 const capitalize_name = (object_name) => {
   if (object_name === "iss") return "ISS";

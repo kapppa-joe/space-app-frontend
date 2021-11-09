@@ -394,7 +394,7 @@ p.button-text {
 }
 
 .ar-toggle-switch input:checked + .slider:before {
-  translate: 1.5em;
+  transform: translateX(1.4em);
 }
 
 #ar_list {
