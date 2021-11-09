@@ -1,4 +1,8 @@
 export const formatSpaceObject = (spaceObject) => {
+  if (spaceObject === "iss") {
+    return "ISS";
+  }
+
   const splitChars = spaceObject.split("");
 
   const whiteSpaceObject = splitChars.map((char) => {
