@@ -16,7 +16,7 @@ const Sidebar = ({ content, space_object }) => {
             setIsFactsActive(true);
           }}
         >
-          Trivia
+          <span className="vertical-text">Trivia</span>
         </button>
         <div
           className={`pageloader is-left-to-right ${
@@ -43,7 +43,7 @@ const Sidebar = ({ content, space_object }) => {
             setIsQuizActive(true);
           }}
         >
-          Quiz
+          <span className="vertical-text">Quiz</span>
         </button>
         <div
           className={`pageloader is-right-to-left ${
