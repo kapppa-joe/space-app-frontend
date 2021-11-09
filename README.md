@@ -1,6 +1,6 @@
 # Out of Orbit
 
-[Click here to access the hosted game](https://https://out-of-orbit.netlify.app/).
+[Click here to access the hosted game](https://out-of-orbit.netlify.app/).
 
 Out of Orbit is a space exploration game in augmented reality.
 

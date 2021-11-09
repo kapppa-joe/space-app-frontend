@@ -1,5 +1,5 @@
-/* global AFRAME THREE */
 const { AFRAME, THREE } = window;
+console.log(AFRAME, THREE);
 
 if (typeof AFRAME === "undefined") {
   throw new Error(
@@ -837,6 +837,8 @@ AFRAME.registerComponent("orbit-controls", {
       case this.keys.RIGHT:
         this.pan(-this.data.keyPanSpeed, 0);
         this.updateView();
+        break;
+      default:
         break;
     }
   },

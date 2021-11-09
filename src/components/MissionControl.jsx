@@ -88,9 +88,9 @@ const MissionControl = () => {
     setOpen(!open);
   };
 
-  const signOutUser = () => {
-    auth.signOut().catch((error) => alert(error.message));
-  };
+  // const signOutUser = () => {
+  //   auth.signOut().catch((error) => alert(error.message));
+  // };
 
   if (loading || loadingContent) {
     return <Loading />;
@@ -123,7 +123,7 @@ const MissionControl = () => {
           </button>
         </nav>
 
-        <div className="welcome-message">
+        <div className="welcome-message message-card">
           <span>
             <p>Welcome space cadet {nickname} to mission control.</p>
             <p>
@@ -153,7 +153,7 @@ const MissionControl = () => {
             </div>
           </article>
         </section>
-        <p>
+        <p className="message-card">
           Click on the items below, to launch into space and begin your mission!
         </p>
 
@@ -224,8 +224,12 @@ const MissionControl = () => {
             );
           })}
         </div>
-        <button onClick={signOutUser}>Sign Out</button>
-        <Link to="/acknowledgements">Acknowledgements</Link>
+        {/* <button onClick={signOutUser}>Sign Out</button> */}
+        <div>
+          <Link to="/acknowledgements">
+            <button className="button">Acknowledgements</button>
+          </Link>
+        </div>
       </div>
     );
   }
