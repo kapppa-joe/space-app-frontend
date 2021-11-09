@@ -460,7 +460,7 @@ p.button-text {
 }
 
 #ar_page .avatar_img {
-  max-height: 10vmin;
+  max-height: 12vmin;
 }
 
 #ar_page .avatar-container {
@@ -483,11 +483,16 @@ p.button-text {
   background-color: transparent;
   color: #ccc;
   height: 1em;
+  white-space: break-spaces;
 }
 
-#ar_page > .back-button-wrapper a:hover,
-#ar_page > .back-button-wrapper a:active {
-  filter: brightness(1.2);
+#ar_page > .back-button-wrapper span {
+  line-height: 1;
+}
+
+#ar_page > .back-button-wrapper a:hover span,
+#ar_page > .back-button-wrapper a:active span {
+  color: #fff;
 }
 
 #ar_page .button {
