@@ -8,23 +8,26 @@
   src: url(./assets/font/SpaceGrotesk.ttf);
 }
 
-p,
-li {
-  font-family: SpaceGrotesk, serif;
+.body {
+  height: 100%;
 }
 
 .App,
 .Login {
   text-align: center;
-  height: 100vh;
   width: 100vw;
   color: white;
+  font-family: SpaceGrotesk, sans-serif;
+}
+
+.button {
+  font-family: SpaceGrotesk, sans-serif;
 }
 
 /* Background */
 
 .Background {
-  height: 100vh;
+  /* height: 100vh; */
   background-image: url("./assets/images/sky-background.jpeg");
   background-size: cover;
   background-attachment: fixed;
@@ -34,44 +37,103 @@ li {
 .loader-container {
   display: flex;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 /* Login */
 .main-heading {
-  padding-top: 60px;
+  padding-top: 30px;
   font-size: 3.5rem;
   font-family: AstroSpace, serif;
 }
 
-.Login {
-  color: white;
-  font-family: SpaceGrotesk, sans-serif;
-}
-
 #tagline {
-  font-weight: 700;
+  font-size: 1.3em;
+  font-weight: 800;
   padding: 10px;
 }
 
 .Login p {
-  font-size: 0.9em;
-  padding: 20px;
+  padding: 15px;
+}
+
+.Login p,
+.Login label {
+  font-weight: 600;
 }
 
 .login-text-container {
-  padding: 10px 15px, 10px, 15px;
+  padding: 10px 15px 10px 15px;
   width: 100vw;
   margin-bottom: 50px;
 }
 
+.login-container {
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 30px;
+  background-color: #fdffff;
+  opacity: 0.95;
+  color: #043048;
+  margin-bottom: 50px;
+}
+
+.login-container button {
+  border: 1px solid #043048;
+  color: #043048;
+}
+
 .form-grid {
+  border-top: 2px solid #043048;
   display: grid;
+  padding: 30px 30px 0 30px;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  grid-row-gap: 15px;
   grid-template-areas:
     "email email-input"
     "password password-input";
+}
+
+#email {
+  grid-area: email;
+  text-align: left;
+}
+
+#email-input {
+  grid-area: email-input;
+  border: 2px solid #043048;
+}
+
+#password {
+  grid-area: password;
+  text-align: left;
+}
+
+#password-input {
+  grid-area: password-input;
+  border: 1px solid #043048;
+}
+
+.Login button {
+  height: 2em;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.Login button:hover {
+  background-color: #043048;
+  color: white;
+}
+
+#login-icon,
+#register-icon {
+  height: 15px;
+}
+
+p.button-text {
+  padding: 10px 15px;
 }
 
 /* Onboarding */
@@ -369,4 +431,7 @@ li {
 .MapContainer {
   width: 400px;
   height: 180px;
+}
+
+@media screen and (min-width: 768px) {
 }
