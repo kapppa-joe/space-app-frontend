@@ -35,9 +35,7 @@ const Planets = () => {
   };
 
   if (!objArray.includes(space_object)) {
-    return (
-      <Page404 />
-    )
+    return <Page404 />;
   }
 
   return (
@@ -52,9 +50,25 @@ const Planets = () => {
           id="iframe"
           src={`../${isAr ? "ar" : "3d"}-scene.html?model=${space_object}`}
         ></Iframe>
-        <button id="ar_switch" onClick={switchAR}>
+
+        <div className="ar-toggle-switch-wrapper">
+          <label for="ar-switch">3D</label>
+          <label className="ar-toggle-switch" for="ar-switch">
+            <input
+              type="checkbox"
+              id="ar-switch"
+              checked={isAr}
+              onChange={switchAR}
+            />
+            <span className="slider"></span>
+          </label>
+          <label for="ar-switch">AR</label>
+        </div>
+
+        {/* <button id="ar_switch" onClick={switchAR}>
           AR on/off
         </button>
+         */}
         <Demo />
         <Sidebar id="contents" content="facts" space_object={space_object} />
         <Sidebar id="contents" content="quiz" space_object={space_object} />
