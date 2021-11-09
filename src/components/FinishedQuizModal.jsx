@@ -72,7 +72,7 @@ const FinishedQuizModal = ({ progress, hasWonBadge, space_object }) => {
 
   return (
     <>
-      <button onClick={() => setIsActive(true)}>Finish</button>
+      <button className="button quiz-button" onClick={() => setIsActive(true)}>Finish</button>
 
       <div class={`modal ${isActive ? "is-active" : ""}`}>
         <div class="modal-background"></div>
