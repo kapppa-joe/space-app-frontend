@@ -10,10 +10,10 @@ import SolarSystem3D from "./SolarSystem3D";
 import { formatSpaceObject } from "../utils/helperFunctions";
 
 const capitalize_name = (object_name) => {
-  if (object_name === 'iss') return "ISS"
+  if (object_name === "iss") return "ISS";
   return object_name
     .split(/[_-\s]/g)
-    .map((word) => word.charAt(0).toUpperCa se() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
 
