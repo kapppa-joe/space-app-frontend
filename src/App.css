@@ -394,13 +394,13 @@ p.button-text {
 }
 
 .ar-toggle-switch input:checked + .slider:before {
-  translate: 1.5em;
+  transform: translateX(1.4em);
 }
 
 #ar_list {
   width: 100%;
   grid-area: ar_list;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   background-color: black;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -410,16 +410,62 @@ p.button-text {
 #ar_list a {
   color: white;
   text-decoration: none;
-  margin: 0.5rem;
+  padding: 0.5rem;
   font-size: large;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ar_list a:hover,
+#ar_list a:focus {
+  font-weight: bold;
 }
 
 #ar_list a img {
   height: 40%;
+  max-height: 13vh;
+}
+
+#ar_list a:hover img,
+#ar_list a:focus img {
+  filter: drop-shadow(0px 0px 10px hsla(0, 0%, 80%, 0.7));
+}
+
+#ar_page .left-button,
+#ar_page .right-button {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  #ar_page .left-button,
+  #ar_page .right-button {
+    display: inline;
+    position: fixed;
+    bottom: 8vh;
+    font-size: 2rem;
+    z-index: 3;
+  }
+  #ar_page .left-button {
+    left: 1em;
+  }
+  #ar_page .right-button {
+    right: 1em;
+  }
 }
 
 .modal-card-body {
   color: black;
+}
+
+#ar_page .avatar_img {
+  max-height: 12vmin;
+}
+
+#ar_page .avatar-container {
+  position: relative;
+  /* left: 2em; */
 }
 
 #ar_page > .back-button-wrapper {
@@ -428,6 +474,25 @@ p.button-text {
   right: 0.2em;
   width: fit-content;
   z-index: 2;
+}
+
+#ar_page > .back-button-wrapper button {
+  padding: 2px;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: #ccc;
+  height: 1em;
+  white-space: break-spaces;
+}
+
+#ar_page > .back-button-wrapper span {
+  line-height: 1;
+}
+
+#ar_page > .back-button-wrapper a:hover span,
+#ar_page > .back-button-wrapper a:active span {
+  color: #fff;
 }
 
 #ar_page .button {
