@@ -51,7 +51,7 @@ body {
 
 /* Login */
 .main-heading {
-  padding-top: 30px;
+  padding-top: 60px;
   font-size: 3.5rem;
   font-family: AstroSpace, serif;
 }
@@ -77,13 +77,19 @@ body {
   margin-bottom: 50px;
 }
 
+.login-flex {
+  display: flex;
+  justify-content: center;
+}
+
 .login-container {
   border: 2px solid white;
   border-radius: 10px;
-  margin: 30px;
+  margin: 40px 30px;
   background-color: #fdffff;
   opacity: 0.95;
   color: #043048;
+  max-width: 500px;
 }
 
 .login-container button {

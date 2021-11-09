@@ -56,6 +56,7 @@ export default function UserAuth() {
       <div className="Login">
         <h1 className="main-heading">Out of Orbit</h1>
         <h4 id="tagline">An augmented reality space experience</h4>
+        <div className="login-flex">
         <section className="login-container">
         <p id="login-form-text">Login or register to begin your voyage into outer space</p>
         <form>
@@ -92,6 +93,7 @@ export default function UserAuth() {
           </button>
         </form>
         </section>
+        </div>
       </div>
   );
 }
