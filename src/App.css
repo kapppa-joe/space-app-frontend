@@ -209,11 +209,17 @@
 #ar_view .sidebar-button {
   width: 1.5em;
   height: 8em;
-  text-orientation: upright;
   writing-mode: vertical-rl;
+  /* writing-mode: tb-rl; */
+  text-orientation: upright;
 
   position: fixed;
   top: 40%;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 #ar_view .sidebar-button-left {
