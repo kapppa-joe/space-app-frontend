@@ -7,6 +7,7 @@ import { useState } from "react";
 import Page404 from "./Page404";
 import Avatar from "./Avatar";
 import SolarSystem3D from "./SolarSystem3D";
+import { formatSpaceObject } from "../utils/helperFunctions";
 
 const Planets = () => {
   const { space_object } = useParams();
@@ -86,7 +87,7 @@ const Planets = () => {
           return (
             <Link key={object} to={`/space/${object}`}>
               <img src={`/assets/2d-images/${object}2D.png`} alt="" />
-              {object}
+              {formatSpaceObject(object)}
             </Link>
           );
         })}
