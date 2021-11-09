@@ -20,13 +20,28 @@
   font-family: SpaceGrotesk, sans-serif;
 }
 
+.message-card {
+  background-color: hsla(0, 0%, 100%, 0.75);
+  border: 0.5px solid hsla(0, 0%, 20%, 0.75);
+  color: black;
+  margin: 0.3rem 0.5rem;
+  padding: 0 2rem;
+  /* border-radius: 0.5rem; */
+  font-size: large;
+}
+
 /* Background */
 
 .Background {
-  /* height: 100vh; */
-  background-image: url("./assets/images/sky-background.jpeg");
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  background-image: url("./assets/images/sky-background.webp");
+  background-repeat: repeat;
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
   z-index: -1;
 }
 
@@ -147,8 +162,18 @@ p.button-text {
   width: auto;
 }
 
+#onboarding {
+  min-height: 100vh;
+}
 
 /* Mission control */
+
+@media screen and (min-width: 768px) {
+  #mission-control {
+    max-width: 80vw;
+    margin: auto;
+  }
+}
 
 #mission-control .welcome-message {
   display: flex;
@@ -157,16 +182,23 @@ p.button-text {
 }
 
 #mission-control .avatar-container {
+  margin: 1rem;
   flex-shrink: 0;
 }
 
 #mission-control nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   padding: 0.5em;
   gap: 1em;
   max-width: 100vw;
+}
+
+#mission-control button {
+  background-color: hsla(0, 0%, 40%, 0.5);
+  color: white;
 }
 
 #mission-control .planet-card-container {
@@ -175,6 +207,7 @@ p.button-text {
   align-items: center;
   margin: 0 2em;
   gap: 1em;
+  justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -192,7 +225,6 @@ p.button-text {
   padding: 1em;
   margin: 1em;
 }
-
 
 /* AR Planets */
 

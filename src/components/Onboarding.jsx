@@ -28,13 +28,13 @@ const Onboarding = () => {
   const [user, loading, error] = useAuthState(auth);
   const [reload, setReload] = useState(false);
   const [displayInputBox, setDisplayInputBox] = useState(false);
-  const [err, setErr] = useState(false); 
-  const [contentsLoading, setContentsLoading] = useState(true); 
-  
+  const [err, setErr] = useState(false);
+  const [contentsLoading, setContentsLoading] = useState(true);
+
   useEffect(() => {
     if (user) {
-      setContentsLoading(true); 
-      setErr(false); 
+      setContentsLoading(true);
+      setErr(false);
       getUserNickname()
         .then((res) => {
           if (!res) {
@@ -50,11 +50,11 @@ const Onboarding = () => {
           setAvatar(avatarNum);
         })
         .catch((err) => {
-          setErr(true); 
+          setErr(true);
         })
         .finally(() => {
-          setContentsLoading(false); 
-        })
+          setContentsLoading(false);
+        });
     }
   }, [loading, reload, user]);
 
@@ -63,7 +63,7 @@ const Onboarding = () => {
   };
 
   const submitNickname = () => {
-    setErr(false); 
+    setErr(false);
     setNickname(inputName);
     setDisplayInputBox(false);
     setUserNickname(inputName)
@@ -72,7 +72,7 @@ const Onboarding = () => {
         setReload(true);
       })
       .catch((err) => {
-        setErr(true); 
+        setErr(true);
       });
   };
 
@@ -96,9 +96,7 @@ const Onboarding = () => {
   };
 
   if (loading || contentsLoading) {
-    return (
-      <Loading />
-    )
+    return <Loading />;
   }
 
   if (!user) {
@@ -114,7 +112,7 @@ const Onboarding = () => {
   }
 
   return (
-    <div>
+    <div id="onboarding">
       <button onClick={signOutUser}>Sign Out</button>
       <h2>Mission Preparation</h2>
       <p>
