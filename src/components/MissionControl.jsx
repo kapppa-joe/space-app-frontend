@@ -1,21 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
+import {
+  getUserAvatar,
+  getUserNickname,
+  getUserProgress,
+  removeUserProgress,
+} from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
-import { getUserNickname, getUserProgress, removeUserProgress } from "../db";
-import { auth } from "../firebase";
-
 import "bulma-accordion/dist/css/bulma-accordion.min.css";
 import Loading from "./Loading";
-import Avatar from "./Avatar";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
   const [nickname, setNickname] = useState("");
+  const [avatar, setAvatar] = useState("Robot1");
   const [loadingContent, setLoadingContent] = useState(true);
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState(false);
+
+  const avatarList = [
+    "Robot1",
+    "Robot2",
+    "Robot3",
+    "Robot4",
+    "Robot5",
+    "Robot6",
+  ];
 
   const [progress, setProgress] = useState({
     solar_system: [],
@@ -53,28 +67,27 @@ const MissionControl = () => {
   ];
 
   useEffect(() => {
-    if (user) {
-      const promises = [getUserNickname(), getUserProgress()];
-      setLoadingContent(true);
-      setErr(false);
-      Promise.all(promises)
-        .then((result) => {
-          setNickname(result[0]);
-          setProgress(result[1]);
-        })
-        .catch((err) => {
-          setErr(true);
-        })
-        .finally(() => {
-          setLoadingContent(false);
-        });
-    }
-  }, [user, error, reload]);
+   if (user) {
+    const promises = [getUserAvatar(), getUserNickname(), getUserProgress()]
+     setLoadingContent(true);
+     setErr(false);
+     Promise.all(promises).then((result) => {
+       setAvatar(result[0]); 
+       setNickname(result[1]); 
+       setProgress(result[2]);
+     })
+     .catch((err) => {
+      setErr(true);
+     })
+     .finally(() => {
+       setLoadingContent(false)
+     })
+   }
+
+  }, [user, avatar, error, reload]);
 
   const resetProgress = () => {
-    let result = window.confirm(
-      "Are you sure you want to reset all of your progress so far?"
-    );
+    let result = window.confirm("Are you sure you want to reset all of your progress so far?");
     if (result) {
       setReload((reload) => {
         return !reload;
@@ -93,7 +106,9 @@ const MissionControl = () => {
   };
 
   if (loading || loadingContent) {
-    return <Loading />;
+    return (
+      <Loading />
+    );
   }
 
   if (!user) {
@@ -110,29 +125,21 @@ const MissionControl = () => {
 
   if (user) {
     return (
-      <div id="mission-control">
-        <nav>
-          <Link to="/space/solar-system">
-            <button className="button">Launch Game</button>
-          </Link>
-          <Link to="/onboarding">
-            <button className="button">Back To Mission Prep</button>
-          </Link>
-          <button className="button" onClick={resetProgress}>
-            Reset Progress
-          </button>
-        </nav>
-
-        <div className="welcome-message">
-          <span>
-            <p>Welcome space cadet {nickname} to mission control.</p>
-            <p>
-              Here you can find details of your mission and check on your
-              progress as you travel through the Cosmos.{" "}
-            </p>
-          </span>
-          <Avatar />
-        </div>
+      <div>
+        <Link to="/space/solar-system">
+          <button>Launch Game</button>
+        </Link>
+        <Link to="/onboarding">
+          <button>Back To Mission Prep</button>
+        </Link>
+        <button onClick={resetProgress}>Reset Progress</button>
+        <img
+          className="avatar_img"
+          src={`/assets/avatars/${avatarList[avatar]}.png`}
+          alt="user avatar"
+        />
+        <p>Welcome space cadet {nickname} to mission control.</p>
+        <p>Here you can find details of your mission and check on your progress as you travel through the Cosmos.  </p>
         <section className="accordions">
           <article className={`accordion ${open ? "is-active" : ""}`}>
             <div className="accordion-header">
@@ -146,15 +153,16 @@ const MissionControl = () => {
             <div className="accordion-body">
               <div className="accordion-content">
                 Visit the various planets and spacecraft in our Solar System and
-                learn about them as you go. At each destination take the quiz to
-                unlock the badges below. You only need to get 7 out of 10
-                questions right to unlock your badge!
+                learn about them as you go. 
+                At each destination take the quiz to unlock the badges below. You only need to get 7 out of 10 questions right
+                to unlock your badge!
               </div>
             </div>
           </article>
         </section>
         <p>
-          Click on the items below, to launch into space and begin your mission!
+          Click on the items below, to launch into space and begin your
+          mission!
         </p>
 
         {/* Testing button, remove later */}

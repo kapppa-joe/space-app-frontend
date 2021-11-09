@@ -6,12 +6,14 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import Page404 from "./Page404";
 import Avatar from "./Avatar";
+import SolarSystem3D from "./SolarSystem3D";
 
 const Planets = () => {
   const { space_object } = useParams();
   const [isAr, setIsAr] = useState(false);
 
   const objArray = [
+    "solar-system",
     "sun",
     "mercury",
     "venus",
@@ -48,29 +50,33 @@ const Planets = () => {
         </Link>
       </span>
       <div id="ar_view">
-        <Iframe
-          id="iframe"
-          src={`../${isAr ? "ar" : "3d"}-scene.html?model=${space_object}`}
-        ></Iframe>
+        {space_object === "solar-system" ? (
+          <SolarSystem3D />
+        ) : (
+          <Iframe
+            id="iframe"
+            src={`../${isAr ? "ar" : "3d"}-scene.html?model=${space_object}`}
+          ></Iframe>
+        )}
 
-        <div className="ar-toggle-switch-wrapper">
-          <label for="ar-switch">3D</label>
-          <label className="ar-toggle-switch" for="ar-switch">
-            <input
-              type="checkbox"
-              id="ar-switch"
-              checked={isAr}
-              onChange={switchAR}
-            />
-            <span className="slider"></span>
-          </label>
-          <label for="ar-switch">AR</label>
-        </div>
+        {space_object === "solar-system" ? (
+          ""
+        ) : (
+          <div className="ar-toggle-switch-wrapper">
+            <label for="ar-switch">3D</label>
+            <label className="ar-toggle-switch" for="ar-switch">
+              <input
+                type="checkbox"
+                id="ar-switch"
+                checked={isAr}
+                onChange={switchAR}
+              />
+              <span className="slider"></span>
+            </label>
+            <label for="ar-switch">AR</label>
+          </div>
+        )}
 
-        {/* <button id="ar_switch" onClick={switchAR}>
-          AR on/off
-        </button>
-         */}
         <Demo />
         <Sidebar id="contents" content="facts" space_object={space_object} />
         <Sidebar id="contents" content="quiz" space_object={space_object} />
