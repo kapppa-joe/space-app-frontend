@@ -620,3 +620,14 @@ p.button-text {
   align-items: center;
   margin: auto;
 }
+
+/* Page404 */
+
+.title {
+  margin-top: 50px;
+  font-family: AstroSpace, serif;
+}
+.error-img {
+  margin-top: 40px;
+  height: 200px;
+}
