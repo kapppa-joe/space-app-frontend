@@ -42,7 +42,7 @@ const Planets = () => {
     <div id="ar_page">
       <span className="back-button-wrapper">
         <Link to="/mission-control">
-          <button className="button back-button">Go Back</button>
+          <button className="button back-button">avatar</button>
         </Link>
       </span>
       <div id="ar_view">
