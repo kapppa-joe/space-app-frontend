@@ -60,11 +60,11 @@ When this command is running, the website should also be locally accessible thro
 
 This app was designed and built by:
 
-Daniel Beale
-Richard Crankshaw
-Joe Fong
-Mateusz Pogrzebski
-Rachel Taylor
+- Daniel Beale
+- Richard Crankshaw
+- Joe Fong
+- Mateusz Pogrzebski
+- Rachel Taylor
 
 ## Credit / Acknowledgements
 
