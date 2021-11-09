@@ -4,10 +4,10 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import { getUserNickname, getUserProgress, removeUserProgress } from "../db";
 import { auth } from "../firebase";
-
 import "bulma-accordion/dist/css/bulma-accordion.min.css";
 import Loading from "./Loading";
 import Avatar from "./Avatar";
+import { formatSpaceObject } from "../utils/helperFunctions";
 
 const MissionControl = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -164,9 +164,7 @@ const MissionControl = () => {
             return (
               <div key={index} className="planet-card">
                 <p>
-                  {object === "solar-system"
-                    ? "Solar System"
-                    : object[0].toUpperCase() + object.slice(1)}{" "}
+                  {formatSpaceObject(object)}{" "}
                   {object in progress ? progress[object].length : 0}/10
                 </p>
                 <Link to={`space/${object}`}>
