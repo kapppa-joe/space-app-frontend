@@ -174,7 +174,7 @@
 }
 
 #ar_page .button {
-  background-color: #66666666;
+  background-color: hsla(0, 0%, 40%, 0.5);
   color: white;
 }
 
@@ -247,27 +247,49 @@
 
 .quiz-box {
   color: black;
-  background-color: white;
-  border: 1px solid white;
-  padding: 0px 100px 100px 100px;
+  max-width: 90vw;
+  /* padding: 0px 100px 100px 100px; */
+}
+
+.quiz-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-button {
+  margin: 0.5rem;
 }
 
 .incorrect {
-  background-color: rgb(235, 79, 79);
+  /* background-color: rgb(235, 79, 79); */
 }
 
 .correct {
-  background-color: rgb(73, 180, 73);
+  /* background-color: rgb(73, 180, 73); */
+}
+
+.quiz-modal .check-mark {
+  flex-shrink: 0;
+  font-size: 1.5em;
+  color: rgb(73, 180, 73);
+}
+
+.quiz-modal .x-mark {
+  flex-shrink: 0;
+  font-size: 1.5em;
+  color: rgb(235, 79, 79);
 }
 
 /* Trivia pages */
 
-.trivia_body {
+.trivia_body,
+.quiz-modal {
   position: absolute;
   top: 1rem;
 }
 
-.trivia_body h2 {
+.trivia_body h2,
+.quiz-title {
   font-size: 2.5rem;
   font-family: "AstroSpace", serif;
 }
@@ -278,7 +300,9 @@
   max-width: 640px;
 }
 
-.fact {
+.fact,
+.question,
+.quiz-message-container {
   background-color: white;
   color: black;
   margin: 0.3rem 0.2rem;
@@ -287,7 +311,16 @@
   font-size: large;
 }
 
-.fact::first-letter {
+.quiz-message-container {
+  padding: 0.5em;
+  gap: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fact::first-letter,
+.question::first-letter {
   font-size: 120%;
   font-family: "AstroSpace", serif;
 }
