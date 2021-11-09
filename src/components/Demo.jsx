@@ -49,13 +49,12 @@ const Demo = () => {
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">
-              Follow the steps below to view this model in
-              augmented reality{" "}
+              Augmented Reality Guide{" "}
             </p>
           </header>
           <section className="modal-card-body">
             
-            <p><span className="step-bold">Step 1:</span> Grab your marker or print out a new one by clicking the icon below</p>
+            <p><span className="step-bold">Step 1:&nbsp;</span> Prepare your marker.<br/> Print one by clicking the icon below</p>
 
             <a href={CustomMarkerPDF} target="__blank">
               <img
@@ -66,49 +65,46 @@ const Demo = () => {
             </a>
 
             <p>
-              You can use another device, such as a phone, to
+              Or you can use another device, such as a phone, to
               display the marker. <br/> Make sure you turn your screen brightness
               down!
             </p>
 
             <p className="step">
-              <span className="step-bold">Step 2:</span> Place your printed marker on a flat surface. <br/><br/></p>
+              <span className="step-bold">Step 2:&nbsp;</span> Place your printed marker on a flat surface with a plain background.<br/><br/>
+              Patterned and/or dark backgrounds may not work well. </p>
 
-            <p className="step">It's best to put your marker on a surface with a plain background. <br />
-              This dark, patterned carpet is not a good choice!
-            </p>
-
+          
+              <section className="demo-image-container">
+               <img className="demo-image" src="/assets/Demo1.png" alt="Marker on a solid background with green tick" />
+               <img className="demo-image" src="/assets/Demo2.png" alt="Marker on a patterned background with red cross" />
+             </section>
             <p className="step">
-              <span className="step-bold">Step 3:</span> When you switch to AR view, your app will ask you for
+              <span className="step-bold">Step 3:&nbsp;</span> When you switch to AR view, your app will ask you for
               permission to use the camera on your phone or computer.
             </p>
 
+            <img className="demo-image" src="/assets/Demo3.png" alt="Allowing permission to use camera" />
+
             <p className="step">
-              <span className="step-bold">Step 4:</span> Point your camera at the marker and hold it steady as
-              shown in the example below. <br/> After a few seconds, you should see
-              the images come to life in 3D!{" "}
+              <span className="step-bold">Step 4:&nbsp;</span> Point your camera at the marker and hold it steady as
+              shown in the example below. <br/><br/>
+              After a few seconds, you should see
+              the images come to life in 3D!
             </p>
 
-            <img src="/assets/Demo3.jpg" alt="Holding phone towards marker" />
+            <img className="demo-image" src="/assets/Demo4.png" alt="Holding phone towards marker" />
 
             <p className="step">
-              Move your camera around slowly to see all sides of the modal.<br/>
+              Move your camera around slowly to see all sides of the model.<br/><br/>
               If you're using a camera on your phone, you can also use your
               fingers to rotate the model or to zoom in and out.
-            </p>
+            </p><br/>
+
+            <p><span className="step-bold">Enjoy!&nbsp;</span></p>
 
             
           </section>
-          <footer className="modal-card-foot">
-            <button
-              className="button"
-              onClick={() => {
-                setIsActive(false);
-              }}
-            >
-              Close
-            </button>
-          </footer>
           <button
             className="modal-close is-large"
             aria-label="close"

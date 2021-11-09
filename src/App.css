@@ -223,6 +223,7 @@ p.button-text {
 }
 .ar_marker_img {
   height: 100px;
+  margin-top: 10px;
 }
 
 .badge,
@@ -524,6 +525,17 @@ p.button-text {
   font-family: AstroSpace, serif;
 }
 
+.demo-image-container {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.demo-image {
+  margin-top: 20px;
+  height: 150px;
+}
+
 /* Sidebars */
 
 .pageloader {
@@ -667,4 +679,15 @@ p.button-text {
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+
+/* Page404 */
+
+.title {
+  margin-top: 50px;
+  font-family: AstroSpace, serif;
+}
+.error-img {
+  margin-top: 40px;
+  height: 200px;
 }
