@@ -515,7 +515,7 @@ p.button-text {
   align-items: center;
 }
 
-.fact::first-letter,
+.fact > p::first-letter,
 .question::first-letter {
   font-size: 120%;
   font-family: "AstroSpace", serif;
