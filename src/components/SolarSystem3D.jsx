@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "aframe";
 import "../utils/aframe-star-system";
 import "../utils/aframe-orbit-controls-component";
 import "../utils/aframe-init-position";
-import "../utils/aframe-loading-anim";
 import { Entity, Scene } from "aframe-react";
 import "../styles/loader.css";
 
@@ -228,15 +227,19 @@ function Moon(props) {
 }
 
 const SolarSystem3D = () => {
+  const [sunIsLoaded, setSunIsLoaded] = useState(false);
+
   return (
     <>
-      <div id="aframe-loader">
-        <img
-          src={`${process.env.PUBLIC_URL}/assets/2d-images/rocket-animated.svg`}
-          alt="loading animation"
-        ></img>
-        Launching into space...
-      </div>
+      {sunIsLoaded || (
+        <div id="aframe-loader">
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/2d-images/rocket-animated.svg`}
+            alt="loading animation"
+          ></img>
+          Launching into space...
+        </div>
+      )}
       <Scene
         vr-mode-ui="enabled: false"
         renderer="colorManagement: true;"
@@ -280,10 +283,12 @@ const SolarSystem3D = () => {
         <Entity id="camera-center" position="0 0 0" visible="false" />
         <Entity
           id="sun"
-          loading-anim
           gltf-model={Models["sun"].path}
           position="0 0 0"
           scale="1 1 1"
+          events={{
+            "model-loaded": [() => setSunIsLoaded(true)],
+          }}
         ></Entity>
 
         {Object.keys(Models).map((model_name) => {
