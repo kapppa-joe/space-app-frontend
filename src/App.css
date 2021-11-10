@@ -273,7 +273,7 @@ p.button-text {
 
 #mission-control .avatar-container {
   transform: scale(50%);
-  position: fixed;
+  position: absolute;
   top: -1.7em;
   right: 1em;
 }
