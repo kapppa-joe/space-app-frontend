@@ -62,7 +62,8 @@ const Onboarding = () => {
     auth.signOut().catch((error) => alert(error.message));
   };
 
-  const submitNickname = () => {
+  const submitNickname = (e) => {
+    e.preventDefault();
     setErr(false);
     setNickname(inputName);
     setDisplayInputBox(false);
@@ -143,7 +144,7 @@ const Onboarding = () => {
             </button>{" "}
           </div>
         ) : (
-          <div>
+          <form onSubmit={submitNickname}>
             <input
               type="text"
               value={inputName}
@@ -151,9 +152,9 @@ const Onboarding = () => {
             ></input>
             <br />
             <button
+              type="submit"
               id="tick-btn"
               disabled={inputName.trim() ? false : true}
-              onClick={submitNickname}
             >
               <svg
                 id={`${inputName.trim() ? "tick-icon" : "grey-icon"}`}
@@ -172,7 +173,7 @@ const Onboarding = () => {
                 ></path>
               </svg>
             </button>
-          </div>
+          </form>
         )}
       </div>
       <div className="onboarding-text-container">
