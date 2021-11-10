@@ -8,6 +8,11 @@
   src: url(./assets/font/SpaceGrotesk.ttf);
 }
 
+:root {
+  --bright-yellow: #f0f040;
+  --dark-grey: #333;
+}
+
 body {
   min-height: 100vh;
   height: 100%;
@@ -277,6 +282,35 @@ p.button-text {
 #mission-control button {
   background-color: hsla(0, 0%, 40%, 0.5);
   color: white;
+}
+
+.accordion {
+  margin: 0 0.5em;
+}
+
+.accordion:hover,
+.accordion:focus {
+  margin: 0 0.5em;
+}
+
+#mission-control .accordion-header {
+  background-color: var(--bright-yellow);
+  color: var(--dark-grey);
+}
+#mission-control .accordion-header p {
+  font-family: "AstroSpace";
+  width: 100%;
+}
+
+#mission-control .accordion-button {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0.6rem;
+  font-family: monospace;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: var(--dark-grey);
 }
 
 #mission-control .planet-card-container {

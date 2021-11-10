@@ -135,11 +135,10 @@ const MissionControl = () => {
         </div>
         <section className="accordions">
           <article className={`accordion ${open ? "is-active" : ""}`}>
-            <div className="accordion-header">
-              <p onClick={toggleAccordion}>View Mission Details</p>
+            <div onClick={toggleAccordion} className="accordion-header">
+              <p>View Mission Details</p>
               <button
-                onClick={toggleAccordion}
-                className="toggle"
+                className="accordion-button toggle"
                 aria-label="toggle"
               ></button>
             </div>
@@ -188,7 +187,9 @@ const MissionControl = () => {
                         className="progress is-medium is-success"
                         value={object in progress ? progress[object].length : 0}
                         max="10"
-                      ></progress>
+                      >
+                        1234
+                      </progress>
                     </>
                   ) : (
                     <>
