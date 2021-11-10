@@ -135,14 +135,14 @@ const MissionControl = () => {
           <div className={`custom-nav-menu ${isNavOpen && "is-active"}`}>
             <div className="nav-buttons-wrapper">
               <Link className="" to="/space/solar-system">
-                <button className="button">Launch Game</button>
-              </Link>
-              <Link className="" to="/onboarding">
-                <button className="button">Back To Mission Prep</button>
+                <button className="button">Start Mission</button>
               </Link>
               <button className="button" onClick={resetProgress}>
                 Reset Progress
               </button>
+              <Link className="" to="/onboarding">
+                <button className="button">Back To Mission Prep</button>
+              </Link>
               <button className="button" onClick={signOutUser}>
                 Sign Out
               </button>
@@ -180,7 +180,7 @@ const MissionControl = () => {
           </article>
         </section>
         <p className="message-card">
-          Click on the items below, to launch into space and begin your mission!
+          Click on the items below to launch into space and begin your mission!
         </p>
 
         {/* Testing button, remove later */}

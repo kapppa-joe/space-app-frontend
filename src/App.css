@@ -13,7 +13,7 @@
 }
 
 :root {
-  --bright-yellow: #f0f040;
+  --sun-orange: #ff7d0f;
   --dark-grey: #333;
 }
 
@@ -316,6 +316,13 @@ p.button-text {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #fdffff;
+  opacity: 0.9;
+}
+
+#mission-control .message-card {
+  background: #fdffff;
+  opacity: 0.9;
 }
 
 #mission-control .avatar-container {
@@ -324,16 +331,23 @@ p.button-text {
 }
 
 #mission-control .avatar-container {
-  transform: scale(50%);
+  /* transform: scale(50%); */
   position: absolute;
-  top: -1.7em;
-  right: 1em;
+  top: -0.2em;
+  right: 2.5em;
+}
+
+#mission-control .avatar-container .avatar_img {
+  height: 50px;
 }
 
 @media screen and (min-width: 768px) {
   #mission-control .avatar-container {
-    transform: none;
     position: inherit;
+  }
+
+  #mission-control .avatar-container .avatar_img {
+    height: 100px;
   }
 }
 
@@ -394,6 +408,7 @@ p.button-text {
   }
   #mission-control .nav-buttons-wrapper {
     flex-direction: row;
+    justify-content: center;
     gap: 1em;
   }
 }
@@ -417,7 +432,7 @@ p.button-text {
 }
 
 #mission-control .accordion-header {
-  background-color: var(--bright-yellow);
+  background-color: var(--sun-orange);
   color: var(--dark-grey);
 }
 #mission-control .accordion-header p {
@@ -434,22 +449,19 @@ p.button-text {
   font-size: 1.2em;
   font-weight: bold;
   background-color: var(--dark-grey);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #mission-control .planet-card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 2em;
+  margin: 0 0;
   gap: 1em;
   justify-content: center;
-}
-
-@media screen and (min-width: 768px) {
-  #mission-control .planet-card-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 }
 
 #mission-control .planet-card {
@@ -459,6 +471,19 @@ p.button-text {
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
+  width: 90%;
+}
+
+@media screen and (min-width: 768px) {
+  #mission-control .planet-card-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  #mission-control .planet-card {
+    flex-grow: 1;
+    width: fit-content;
+    max-width: 276ppx;
+  }
 }
 
 /* AR Planets */
