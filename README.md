@@ -71,3 +71,11 @@ This app was designed and built by:
 - 3D models of the solar system and factual information were sourced from [NASA](https://solarsystem.nasa.gov/resources/all)
 
 - Many of the space-themed graphics were sourced from [Freepik](https://www.freepik.com/)
+
+- Many icons used in this app were sourced from [Font Awesome](https://fontawesome.com/)
+
+- Custom AR marker pattern generated with [AR.js Marker Training](https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html), based on rocket icon sourced from [Ionicons](https://ionic.io/ionicons)
+
+- Starry background in 3D view was based on [handeyeco/aframe-star-system-component](https://github.com/handeyeco/aframe-star-system-component) with some customization
+
+- Gesture handling and camera orbiting in 3D/AR view were based on [fcor/arjs-gestures](https://github.com/fcor/arjs-gestures) and [tizzle/aframe-orbit-controls-component](https://github.com/tizzle/aframe-orbit-controls-component)
