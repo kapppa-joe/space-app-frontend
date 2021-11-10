@@ -180,7 +180,7 @@ const MissionControl = () => {
                 learn about them as you go. <br/><br/>
                 At each destination take the quiz to
                 unlock the badges below. <br/><br/>
-                You only need to get 7 out of 10questions right to unlock your badge!
+                You only need to get 7 out of 10 questions right to unlock your badge!
                 </p>
               </div>
             </div>
