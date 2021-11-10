@@ -35,15 +35,15 @@ const Quiz_Modal = ({
             If you would like to see your new shiny badge click on the link
             below
           </p>
-          <Link to="/mission-control">Mission Control</Link>
+          <Link to="/mission-control">
+            <button className="button reload-button">Mission Control
+          </button>
+      </Link>
           <br />
           <br />
           <p>
-            Or you can return to the planet viewer to continue your mission!
+            Or you can close this window and continue the quiz 
           </p>
-          <button className="button" onClick={() => window.location.reload()}>
-            Back to the planets!
-          </button>
         </section>
         <footer className="modal-card-foot">
           <button

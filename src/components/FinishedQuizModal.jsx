@@ -7,7 +7,7 @@ const noBadgeTitle = "Nice Try!";
 
 const ReloadButton = () => {
   return (
-    <button className="button" onClick={() => window.location.reload()}>
+    <button className="button reload-button" onClick={() => window.location.reload()}>
       Back to the planets!
     </button>
   );
@@ -20,9 +20,12 @@ const newlyWonBadgeBody = (space_object) => (
       src={`/assets/badges/badge-${space_object}.png`}
       alt={space_object}
     ></img>
-    <p>Congratulations! You have completed the quiz and earned a badge!</p>
+    <p>Congratulations!<br/> You have completed the quiz and earned a badge!</p>
     <p>If you would like to see your new shiny badge click on the link below</p>
-    <Link to="/mission-control">Mission Control</Link>
+    <Link to="/mission-control">
+      <button className="button reload-button">Mission Control
+        </button>
+      </Link>
     <br />
     <br />
 
@@ -31,11 +34,14 @@ const newlyWonBadgeBody = (space_object) => (
   </>
 );
 
-const alreadyGotBadgeBody = (
+const alreadyGotBadgeBody  = (
   <>
-    <p>Congratulations! You have completed the quiz and you did really well!</p>
-    <p>If you would like to see the badge you won click on the link below</p>
-    <Link to="/mission-control">Mission Control</Link>
+    <p>Congratulations! <br/>You have completed the quiz and did really well!</p>
+    <p>If you would like to see the badge you won, click on the link below</p>
+    <Link to="/mission-control">
+      <button className="button reload-button">Mission Control
+        </button>
+      </Link>
     <br />
     <br />
     <p>Or you can return to the planet viewer to continue your mission!</p>
@@ -47,8 +53,9 @@ const noBadgeBody = (
   <>
     <p>Unfortunately, you haven't got a badge this time</p>
     <p>
-      Not to worry! Click on the link below, look at the facts, and you can
-      answer the questions again!
+      Not to worry! <br/>
+      Click on the link below, look at the facts, and you can
+      answer the questions again
     </p>
     <ReloadButton />
   </>
