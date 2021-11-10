@@ -216,9 +216,9 @@ p.button-text {
   margin-top: 15px;
   height: 25px;
   opacity: 0.8;
-  font-weight: 800;
+  font-weight: 900;
   color: white;
-  background-color: hsla(0, 0%, 40%, 0.95);
+  background-color: hsla(0, 0%, 40%, 0.5);
 }
 
 #onboarding-btn,
@@ -918,6 +918,10 @@ p.button-text {
 }
 
 /* ISS Live */
+
+.iss-button {
+  margin: 10px auto;
+}
 
 .iss-live {
   padding: 10px;
