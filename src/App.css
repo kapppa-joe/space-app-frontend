@@ -131,7 +131,8 @@ body {
 
 #email-input {
   grid-area: email-input;
-  border: 2px solid #043048;
+  border: 1px solid #043048;
+  border-radius: 5px;
 }
 
 #password {
@@ -142,6 +143,7 @@ body {
 #password-input {
   grid-area: password-input;
   border: 1px solid #043048;
+  border-radius: 5px;
 }
 
 .Login button {
