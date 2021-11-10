@@ -65,7 +65,6 @@ AFRAME.registerComponent("star-system", {
       "color",
       new THREE.Float32BufferAttribute(colorsArray, 3)
     );
-    console.log(stars, "<--- stars");
 
     // Set the star display options
     // const starMaterial = new THREE.PointsMaterial(
