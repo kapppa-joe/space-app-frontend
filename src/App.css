@@ -978,3 +978,16 @@ p.button-text {
   margin-top: 0;
   padding-top: 4em;
 }
+
+/* misc */
+
+.avatar-loading-placeholder {
+  height: 12vmin;
+  width: 12vmin;
+  margin: 1em;
+  background: hsla(0, 0%, 100%, 0.3);
+  border-radius: 50%;
+  color: #ccc;
+  font-size: small;
+  line-height: 1.3;
+}
