@@ -460,8 +460,11 @@ p.button-text {
   flex-direction: column;
   align-items: center;
   margin: 0 0;
-  gap: 1em;
   justify-content: center;
+  overflow-y: scroll;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 50vh;
 }
 
 #mission-control .planet-card {
@@ -472,6 +475,16 @@ p.button-text {
   padding: 1em;
   margin: 1em;
   width: 90%;
+  max-width: 400px;
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  #mission-control .message-card,
+  #mission-control .accordion {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -481,11 +494,26 @@ p.button-text {
   }
   #mission-control .planet-card {
     flex-grow: 1;
+    flex-basis: 250px;
     width: fit-content;
-    max-width: 276ppx;
   }
 }
 
+@media screen and (min-width: 1700px) {
+  #mission-control {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #mission-control .planet-card {
+    max-width: 280px;
+  }
+}
+
+.acknowledgement-button-div {
+  margin-top: 20px;
+}
 /* AR Planets */
 
 #ar_page {

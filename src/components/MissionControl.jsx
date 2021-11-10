@@ -251,7 +251,7 @@ const MissionControl = () => {
           })}
         </div>
         {/* <button onClick={signOutUser}>Sign Out</button> */}
-        <div>
+        <div className="acknowledgement-button-div">
           <Link to="/acknowledgements">
             <button className="button">Acknowledgements</button>
           </Link>
