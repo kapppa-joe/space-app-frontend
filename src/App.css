@@ -214,7 +214,8 @@ p.button-text {
 
 #sign-out-btn,
 #iss-back-button,
-#error-button {
+#error-button,
+#acknowledgement-back-button {
   margin-top: 15px;
   height: 25px;
   opacity: 0.8;
@@ -556,6 +557,12 @@ p.button-text {
 
 .acknowledgement-button-div {
   margin-top: 30px;
+}
+
+#acknowledgement-back-button {
+  margin-top: 30px;
+  height: 45px;
+  font-weight: 900;
 }
 /* AR Planets */
 
@@ -992,12 +999,16 @@ p.button-text {
 /* acknowledgements */
 
 .acknowledgements {
-  height: 100vh;
-  width: 90vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
+  padding: 10px 20px;
+}
+.acknowledgements h3 {
+  margin: 50px;
+  font-family: AstroSpace, sans-serif;
+  font-size: 2em;
+}
+
+.acknowledgements p {
+  padding: 10px 10px;
 }
 
 /* Page404 */
