@@ -233,6 +233,7 @@ const SolarSystem3D = () => {
       <div id="aframe-loader">
         <img
           src={`${process.env.PUBLIC_URL}/assets/2d-images/rocket-animated.svg`}
+          alt="loading animation"
         ></img>
         Launching into space...
       </div>
