@@ -551,6 +551,16 @@ p.button-text {
 
 /* Sidebars */
 
+.is-large.delete,
+.is-large.modal-close {
+  height: 48px !important;
+  max-height: 48px !important;
+  max-width: 48px !important;
+  min-height: 48px !important;
+  min-width: 48px !important;
+  width: 48px !important;
+}
+
 .pageloader {
   overflow: scroll;
 }
