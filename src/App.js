@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/acknowledgements">
           <Acknowledgements />
         </Route>
-        <Route exact path="/space-station">
+        <Route exact path="/iss-live">
           <SpaceStation />
         </Route>
         <Route>
