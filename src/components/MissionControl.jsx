@@ -201,8 +201,8 @@ const MissionControl = () => {
               <Link key={index} className="planet-card" to={`space/${object}`}>
                 <div>
                   <p>
-                    {formatSpaceObject(object)}{" "}
-                    {object in progress ? progress[object].length : 0}/10
+                    <span className="space-object">{formatSpaceObject(object)}{" "}</span></p>
+                   <p> {object in progress ? progress[object].length : 0}/10
                   </p>
                   <img
                     className="two-d"

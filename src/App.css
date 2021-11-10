@@ -550,6 +550,10 @@ p.button-text {
   }
 }
 
+.space-object {
+  font-family: AstroSpace, serif;
+}
+
 .acknowledgement-button-div {
   margin-top: 30px;
 }
