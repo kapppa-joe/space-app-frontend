@@ -211,8 +211,10 @@ p.button-text {
   display: flex;
   justify-content: right;
 }
+
 #sign-out-btn,
-#iss-back-button {
+#iss-back-button,
+#error-button {
   margin-top: 15px;
   height: 25px;
   opacity: 0.8;
@@ -1004,6 +1006,11 @@ p.button-text {
 .error-img {
   margin-top: 40px;
   height: 200px;
+}
+
+#error-button {
+  margin-top: 35px;
+  height: 40px;
 }
 
 /* 404 Not Found */

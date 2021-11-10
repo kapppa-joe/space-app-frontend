@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Page404 = () => {
   return (
@@ -12,6 +13,12 @@ const Page404 = () => {
         alt="missing astronaut"
         src="/assets/2d-images/lost_in_space.png"
       />
+      <br/>
+      <Link to="/">
+        <button className="button" id="error-button">
+              Go Back
+        </button>
+      </Link>
     </div>
   );
 };
