@@ -875,6 +875,10 @@ p.button-text {
 
 /* Trivia pages */
 
+.trivia-container {
+  padding: 0 15px;
+}
+
 .trivia_body {
   position: absolute;
   top: 1rem;

@@ -50,21 +50,24 @@ const Facts = ({ space_object }) => {
         {space_object === "iss" && (
           <>
             <Link to="/iss-live">
-              <button className="button">
-                Click here to see where the ISS is now!
+              <button className="button iss-button">
+                Click to find out where the ISS is now!
               </button>
             </Link>
           </>
         )}
-        <ul className="trivia_list">
-          {trivia.map((fact, index) => {
-            return (
-              <li key={index} className="fact">
-                <p>{fact}</p>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="trivia-container">
+          <ul className="trivia_list">
+            {trivia.map((fact, index) => {
+              return (
+                <li key={index} className="fact">
+                  <p>{fact}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="blank-box"></div>
       </div>
     );
   }
