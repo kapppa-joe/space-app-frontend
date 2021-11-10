@@ -7,7 +7,15 @@ import { useState } from "react";
 import Page404 from "./Page404";
 import Avatar from "./Avatar";
 import SolarSystem3D from "./SolarSystem3D";
-import { formatSpaceObject } from "../utils/helperFunctions";
+// import { formatSpaceObject } from "../utils/helperFunctions";
+
+const capitalize_name = (object_name) => {
+  if (object_name === "iss") return "ISS";
+  return object_name
+    .split(/[_-\s]/g)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 const Planets = () => {
   const { space_object } = useParams();
@@ -47,7 +55,13 @@ const Planets = () => {
       <span className="back-button-wrapper">
         <Link to="/mission-control">
           <Avatar />
-          <button className="button back-button">Mission control</button>
+          <button className="button back-button">
+            <span>
+              Mission
+              <br />
+              control
+            </span>
+          </button>
         </Link>
       </span>
       <div id="ar_view">
@@ -87,7 +101,7 @@ const Planets = () => {
           return (
             <Link key={object} to={`/space/${object}`}>
               <img src={`/assets/2d-images/${object}2D.png`} alt="" />
-              {formatSpaceObject(object)}
+              {capitalize_name(object)}
             </Link>
           );
         })}
