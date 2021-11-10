@@ -13,7 +13,7 @@
 }
 
 :root {
-  --bright-yellow: #f0f040;
+  --sun-orange: #ff7d0f;
   --dark-grey: #333;
 }
 
@@ -321,6 +321,20 @@ p.button-text {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #fdffff;
+  opacity: 0.9;
+
+  text-align: justify;
+}
+
+#mission-control #space-cadet-name {
+  font-family: "AstroSpace";
+  font-size: initial;
+}
+
+#mission-control .message-card {
+  background: #fdffff;
+  opacity: 0.9;
 }
 
 #mission-control .avatar-container {
@@ -329,16 +343,23 @@ p.button-text {
 }
 
 #mission-control .avatar-container {
-  transform: scale(50%);
+  /* transform: scale(50%); */
   position: absolute;
-  top: -1.7em;
-  right: 1em;
+  top: -0.2em;
+  right: 2.5em;
+}
+
+#mission-control .avatar-container .avatar_img {
+  height: 50px;
 }
 
 @media screen and (min-width: 768px) {
   #mission-control .avatar-container {
-    transform: none;
     position: inherit;
+  }
+
+  #mission-control .avatar-container .avatar_img {
+    height: 100px;
   }
 }
 
@@ -399,6 +420,7 @@ p.button-text {
   }
   #mission-control .nav-buttons-wrapper {
     flex-direction: row;
+    justify-content: center;
     gap: 1em;
   }
 }
@@ -422,8 +444,7 @@ p.button-text {
 }
 
 #mission-control .accordion-header {
-  /* background-color: var(--bright-yellow); */
-  background-color: #ff7d0f;
+  background-color: var(--sun-orange);
   color: var(--dark-grey);
 }
 #mission-control .accordion-header p {
@@ -440,15 +461,52 @@ p.button-text {
   font-size: 1.2em;
   font-weight: bold;
   background-color: var(--dark-grey);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mission-control .accordion-content {
+  text-align: justify;
 }
 
 #mission-control .planet-card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 2em;
-  gap: 1em;
+  margin: 0 0;
   justify-content: center;
+  overflow-y: scroll;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 50vh;
+}
+
+#mission-control .planet-card {
+  min-width: fit-content;
+  background-color: hsla(0, 0%, 50%, 0.3);
+  color: white;
+  border: 0.5px solid #ccc;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 1em;
+  width: 90%;
+  max-width: 400px;
+}
+
+#mission-control .planet-card:hover,
+#mission-control .planet-card:focus {
+  font-weight: bold;
+  background-color: hsla(0, 0%, 50%, 0.4);
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  #mission-control .message-card,
+  #mission-control .accordion {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -456,17 +514,28 @@ p.button-text {
     flex-direction: row;
     flex-wrap: wrap;
   }
+  #mission-control .planet-card {
+    flex-grow: 1;
+    flex-basis: 250px;
+    width: fit-content;
+  }
 }
 
-#mission-control .planet-card {
-  min-width: fit-content;
-  background-color: hsla(0, 0%, 50%, 0.3);
-  border: 0.5px solid #ccc;
-  border-radius: 1em;
-  padding: 1em;
-  margin: 1em;
+@media screen and (min-width: 1700px) {
+  #mission-control {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #mission-control .planet-card {
+    max-width: 280px;
+  }
 }
 
+.acknowledgement-button-div {
+  margin-top: 20px;
+}
 /* AR Planets */
 
 #ar_page {

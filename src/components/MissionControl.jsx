@@ -135,14 +135,14 @@ const MissionControl = () => {
           <div className={`custom-nav-menu ${isNavOpen && "is-active"}`}>
             <div className="nav-buttons-wrapper">
               <Link className="" to="/space/solar-system">
-                <button className="button">Launch Game</button>
-              </Link>
-              <Link className="" to="/onboarding">
-                <button className="button">Back To Mission Prep</button>
+                <button className="button">Launch Mission</button>
               </Link>
               <button className="button" onClick={resetProgress}>
                 Reset Progress
               </button>
+              <Link className="" to="/onboarding">
+                <button className="button">Back To Mission Prep</button>
+              </Link>
               <button className="button" onClick={signOutUser}>
                 Sign Out
               </button>
@@ -152,7 +152,10 @@ const MissionControl = () => {
 
         <div className="welcome-message message-card">
           <span>
-            <p>Welcome space cadet {nickname} to mission control.</p>
+            <p>
+              Welcome <span id="space-cadet-name">Space Cadet {nickname}</span>{" "}
+              to mission control.
+            </p>
             <p>
               Here you can find details of your mission and check on your
               progress as you travel through the Cosmos.{" "}
@@ -180,7 +183,7 @@ const MissionControl = () => {
           </article>
         </section>
         <p className="message-card">
-          Click on the items below, to launch into space and begin your mission!
+          Click on the items below to launch into space and begin your mission!
         </p>
 
         {/* Testing button, remove later */}
@@ -188,36 +191,51 @@ const MissionControl = () => {
         <div className="planet-card-container">
           {spaceObjects.map((object, index) => {
             return (
-              <div key={index} className="planet-card">
-                <p>
-                  {formatSpaceObject(object)}{" "}
-                  {object in progress ? progress[object].length : 0}/10
-                </p>
-                <Link to={`space/${object}`}>
+              <Link key={index} className="planet-card" to={`space/${object}`}>
+                <div>
+                  <p>
+                    {formatSpaceObject(object)}{" "}
+                    {object in progress ? progress[object].length : 0}/10
+                  </p>
                   <img
                     className="two-d"
                     src={`/assets/2d-images/${object}2D.png`}
                     alt={object}
                   ></img>
-                </Link>
 
-                {/* Do not touch, it will break */}
-                {object in progress ? (
-                  progress[object].length > 6 ? (
-                    <>
-                      <img
-                        className="badge"
-                        src={`/assets/badges/badge-${object}.png`}
-                        alt={object}
-                      ></img>
-                      <progress
-                        className="progress is-medium is-success"
-                        value={object in progress ? progress[object].length : 0}
-                        max="10"
-                      >
-                        1234
-                      </progress>
-                    </>
+                  {/* Do not touch, it will break */}
+                  {object in progress ? (
+                    progress[object].length > 6 ? (
+                      <>
+                        <img
+                          className="badge"
+                          src={`/assets/badges/badge-${object}.png`}
+                          alt={object}
+                        ></img>
+                        <progress
+                          className="progress is-medium is-success"
+                          value={
+                            object in progress ? progress[object].length : 0
+                          }
+                          max="10"
+                        ></progress>
+                      </>
+                    ) : (
+                      <>
+                        <img
+                          className="badge"
+                          src={`/assets/badges/badge-default1.png`}
+                          alt={object}
+                        ></img>
+                        <progress
+                          className="progress is-medium is-danger"
+                          value={
+                            object in progress ? progress[object].length : 0
+                          }
+                          max="10"
+                        ></progress>
+                      </>
+                    )
                   ) : (
                     <>
                       <img
@@ -226,32 +244,19 @@ const MissionControl = () => {
                         alt={object}
                       ></img>
                       <progress
-                        className="progress is-medium is-danger"
-                        value={object in progress ? progress[object].length : 0}
-                        max="10"
+                        className="progress is-medium"
+                        value="0"
+                        max="7"
                       ></progress>
                     </>
-                  )
-                ) : (
-                  <>
-                    <img
-                      className="badge"
-                      src={`/assets/badges/badge-default1.png`}
-                      alt={object}
-                    ></img>
-                    <progress
-                      className="progress is-medium"
-                      value="0"
-                      max="7"
-                    ></progress>
-                  </>
-                )}
-              </div>
+                  )}
+                </div>
+              </Link>
             );
           })}
         </div>
         {/* <button onClick={signOutUser}>Sign Out</button> */}
-        <div>
+        <div className="acknowledgement-button-div">
           <Link to="/acknowledgements">
             <button className="button">Acknowledgements</button>
           </Link>
