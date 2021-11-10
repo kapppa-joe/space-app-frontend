@@ -59,7 +59,7 @@ const Planets = () => {
             <span>
               Mission
               <br />
-              control
+              Control
             </span>
           </button>
         </Link>
