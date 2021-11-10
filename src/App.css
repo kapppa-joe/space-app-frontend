@@ -207,11 +207,13 @@ p.button-text {
   font-weight: 800;
 }
 
-.sign-out-container {
+.sign-out-container,
+.iss-back-container {
   display: flex;
   justify-content: right;
 }
-#sign-out-btn {
+#sign-out-btn,
+#iss-back-button {
   margin-top: 15px;
   height: 25px;
   opacity: 0.8;
@@ -916,9 +918,35 @@ p.button-text {
   font-family: "AstroSpace", serif;
 }
 
+/* ISS Live */
+
+.iss-live h3 {
+  font-family: AstroSpace, serif;
+  font-size: 2rem;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
 .MapContainer {
-  width: 400px;
+  width: 320px;
   height: 180px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.spaceStationMap,
+.spaceStationLiveFeed {
+  margin: 0 auto;
+}
+
+.iss-live p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#iss-back-button {
+  margin-right: 20px;
 }
 
 /* acknowledgements */
