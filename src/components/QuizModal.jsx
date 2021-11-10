@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Quiz_Modal = ({
   openWonBadgeModal,
@@ -16,6 +17,13 @@ const Quiz_Modal = ({
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">You've won a badge! </p>
+          <button
+            class="delete"
+            aria-label="close"
+            onClick={() => {
+              setOpenWonBadgeModal(false);
+            }}
+          ></button>
         </header>
         <section class="modal-card-body">
           <img
@@ -23,24 +31,29 @@ const Quiz_Modal = ({
             src={`/assets/badges/badge-${space_object}.png`}
             alt={space_object}
           ></img>
+          <p>
+            If you would like to see your new shiny badge click on the link
+            below
+          </p>
+          <Link to="/mission-control">Mission Control</Link>
+          <br />
+          <br />
+          <p>
+            Or you can return to the planet viewer to continue your mission!
+          </p>
+          <button className="button" onClick={() => window.location.reload()}>
+            Back to the planets!
+          </button>
         </section>
         <footer className="modal-card-foot">
           <button
-            className="button"
+            className="modal-close is-large"
+            aria-label="close"
             onClick={() => {
               setOpenWonBadgeModal(false);
             }}
-          >
-            Close
-          </button>
+          ></button>
         </footer>
-        <button
-          className="modal-close is-large"
-          aria-label="close"
-          onClick={() => {
-            setOpenWonBadgeModal(false);
-          }}
-        ></button>
       </div>
     </div>
   );

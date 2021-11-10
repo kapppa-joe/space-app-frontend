@@ -23,6 +23,9 @@ const newlyWonBadgeBody = (space_object) => (
     <p>Congratulations! You have completed the quiz and earned a badge!</p>
     <p>If you would like to see your new shiny badge click on the link below</p>
     <Link to="/mission-control">Mission Control</Link>
+    <br />
+    <br />
+
     <p>Or you can return to the planet viewer to continue your mission!</p>
     <ReloadButton />
   </>
@@ -33,6 +36,8 @@ const alreadyGotBadgeBody = (
     <p>Congratulations! You have completed the quiz and you did really well!</p>
     <p>If you would like to see the badge you won click on the link below</p>
     <Link to="/mission-control">Mission Control</Link>
+    <br />
+    <br />
     <p>Or you can return to the planet viewer to continue your mission!</p>
     <ReloadButton />
   </>
@@ -72,7 +77,9 @@ const FinishedQuizModal = ({ progress, hasWonBadge, space_object }) => {
 
   return (
     <>
-      <button className="button quiz-button" onClick={() => setIsActive(true)}>Finish</button>
+      <button className="button quiz-button" onClick={() => setIsActive(true)}>
+        Finish
+      </button>
 
       <div class={`modal ${isActive ? "is-active" : ""}`}>
         <div class="modal-background"></div>
@@ -81,6 +88,11 @@ const FinishedQuizModal = ({ progress, hasWonBadge, space_object }) => {
             <p class="modal-card-title">
               {gotBadge ? hasBadgeTitle : noBadgeTitle}
             </p>
+            <button
+              class="delete"
+              aria-label="close"
+              onClick={() => setIsActive(false)}
+            ></button>
           </header>
           <section class="modal-card-body">{modalBoxBody}</section>
         </div>
