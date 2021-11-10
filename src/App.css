@@ -318,6 +318,13 @@ p.button-text {
   justify-content: center;
   background: #fdffff;
   opacity: 0.9;
+
+  text-align: justify;
+}
+
+#mission-control #space-cadet-name {
+  font-family: "AstroSpace";
+  font-size: initial;
 }
 
 #mission-control .message-card {
@@ -455,6 +462,10 @@ p.button-text {
   align-items: center;
 }
 
+#mission-control .accordion-content {
+  text-align: justify;
+}
+
 #mission-control .planet-card-container {
   display: flex;
   flex-direction: column;
@@ -470,6 +481,7 @@ p.button-text {
 #mission-control .planet-card {
   min-width: fit-content;
   background-color: hsla(0, 0%, 50%, 0.3);
+  color: white;
   border: 0.5px solid #ccc;
   border-radius: 1em;
   padding: 1em;
@@ -478,6 +490,11 @@ p.button-text {
   max-width: 400px;
 }
 
+#mission-control .planet-card:hover,
+#mission-control .planet-card:focus {
+  font-weight: bold;
+  background-color: hsla(0, 0%, 50%, 0.4);
+}
 @media screen and (min-width: 480px) and (max-width: 767px) {
   #mission-control .message-card,
   #mission-control .accordion {
