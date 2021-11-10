@@ -650,8 +650,8 @@ p.button-text {
 .quiz-message-container {
   background-color: white;
   color: black;
-  margin: 0.3rem 0.2rem;
-  padding: 0 1rem;
+  margin: 0.5rem 0.2rem;
+  padding: 1.rem 1rem;
   border-radius: 10px;
   font-size: large;
 }
