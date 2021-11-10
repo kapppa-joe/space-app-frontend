@@ -55,8 +55,8 @@ const SpaceStation = () => {
           </Link>
         </div>
         <h3>ISS Live Location</h3>
-        <div className="onboarding-text-container">
-          <p>The ISS is currently orbiting over {geoLocation}</p>
+        <div className="onboarding-text-container" id="iss-container">
+          <p>The ISS is currently orbiting over...<br/> {geoLocation}</p>
           <section className="spaceStationMap">
             <MapContainer
               className="MapContainer"
@@ -74,12 +74,13 @@ const SpaceStation = () => {
             </MapContainer>
           </section>
         </div>
-        <div className="onboarding-text-container">
-          <p>Click the video to see a live feed from the ISS</p>
+        <div className="onboarding-text-container" id="iss-container">
+          <p>Play the video to see a live feed from the ISS</p>
           <section className="spaceStationLiveFeed">
             <iframe
+              className="iss-video"
               title="liveFeed"
-              width="350"
+              width="330"
               height="180"
               src="https://ustream.tv/embed/17074538"
               scrolling="no"
@@ -88,8 +89,9 @@ const SpaceStation = () => {
               frameBorder="0"
             ></iframe>
             <p>
-              If the video is dark - not to worry, it's probably night time
-              amongst the stars! Try again later to see it in daylight{" "}
+              If the video is dark - not to worry!<br/>
+              It's probably night time amongst the stars!<br/>
+              Try again later to see it in daylight{" "}
             </p>
           </section>
         </div>
