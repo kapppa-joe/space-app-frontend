@@ -1,3 +1,7 @@
+:root {
+  --darkBlue: #043048;
+}
+
 @font-face {
   font-family: AstroSpace;
   src: url(./assets/font/AstroSpaceFont.otf);
@@ -108,17 +112,16 @@ body {
   margin: 40px 30px;
   background-color: #fdffff;
   opacity: 0.95;
-  color: #043048;
   max-width: 500px;
 }
 
 .login-container button {
-  border: 1px solid #043048;
-  color: #043048;
+  border: 1px solid var(--darkBlue);
+  color: var(--darkBlue);
 }
 
 .form-grid {
-  border-top: 2px solid #043048;
+  border-top: 2px solid var(--darkBlue);
   display: grid;
   padding: 30px 30px 0 30px;
   grid-template-rows: 1fr 1fr;
@@ -136,7 +139,7 @@ body {
 
 #email-input {
   grid-area: email-input;
-  border: 1px solid #043048;
+  border: 1px solid var(--darkBlue);
   border-radius: 5px;
 }
 
@@ -147,7 +150,7 @@ body {
 
 #password-input {
   grid-area: password-input;
-  border: 1px solid #043048;
+  border: 1px solid var(--darkBlue);
   border-radius: 5px;
 }
 
@@ -159,7 +162,7 @@ body {
 }
 
 .Login button:hover {
-  background-color: #043048;
+  background-color: var(--darkBlue);
   color: white;
 }
 
@@ -179,39 +182,64 @@ p.button-text {
 }
 
 .onboarding-text-container {
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 15px 1px 20px 1px;
   max-width: 870px;
   background-color: #fdffff;
-  color: black;
+  color: var(--darkBlue);
   opacity: 0.9;
   border-radius: 5px;
   font-weight: bold;
   margin-bottom: 10px;
+  max-width: 500px;
 }
 
 .Onboarding h2 {
-  padding-top: 40px;
+  padding-top: 20px;
   font-size: 2.5rem;
   font-family: AstroSpace;
   margin-bottom: 10px;
 }
 
-#sign-out-btn {
-  float: left;
-  height: 30px;
-  opacity: 0.8;
+#prep-description {
   font-weight: 800;
 }
 
-.onboarding-btn {
+.sign-out-container {
+  display: flex;
+  justify-content: right;
+}
+#sign-out-btn {
+  margin-top: 15px;
+  height: 25px;
+  opacity: 0.8;
+  font-weight: 800;
+  color: white;
+  background-color: hsla(0, 0%, 40%, 0.95);
+}
+
+#onboarding-btn,
+#mc-btn {
+  padding: 15px;
   height: 10px;
   opacity: 0.8;
   font-weight: 800;
+  color: white;
+  background-color: var(--darkBlue);
+  border-radius: 5px;
+}
+
+#mc-btn {
+  margin-top: 20px;
+  height: 40px;
 }
 
 .Onboarding input {
+  padding-left: 10px;
   height: 30px;
   width: 300px;
+  border: 1px solid var(--darkBlue);
+  border-radius: 5px;
 }
 
 .Onboarding h3 {
@@ -220,17 +248,24 @@ p.button-text {
   font-size: 1.2rem;
 }
 
+.Onboarding p {
+  padding: 0 7px;
+}
+
 .avatar-btn {
   margin: 15px;
   opacity: 0.7;
+  border: 1px solid var(--darkBlue) !important;
+  border-radius: 5px;
 }
 
 .avatar_img {
-  height: 100px;
+  height: 125px;
 }
 .ar_marker_img {
-  height: 100px;
+  height: 150px;
   margin-top: 10px;
+  border-radius: 100px;
 }
 
 .badge,
@@ -240,11 +275,26 @@ p.button-text {
 }
 
 #tick-btn {
-  height: 30px;
-  margin-left: 5px;
+  margin: 10px auto;
+  margin-bottom: 0;
+  height: 50px;
+  width: 200px;
+  background-color: white;
+  border: none;
+}
+
+#tick-icon {
+  height: 40px;
+  color: var(--darkBlue);
+}
+
+#grey-icon {
+  height: 40px;
+  color: grey;
 }
 
 #welcome-msg {
+  padding: 0 5px;
   font-family: AstroSpace;
   font-size: 40px;
   font-weight: bold;
