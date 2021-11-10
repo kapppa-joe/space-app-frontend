@@ -10,7 +10,6 @@ const reverseGeocodeApi = axios.create({
 
 export const getLocation = () => {
   return spaceStationApi.get("/").then(({ data }) => {
-    console.log(data);
     return data;
   });
 };
