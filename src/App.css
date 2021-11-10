@@ -8,6 +8,11 @@
   src: url(./assets/font/SpaceGrotesk.ttf);
 }
 
+:root {
+  --bright-yellow: #f0f040;
+  --dark-grey: #333;
+}
+
 body {
   min-height: 100vh;
   height: 100%;
@@ -266,19 +271,117 @@ p.button-text {
   flex-shrink: 0;
 }
 
+#mission-control .avatar-container {
+  transform: scale(50%);
+  position: fixed;
+  top: -1.7em;
+  right: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  #mission-control .avatar-container {
+    transform: none;
+    position: inherit;
+  }
+}
+
 #mission-control nav {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   padding: 0.5em;
   gap: 1em;
   max-width: 100vw;
+
+  justify-self: flex-start;
+}
+
+#mission-control .custom-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+#mission-control .navbar-burger {
+  color: #fff;
+}
+
+#mission-control .navbar-burger > span {
+  height: 2px;
+}
+
+#mission-control .custom-nav-menu {
+  display: none;
+}
+#mission-control .custom-nav-menu.is-active {
+  display: flex;
+}
+
+#mission-control .nav-buttons-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+#mission-control .nav-buttons-wrapper > * {
+  width: 60%;
+  max-width: 177px;
+}
+
+#mission-control .nav-buttons-wrapper > a button {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  #mission-control .navbar-burger {
+    display: none;
+  }
+  #mission-control .custom-nav-menu {
+    display: flex;
+  }
+  #mission-control .nav-buttons-wrapper {
+    flex-direction: row;
+    gap: 1em;
+  }
+}
+
+#mission-control .avatar-container {
+  float: right;
 }
 
 #mission-control button {
   background-color: hsla(0, 0%, 40%, 0.5);
   color: white;
+}
+
+.accordion {
+  margin: 0 0.5em;
+}
+
+.accordion:hover,
+.accordion:focus {
+  margin: 0 0.5em;
+}
+
+#mission-control .accordion-header {
+  background-color: var(--bright-yellow);
+  color: var(--dark-grey);
+}
+#mission-control .accordion-header p {
+  font-family: "AstroSpace";
+  width: 100%;
+}
+
+#mission-control .accordion-button {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0.6rem;
+  font-family: monospace;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: var(--dark-grey);
 }
 
 #mission-control .planet-card-container {

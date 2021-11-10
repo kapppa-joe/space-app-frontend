@@ -16,6 +16,7 @@ const MissionControl = () => {
   const [reload, setReload] = useState(false);
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const [progress, setProgress] = useState({
     solar_system: [],
@@ -88,9 +89,13 @@ const MissionControl = () => {
     setOpen(!open);
   };
 
-  // const signOutUser = () => {
-  //   auth.signOut().catch((error) => alert(error.message));
-  // };
+  const toggleNav = () => {
+    setIsNavOpen((currState) => !currState);
+  };
+
+  const signOutUser = () => {
+    auth.signOut().catch((error) => alert(error.message));
+  };
 
   if (loading || loadingContent) {
     return <Loading />;
@@ -111,16 +116,38 @@ const MissionControl = () => {
   if (user) {
     return (
       <div id="mission-control">
-        <nav>
-          <Link to="/space/solar-system">
-            <button className="button">Launch Game</button>
-          </Link>
-          <Link to="/onboarding">
-            <button className="button">Back To Mission Prep</button>
-          </Link>
-          <button className="button" onClick={resetProgress}>
-            Reset Progress
-          </button>
+        <nav
+          className="custom-nav"
+          role="navigation"
+          aria-label="main navigation"
+        >
+          <a
+            role="button"
+            className={`navbar-burger ${isNavOpen && "is-active"}`}
+            aria-label="menu"
+            aria-expanded="false"
+            onClick={toggleNav}
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+          <div className={`custom-nav-menu ${isNavOpen && "is-active"}`}>
+            <div className="nav-buttons-wrapper">
+              <Link className="" to="/space/solar-system">
+                <button className="button">Launch Game</button>
+              </Link>
+              <Link className="" to="/onboarding">
+                <button className="button">Back To Mission Prep</button>
+              </Link>
+              <button className="button" onClick={resetProgress}>
+                Reset Progress
+              </button>
+              <button className="button" onClick={signOutUser}>
+                Sign Out
+              </button>
+            </div>
+          </div>
         </nav>
 
         <div className="welcome-message message-card">
@@ -135,11 +162,10 @@ const MissionControl = () => {
         </div>
         <section className="accordions">
           <article className={`accordion ${open ? "is-active" : ""}`}>
-            <div className="accordion-header">
-              <p onClick={toggleAccordion}>View Mission Details</p>
+            <div onClick={toggleAccordion} className="accordion-header">
+              <p>View Mission Details</p>
               <button
-                onClick={toggleAccordion}
-                className="toggle"
+                className="accordion-button toggle"
                 aria-label="toggle"
               ></button>
             </div>
@@ -188,7 +214,9 @@ const MissionControl = () => {
                         className="progress is-medium is-success"
                         value={object in progress ? progress[object].length : 0}
                         max="10"
-                      ></progress>
+                      >
+                        1234
+                      </progress>
                     </>
                   ) : (
                     <>
