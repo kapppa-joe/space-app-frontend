@@ -1,3 +1,5 @@
+const { AFRAME } = window;
+
 AFRAME.registerComponent("loading-anim", {
   schema: {
     enabled: { default: true },
@@ -5,7 +7,9 @@ AFRAME.registerComponent("loading-anim", {
   init: function () {
     const loaderEl = document.querySelector("#aframe-loader");
     this.el.addEventListener("model-loaded", (e) => {
-      loaderEl.remove();
+      if (loaderEl) {
+        loaderEl.remove();
+      }
     });
   },
 });

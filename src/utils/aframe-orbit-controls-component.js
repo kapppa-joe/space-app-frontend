@@ -1022,7 +1022,7 @@ AFRAME.registerComponent("orbit-controls", {
       this.dolly.up,
       new THREE.Vector3(0, 1, 0)
     ); // so camera.up is the orbit axis
-    var quatInverse = quat.clone().inverse();
+    var quatInverse = quat.clone().invert();
 
     offset.copy(this.dolly.position).sub(this.target);
     offset.applyQuaternion(quat); // rotate offset to "y-axis-is-up" space

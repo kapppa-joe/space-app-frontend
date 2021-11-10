@@ -3,7 +3,9 @@ import "aframe";
 import "../utils/aframe-star-system";
 import "../utils/aframe-orbit-controls-component";
 import "../utils/aframe-init-position";
+import "../utils/aframe-loading-anim";
 import { Entity, Scene } from "aframe-react";
+import "../styles/loader.css";
 
 import Models from "../utils/aframe-models";
 
@@ -228,6 +230,12 @@ function Moon(props) {
 const SolarSystem3D = () => {
   return (
     <>
+      <div id="aframe-loader">
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/2d-images/rocket-animated.svg`}
+        ></img>
+        Launching into space...
+      </div>
       <Scene
         vr-mode-ui="enabled: false"
         renderer="colorManagement: true;"
@@ -237,7 +245,7 @@ const SolarSystem3D = () => {
         <Entity
           id="camera"
           camera={{ active: true }}
-          init-position={{ position: "0 -20 -20" }}
+          init-position={{ position: "0 -40 -40" }}
           orbit-controls={{
             target: "#sun",
             enableDamping: true,
@@ -271,6 +279,7 @@ const SolarSystem3D = () => {
         <Entity id="camera-center" position="0 0 0" visible="false" />
         <Entity
           id="sun"
+          loading-anim
           gltf-model={Models["sun"].path}
           position="0 0 0"
           scale="1 1 1"
