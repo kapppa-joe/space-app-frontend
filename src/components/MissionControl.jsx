@@ -121,7 +121,7 @@ const MissionControl = () => {
           role="navigation"
           aria-label="main navigation"
         >
-          <a
+          <span
             role="button"
             className={`navbar-burger ${isNavOpen && "is-active"}`}
             aria-label="menu"
@@ -131,7 +131,7 @@ const MissionControl = () => {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </span>
           <div className={`custom-nav-menu ${isNavOpen && "is-active"}`}>
             <div className="nav-buttons-wrapper">
               <Link className="" to="/space/solar-system">
