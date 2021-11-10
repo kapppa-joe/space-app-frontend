@@ -192,7 +192,6 @@ p.button-text {
   opacity: 0.9;
   border-radius: 5px;
   font-weight: bold;
-  /* margin-bottom: 100px; */
   max-width: 500px;
 }
 
@@ -920,6 +919,10 @@ p.button-text {
 
 /* ISS Live */
 
+.iss-live {
+  padding: 10px;
+}
+
 .iss-live h3 {
   font-family: AstroSpace, serif;
   font-size: 2rem;
@@ -945,8 +948,17 @@ p.button-text {
   margin-bottom: 15px;
 }
 
+.iss-video {
+  margin-bottom: 10px;
+}
+
 #iss-back-button {
+  height: 30px;
   margin-right: 20px;
+}
+
+#iss-container {
+  max-width: 500px;
 }
 
 /* acknowledgements */
