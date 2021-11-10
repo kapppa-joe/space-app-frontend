@@ -900,6 +900,10 @@ p.button-text {
   color: rgb(235, 79, 79);
 }
 
+.reload-button {
+  margin-top: 20px;
+}
+
 /* Trivia pages */
 
 .trivia-container {
