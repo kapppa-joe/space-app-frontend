@@ -304,7 +304,7 @@ p.button-text {
   color: rgb(204, 56, 192);
 }
 
-#blank-box {
+.blank-box {
   height: 20px;
 }
 
@@ -422,7 +422,8 @@ p.button-text {
 }
 
 #mission-control .accordion-header {
-  background-color: var(--bright-yellow);
+  /* background-color: var(--bright-yellow); */
+  background-color: #ff7d0f;
   color: var(--dark-grey);
 }
 #mission-control .accordion-header p {
@@ -804,8 +805,7 @@ p.button-text {
 
 /* Trivia pages */
 
-.trivia_body,
-.quiz-modal {
+.trivia_body {
   position: absolute;
   top: 1rem;
 }

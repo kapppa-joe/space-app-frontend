@@ -241,7 +241,7 @@ const Onboarding = () => {
           )}
         </p>
       </div>
-      <div id="blank-box"></div>
+      <div className="blank-box"></div>
     </div>
   );
 };

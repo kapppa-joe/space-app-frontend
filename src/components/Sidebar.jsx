@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bulma-pageloader";
-import Facts from "./Facts";
+import Trivia from "./Trivia";
 import Quiz from "./Quiz";
 
 const Sidebar = ({ content, space_object }) => {
@@ -16,14 +16,14 @@ const Sidebar = ({ content, space_object }) => {
             setIsFactsActive(true);
           }}
         >
-          <span className="vertical-text">Trivia</span>
+          <span className="vertical-text">TRIVIA</span>
         </button>
         <div
           className={`pageloader is-left-to-right ${
             isFactsActive ? "is-active" : ""
           }`}
         >
-          <Facts space_object={space_object} />
+          <Trivia space_object={space_object} />
           <button
             class="modal-close is-large"
             aria-label="close"
@@ -43,7 +43,7 @@ const Sidebar = ({ content, space_object }) => {
             setIsQuizActive(true);
           }}
         >
-          <span className="vertical-text">Quiz</span>
+          <span className="vertical-text">QUIZ</span>
         </button>
         <div
           className={`pageloader is-right-to-left ${
