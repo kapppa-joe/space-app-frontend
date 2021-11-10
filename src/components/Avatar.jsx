@@ -18,7 +18,9 @@ const Avatar = () => {
   }, [user, loading]);
 
   if (loading) {
-    return null;
+    return (
+      <div className="avatar-loading-placeholder">Loading your avatar...</div>
+    );
   }
 
   if (!user) {
@@ -26,7 +28,11 @@ const Avatar = () => {
   }
 
   if (error) {
-    return null;
+    return (
+      <div>
+        <p>Something went wrong... Please try refreshing the page</p>
+      </div>
+    );
   }
 
   return (
