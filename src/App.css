@@ -49,7 +49,7 @@ body {
   color: black;
   margin: 0.3rem 0.5rem;
   padding: 0 2rem;
-  /* border-radius: 0.5rem; */
+  border-radius: 0.5rem;
   font-size: large;
 }
 
@@ -306,7 +306,7 @@ p.button-text {
 }
 
 .blank-box {
-  height: 20px;
+  height: 40px;
 }
 
 /* Mission control */
@@ -316,6 +316,14 @@ p.button-text {
     max-width: 80vw;
     margin: auto;
   }
+}
+
+.message-container {
+  padding: 5px 10px;
+}
+
+.message-card p {
+  padding: 5px 0;
 }
 
 #mission-control .welcome-message {
@@ -472,6 +480,12 @@ p.button-text {
   text-align: justify;
 }
 
+.accordion-content p {
+  text-align: center;
+  font-family: SpaceGrotesk, sans-serif;
+  font-size: 1em;
+}
+
 #mission-control .planet-card-container {
   display: flex;
   flex-direction: column;
@@ -535,7 +549,7 @@ p.button-text {
 }
 
 .acknowledgement-button-div {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 /* AR Planets */
 

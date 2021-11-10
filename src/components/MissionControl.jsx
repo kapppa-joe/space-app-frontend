@@ -150,6 +150,7 @@ const MissionControl = () => {
           </div>
         </nav>
 
+        <div className="message-container">
         <div className="welcome-message message-card">
           <span>
             <p>
@@ -174,17 +175,23 @@ const MissionControl = () => {
             </div>
             <div className="accordion-body">
               <div className="accordion-content">
+                <p>
                 Visit the various planets and spacecraft in our Solar System and
-                learn about them as you go. At each destination take the quiz to
-                unlock the badges below. You only need to get 7 out of 10
-                questions right to unlock your badge!
+                learn about them as you go. <br/><br/>
+                At each destination take the quiz to
+                unlock the badges below. <br/><br/>
+                You only need to get 7 out of 10questions right to unlock your badge!
+                </p>
               </div>
             </div>
           </article>
         </section>
-        <p className="message-card">
+        <div className="message-card">
+        <p>
           Click on the items below to launch into space and begin your mission!
         </p>
+        </div>
+        </div>
 
         {/* Testing button, remove later */}
         {/* <button onClick={testDB}>DB test</button> */}
@@ -261,6 +268,7 @@ const MissionControl = () => {
             <button className="button">Acknowledgements</button>
           </Link>
         </div>
+        <div className="blank-box"></div>
       </div>
     );
   }
