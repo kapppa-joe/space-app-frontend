@@ -53,7 +53,7 @@ const Onboarding = () => {
           setErr(true);
         })
         .finally(() => {
-          setContentsLoading(false);
+          setContentsLoading(true);
         });
     }
   }, [loading, reload, user, nickname]);
