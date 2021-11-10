@@ -672,7 +672,7 @@ p.button-text {
   background-color: white;
   color: black;
   margin: 0.5rem 0.2rem;
-  padding: 1.rem 1rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 10px;
   font-size: large;
 }
