@@ -40,7 +40,6 @@ body {
 }
 
 .button {
-
   font-family: SpaceGrotesk, sans-serif;
 }
 
@@ -543,15 +542,15 @@ p.button-text {
   border-radius: 50%;
 }
 
-.ar-toggle-switch input:checked+.slider {
+.ar-toggle-switch input:checked + .slider {
   background-color: #6c3;
 }
 
-.ar-toggle-switch input:focus+.slider {
+.ar-toggle-switch input:focus + .slider {
   box-shadow: 0 0 1px #6c3;
 }
 
-.ar-toggle-switch input:checked+.slider:before {
+.ar-toggle-switch input:checked + .slider:before {
   transform: translateX(1.4em);
 }
 
@@ -597,7 +596,6 @@ p.button-text {
 }
 
 @media screen and (min-width: 768px) {
-
   #ar_page .left-button,
   #ar_page .right-button {
     display: inline;
@@ -629,7 +627,7 @@ p.button-text {
   /* left: 2em; */
 }
 
-#ar_page>.back-button-wrapper {
+#ar_page > .back-button-wrapper {
   position: fixed;
   top: 0.2em;
   right: 0.2em;
@@ -637,7 +635,7 @@ p.button-text {
   z-index: 2;
 }
 
-#ar_page>.back-button-wrapper button {
+#ar_page > .back-button-wrapper button {
   padding: 2px;
   margin: 0;
   border: none;
@@ -647,12 +645,12 @@ p.button-text {
   white-space: break-spaces;
 }
 
-#ar_page>.back-button-wrapper span {
+#ar_page > .back-button-wrapper span {
   line-height: 1;
 }
 
-#ar_page>.back-button-wrapper a:hover span,
-#ar_page>.back-button-wrapper a:active span {
+#ar_page > .back-button-wrapper a:hover span,
+#ar_page > .back-button-wrapper a:active span {
   color: #fff;
 }
 
@@ -735,7 +733,6 @@ p.button-text {
 }
 
 .vertical-text {
-
   writing-mode: vertical-rl;
   text-orientation: upright;
 }
@@ -839,7 +836,7 @@ p.button-text {
   align-items: center;
 }
 
-.fact>p::first-letter,
+.fact > p::first-letter,
 .question::first-letter {
   font-size: 120%;
   font-family: "AstroSpace", serif;

@@ -112,7 +112,6 @@ const Onboarding = () => {
     );
   }
 
-  console.log(nickname); 
   return (
     <div className="Onboarding">
       <div className="sign-out-container">
