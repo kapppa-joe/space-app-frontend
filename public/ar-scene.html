@@ -57,7 +57,7 @@
           loading-anim
           position="0 0 0"
           scale="0.1 0.1 0.1"
-          animation="property: rotation; to: 0 360 0; dur: 20000; loop:true; easing: linear"
+          animation="property: rotation; to: 0 360 0; dur: 20000; loop:true; easing: linear; pauseEvents:pauseRotation;resumeEvents:resumeRotation"
           gesture-handler
         ></a-entity>
       </a-marker>
@@ -82,6 +82,19 @@
       // custom script to solve the issue of planet got squeezed to long flat ellipse on phone screen
       const sceneElement = document.querySelector("a-scene");
       sceneElement.removeFullScreenStyles();
+      const modelEl = document.querySelector("#ar-model");
+      if (modelEl) {
+        sceneElement.addEventListener('touchstart', () => {
+          console.log("detected touch, pause rotation.")
+          modelEl.emit("pauseRotation")
+        })
+        sceneElement.addEventListener('touchend', () => {
+          console.log("detected touch end, resume rotation.")
+          modelEl.emit("resumeRotation")
+        })
+      } else {
+        console.log("error, can't find 3d model element when script initialize.")
+      }
 
       // script for testing & debug purpose.
       // use together with the a-text entity above.
