@@ -204,6 +204,8 @@ p.button-text {
 
 #prep-description {
   font-weight: 800;
+  font-size: large;
+  margin-bottom: 30px;
 }
 
 .sign-out-container,
@@ -1013,6 +1015,8 @@ p.button-text {
 
 .acknowledgements p {
   padding: 10px 10px;
+  font-size: large;
+  font-weight: 400;
 }
 
 /* Page404 */
