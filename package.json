@@ -5,7 +5,7 @@
   "dependencies": {
     "aframe": "^1.2.0",
     "aframe-react": "^4.4.0",
-    "axios": "^0.24.0",
+    "axios": "^0.27.2",
     "bulma": "^0.9.4",
     "bulma-accordion": "^2.0.1",
     "bulma-pageloader": "^0.3.0",
