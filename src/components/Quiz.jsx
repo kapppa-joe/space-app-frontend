@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   getQuestions,
   updateUserProgress,
@@ -61,8 +61,12 @@ const Quiz = ({ space_object }) => {
   const [contentLoading, setContentLoading] = useState(true);
   const [hasWonBadge, setHasWonBadge] = useState(false);
   const [openWonBadgeModal, setOpenWonBadgeModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user && !loading) {
+      navigate("/");
+    }
     setCurrentQuestion(1);
     setIncorrect([]);
     setErr(false);
@@ -88,7 +92,7 @@ const Quiz = ({ space_object }) => {
       .finally(() => {
         setContentLoading(false);
       });
-  }, [space_object]);
+  }, [space_object, loading, navigate, user]);
 
   const checkAnswer = (e) => {
     e.preventDefault();
@@ -128,9 +132,7 @@ const Quiz = ({ space_object }) => {
     );
   }
 
-  if (!user && !loading) {
-    return <Redirect to="/" />;
-  } else if (contentLoading) {
+  if (contentLoading) {
     return <Loading />;
   } else {
     return (

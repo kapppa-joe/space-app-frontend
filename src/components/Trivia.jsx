@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { getTrivia } from "../db";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
@@ -9,8 +9,12 @@ const Facts = ({ space_object }) => {
   const [trivia, setTrivia] = useState(null);
   const [err, setErr] = useState(false);
   const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user && !loading) {
+      navigate("/");
+    }
     setErr(false);
     getTrivia(space_object.toLowerCase())
       .then((dbTrivia) => {
@@ -19,7 +23,7 @@ const Facts = ({ space_object }) => {
       .catch((err) => {
         setErr(true);
       });
-  }, [space_object]);
+  }, [space_object, navigate, loading, user]);
 
   if (error) {
     return (
@@ -33,9 +37,7 @@ const Facts = ({ space_object }) => {
     );
   }
 
-  if (!user && !loading) {
-    return <Redirect to="/" />;
-  } else if (err) {
+  if (err) {
     return (
       <p>
         Sorry we can't find any facts at the minute. Please try again later.{" "}

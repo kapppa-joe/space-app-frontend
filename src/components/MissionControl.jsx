@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUserNickname, getUserProgress, removeUserProgress } from "../db";
 import { auth } from "../firebase";
 import "bulma-accordion/dist/css/bulma-accordion.min.css";
@@ -17,6 +16,7 @@ const MissionControl = () => {
   const [open, setOpen] = useState(false);
   const [err, setErr] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [progress, setProgress] = useState({
     solar_system: [],
@@ -69,8 +69,10 @@ const MissionControl = () => {
         .finally(() => {
           setLoadingContent(false);
         });
+    } else {
+      navigate("/");
     }
-  }, [user, error, reload]);
+  }, [user, error, reload, navigate]);
 
   const resetProgress = () => {
     let result = window.confirm(
@@ -99,10 +101,6 @@ const MissionControl = () => {
 
   if (loading || loadingContent) {
     return <Loading />;
-  }
-
-  if (!user) {
-    return <Redirect to="/" />;
   }
 
   if (error || err) {
@@ -151,46 +149,51 @@ const MissionControl = () => {
         </nav>
 
         <div className="message-container">
-        <div className="welcome-message message-card">
-          <span>
-            <p>
-              Welcome <span id="space-cadet-name">Space Cadet {nickname}</span>{" "}
-              to mission control.
-            </p>
-            <p>
-              Here you can find details of your mission and check on your
-              progress as you travel through the Cosmos.{" "}
-            </p>
-          </span>
-          <Avatar />
-        </div>
-        <section className="accordions">
-          <article className={`accordion ${open ? "is-active" : ""}`}>
-            <div onClick={toggleAccordion} className="accordion-header">
-              <p>View Mission Details</p>
-              <button
-                className="accordion-button toggle"
-                aria-label="toggle"
-              ></button>
-            </div>
-            <div className="accordion-body">
-              <div className="accordion-content">
-                <p>
-                Visit the various planets and spacecraft in our Solar System and
-                learn about them as you go. <br/><br/>
-                At each destination take the quiz to
-                unlock the badges below. <br/><br/>
-                You only need to get 7 out of 10 questions right to unlock your badge!
-                </p>
+          <div className="welcome-message message-card">
+            <span>
+              <p>
+                Welcome{" "}
+                <span id="space-cadet-name">Space Cadet {nickname}</span> to
+                mission control.
+              </p>
+              <p>
+                Here you can find details of your mission and check on your
+                progress as you travel through the Cosmos.{" "}
+              </p>
+            </span>
+            <Avatar />
+          </div>
+          <section className="accordions">
+            <article className={`accordion ${open ? "is-active" : ""}`}>
+              <div onClick={toggleAccordion} className="accordion-header">
+                <p>View Mission Details</p>
+                <button
+                  className="accordion-button toggle"
+                  aria-label="toggle"
+                ></button>
               </div>
-            </div>
-          </article>
-        </section>
-        <div className="message-card">
-        <p>
-          Click on the items below to launch into space and begin your mission!
-        </p>
-        </div>
+              <div className="accordion-body">
+                <div className="accordion-content">
+                  <p>
+                    Visit the various planets and spacecraft in our Solar System
+                    and learn about them as you go. <br />
+                    <br />
+                    At each destination take the quiz to unlock the badges
+                    below. <br />
+                    <br />
+                    You only need to get 7 out of 10 questions right to unlock
+                    your badge!
+                  </p>
+                </div>
+              </div>
+            </article>
+          </section>
+          <div className="message-card">
+            <p>
+              Click on the items below to launch into space and begin your
+              mission!
+            </p>
+          </div>
         </div>
 
         {/* Testing button, remove later */}
@@ -198,12 +201,14 @@ const MissionControl = () => {
         <div className="planet-card-container">
           {spaceObjects.map((object, index) => {
             return (
-              <Link key={index} className="planet-card" to={`space/${object}`}>
+              <Link key={index} className="planet-card" to={`/space/${object}`}>
                 <div>
                   <p>
-                    <span className="space-object">{formatSpaceObject(object)}{" "}</span></p>
-                   <p> {object in progress ? progress[object].length : 0}/10
+                    <span className="space-object">
+                      {formatSpaceObject(object)}{" "}
+                    </span>
                   </p>
+                  <p> {object in progress ? progress[object].length : 0}/10</p>
                   <img
                     className="two-d"
                     src={`/assets/2d-images/${object}2D.png`}

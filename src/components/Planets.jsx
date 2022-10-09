@@ -2,7 +2,7 @@ import React from "react";
 import Demo from "./Demo";
 import Sidebar from "./Sidebar";
 import Iframe from "react-iframe";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 import Page404 from "./Page404";
 import Avatar from "./Avatar";
@@ -78,7 +78,7 @@ const Planets = () => {
           ""
         ) : (
           <div className="ar-toggle-switch-wrapper">
-            <label for="ar-switch">3D</label>
+            <label htmlFor="ar-switch">3D</label>
             <label className="ar-toggle-switch" for="ar-switch">
               <input
                 type="checkbox"
@@ -88,7 +88,7 @@ const Planets = () => {
               />
               <span className="slider"></span>
             </label>
-            <label for="ar-switch">AR</label>
+            <label htmlFor="ar-switch">AR</label>
           </div>
         )}
 
@@ -106,6 +106,7 @@ const Planets = () => {
           );
         })}
       </div>
+      <Outlet />
     </div>
   );
 };

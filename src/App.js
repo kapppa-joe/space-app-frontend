@@ -1,5 +1,5 @@
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "bulma/css/bulma.min.css";
 import Login from "./components/Login.jsx";
 import Onboarding from "./components/Onboarding";
@@ -13,32 +13,18 @@ import SpaceStation from "./components/SpaceStation";
 function App() {
   return (
     <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <Login />
+      <Routes>
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="space" element={<Planets />}>
+          <Route exact path=":space_object" element={<Planets />} />
         </Route>
-        <Route exact path="/onboarding">
-          <Onboarding />
-        </Route>
-        <Route exact path="/mission-control">
-          <MissionControl />
-        </Route>
-        <Route exact path="/space/:space_object">
-          <Planets />
-        </Route>
-        <Route exact path="/loading">
-          <Loading />
-        </Route>
-        <Route exact path="/acknowledgements">
-          <Acknowledgements />
-        </Route>
-        <Route exact path="/iss-live">
-          <SpaceStation />
-        </Route>
-        <Route>
-          <Page404 />
-        </Route>
-      </Switch>
+        <Route exact path="onboarding" element={<Onboarding />} />
+        <Route exact path="mission-control" element={<MissionControl />} />
+        <Route exact path="loading" element={<Loading />} />
+        <Route exact path="acknowledgements" element={<Acknowledgements />} />
+        <Route exact path="iss-live" element={<SpaceStation />} />
+        <Route element={<Page404 />} />
+      </Routes>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import CustomARMarker from "../assets/images/ar-pattern-rocket.png";
 import CustomMarkerPDF from "../assets/images/custom-AR-marker.pdf";
@@ -30,6 +29,7 @@ const Onboarding = () => {
   const [displayInputBox, setDisplayInputBox] = useState(false);
   const [err, setErr] = useState(false);
   const [contentsLoading, setContentsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -55,8 +55,10 @@ const Onboarding = () => {
         .finally(() => {
           setContentsLoading(false);
         });
+    } else {
+      navigate("/");
     }
-  }, [loading, reload, user]);
+  }, [loading, reload, user, navigate]);
 
   const signOutUser = () => {
     auth.signOut().catch((error) => alert(error.message));
@@ -99,10 +101,6 @@ const Onboarding = () => {
 
   if (loading || contentsLoading) {
     return <Loading />;
-  }
-
-  if (!user) {
-    return <Redirect to="/" />;
   }
 
   if (error || err) {
