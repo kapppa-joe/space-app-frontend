@@ -25,7 +25,7 @@ const Sidebar = ({ content, space_object }) => {
         >
           <Trivia space_object={space_object} />
           <button
-            class="modal-close is-large"
+            className="modal-close is-large"
             aria-label="close"
             onClick={() => {
               setIsFactsActive(false);

@@ -18,7 +18,7 @@ const CheckMark = () => {
       focusable="false"
       data-prefix="fas"
       data-icon="circle-check"
-      class="icon check-mark svg-inline--fa fa-circle-check"
+      className="icon check-mark svg-inline--fa fa-circle-check"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"

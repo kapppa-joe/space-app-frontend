@@ -7,7 +7,10 @@ const noBadgeTitle = "Nice Try!";
 
 const ReloadButton = () => {
   return (
-    <button className="button reload-button" onClick={() => window.location.reload()}>
+    <button
+      className="button reload-button"
+      onClick={() => window.location.reload()}
+    >
       Back to the planets!
     </button>
   );
@@ -20,12 +23,14 @@ const newlyWonBadgeBody = (space_object) => (
       src={`/assets/badges/badge-${space_object}.png`}
       alt={space_object}
     ></img>
-    <p>Congratulations!<br/> You have completed the quiz and earned a badge!</p>
+    <p>
+      Congratulations!
+      <br /> You have completed the quiz and earned a badge!
+    </p>
     <p>If you would like to see your new shiny badge click on the link below</p>
     <Link to="/mission-control">
-      <button className="button reload-button">Mission Control
-        </button>
-      </Link>
+      <button className="button reload-button">Mission Control</button>
+    </Link>
     <br />
     <br />
 
@@ -34,14 +39,16 @@ const newlyWonBadgeBody = (space_object) => (
   </>
 );
 
-const alreadyGotBadgeBody  = (
+const alreadyGotBadgeBody = (
   <>
-    <p>Congratulations! <br/>You have completed the quiz and did really well!</p>
+    <p>
+      Congratulations! <br />
+      You have completed the quiz and did really well!
+    </p>
     <p>If you would like to see the badge you won, click on the link below</p>
     <Link to="/mission-control">
-      <button className="button reload-button">Mission Control
-        </button>
-      </Link>
+      <button className="button reload-button">Mission Control</button>
+    </Link>
     <br />
     <br />
     <p>Or you can return to the planet viewer to continue your mission!</p>
@@ -53,9 +60,9 @@ const noBadgeBody = (
   <>
     <p>Unfortunately, you haven't got a badge this time</p>
     <p>
-      Not to worry! <br/>
-      Click on the link below, look at the facts, and you can
-      answer the questions again
+      Not to worry! <br />
+      Click on the link below, look at the facts, and you can answer the
+      questions again
     </p>
     <ReloadButton />
   </>
@@ -88,20 +95,20 @@ const FinishedQuizModal = ({ progress, hasWonBadge, space_object }) => {
         Finish
       </button>
 
-      <div class={`modal ${isActive ? "is-active" : ""}`}>
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">
+      <div className={`modal ${isActive ? "is-active" : ""}`}>
+        <div className="modal-background"></div>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">
               {gotBadge ? hasBadgeTitle : noBadgeTitle}
             </p>
             <button
-              class="delete"
+              className="delete"
               aria-label="close"
               onClick={() => setIsActive(false)}
             ></button>
           </header>
-          <section class="modal-card-body">{modalBoxBody}</section>
+          <section className="modal-card-body">{modalBoxBody}</section>
         </div>
       </div>
     </>
